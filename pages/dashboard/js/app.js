@@ -158,6 +158,7 @@ const quizPerguntas = [
 
 let questaoAtualNivelamento = 0;
 let acertosNivelamento = 0;
+let acertosTesteModulo = 0;
 
 function verificarNivelamento() {
     const jaNivelou = localStorage.getItem(userKey + 'nivelado');
@@ -299,6 +300,10 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
     if (!fasesDesbloqueadas.includes(faseId)) {
         alert("[ SISTEMA ]\n\nDisciplina bloqueada. Conclua as permissões anteriores!");
         return;
+    }
+
+    if (faseId.startsWith('teste-mod')) {
+        acertosTesteModulo = 0;
     }
 
     const rightPanel = document.getElementById('right-panel');
@@ -610,13 +615,28 @@ function verificarEnade(escolhida, correta) {
     const botoes = document.querySelectorAll('.btn-opcao');
     botoes.forEach(b => b.disabled = true);
 
+    const isTesteMod = faseAtualId.startsWith('teste-mod');
+
     if (escolhida === correta) {
         botoes[escolhida].classList.add('opcao-correta');
         soltarEstrelas(botoes[escolhida]);
+        if (isTesteMod) {
+            acertosTesteModulo++;
+        }
         
         setTimeout(() => {
             document.getElementById('meuCard').classList.add('flipped');
-            document.getElementById('botoes-jogo').innerHTML = gerarBotoesRepeticao(deckAtual[indiceCarta].frente);
+            if (isTesteMod) {
+                document.getElementById('botoes-jogo').innerHTML = `
+                    <div class="anki-container">
+                        <button class="anki-btn" onclick="processarResposta('proxima-teste')">
+                            <span class="anki-label" style="color: #00ff88;">Continuar Teste</span>
+                        </button>
+                    </div>
+                `;
+            } else {
+                document.getElementById('botoes-jogo').innerHTML = gerarBotoesRepeticao(deckAtual[indiceCarta].frente);
+            }
             document.getElementById('botoes-jogo').style.display = 'flex';
         }, 3000);
 
@@ -626,14 +646,24 @@ function verificarEnade(escolhida, correta) {
         
         setTimeout(() => {
             document.getElementById('meuCard').classList.add('flipped');
-            document.getElementById('botoes-jogo').innerHTML = `
-                <div class="anki-container">
-                    <button class="anki-btn" style="border-color: #ff5555;" onclick="processarResposta('again')">
-                        <span class="anki-time"><1m</span>
-                        <span class="anki-label" style="color: #ff5555;">Errou (Repetir Hoje)</span>
-                    </button>
-                </div>
-            `;
+            if (isTesteMod) {
+                document.getElementById('botoes-jogo').innerHTML = `
+                    <div class="anki-container">
+                        <button class="anki-btn" onclick="processarResposta('proxima-teste')">
+                            <span class="anki-label" style="color: #ffaa00;">Continuar Teste</span>
+                        </button>
+                    </div>
+                `;
+            } else {
+                document.getElementById('botoes-jogo').innerHTML = `
+                    <div class="anki-container">
+                        <button class="anki-btn" style="border-color: #ff5555;" onclick="processarResposta('again')">
+                            <span class="anki-time"><1m</span>
+                            <span class="anki-label" style="color: #ff5555;">Errou (Repetir Hoje)</span>
+                        </button>
+                    </div>
+                `;
+            }
             document.getElementById('botoes-jogo').style.display = 'flex';
         }, 3000);
     }
@@ -647,7 +677,9 @@ function processarResposta(resultado) {
     let dataSrs = srsData[idCarta] || { rep: 0, interval: 0, ease: 2.5, next: 0 };
     let agora = new Date().getTime();
 
-    if (resultado === 'again' || resultado === 'errei') {
+    if (resultado === 'proxima-teste') {
+        // Apenas avança sem atualizar a repetição espaçada
+    } else if (resultado === 'again' || resultado === 'errei') {
         deckRevisao.push(cartaAtual); 
         dataSrs.rep = 0;
         dataSrs.interval = 1;
@@ -693,7 +725,9 @@ function processarResposta(resultado) {
     
     setTimeout(() => {
         if (indiceCarta >= deckAtual.length) {
-            if (deckRevisao.length > 0) {
+            if (faseAtualId.startsWith('teste-mod')) {
+                finalizarTesteModulo();
+            } else if (deckRevisao.length > 0) {
                 deckAtual = [...deckRevisao]; 
                 deckRevisao = []; 
                 indiceCarta = 0;
@@ -717,11 +751,40 @@ function finalizarDeck() {
     document.getElementById('botao-proxima').style.display = 'flex';
 }
 
+function finalizarTesteModulo() {
+    let porcentagem = Math.round((acertosTesteModulo / deckAtual.length) * 100);
+    let passou = porcentagem >= 70;
+
+    if (passou) {
+        document.getElementById('texto-frente').innerText = "Teste Aprovado! 🎉";
+        document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nCódigo executado com sucesso!`;
+        document.getElementById('dica-verso').innerText = "Recolha seu XP abaixo.";
+    } else {
+        document.getElementById('texto-frente').innerText = "Teste Reprovado ❌";
+        document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nVocê precisa de pelo menos 70% de acertos para passar.`;
+        document.getElementById('dica-verso').innerText = "Estude mais o módulo e tente novamente.";
+    }
+    
+    document.getElementById('contador-cartas').innerText = `Resultado: ${porcentagem}%`;
+    document.getElementById('botoes-jogo').style.display = 'none';
+    document.getElementById('botao-proxima').style.display = 'flex';
+}
+
 function irParaProximaAula() {
     let xpGanho = 0;
     let coinsGanho = 0;
 
-    if (faseAtualId.startsWith('fase')) {
+    const isTesteMod = faseAtualId.startsWith('teste-mod');
+    let testePassou = true;
+
+    if (isTesteMod) {
+        let porcentagem = Math.round((acertosTesteModulo / deckAtual.length) * 100);
+        testePassou = porcentagem >= 70;
+        if (testePassou) {
+            xpGanho = 25;
+            coinsGanho = 0;
+        }
+    } else if (faseAtualId.startsWith('fase')) {
         let numFase = parseInt(faseAtualId.replace('fase', ''));
         if (!isNaN(numFase)) {
             if (numFase >= 1 && numFase <= 5)        { xpGanho = 5;  coinsGanho = 10; } 
@@ -730,11 +793,14 @@ function irParaProximaAula() {
             else if (numFase >= 16 && numFase <= 20) { xpGanho = 20; coinsGanho = 10; } 
             else if (numFase >= 21 && numFase <= 22) { xpGanho = 30; coinsGanho = 70; } 
         }
-    } else if (faseAtualId.startsWith('teste-mod')) {
-        xpGanho = 25;
-        coinsGanho = 50;
     } else if (faseAtualId.startsWith('bonus')) {
         xpGanho = 25; coinsGanho = 15;
+    }
+
+    if (isTesteMod && !testePassou) {
+        alert(`[ ACESSO NEGADO ]\nVocê não atingiu a pontuação mínima de 70% no Teste de Módulo (Aproveitamento: ${Math.round((acertosTesteModulo / deckAtual.length) * 100)}%).\n\nNenhuma recompensa foi concedida e o próximo nível permanece bloqueado. Tente novamente!`);
+        document.getElementById('menu-' + faseAtualId).click(); 
+        return;
     }
 
     xpTotal += xpGanho;
@@ -787,8 +853,8 @@ function irParaProximaAula() {
         alert(`[ MISSÃO FINALIZADA ]\nConcluiu o ENADE! Receba +${xpGanho} XP e +${coinsGanho} Coins!`);
     } else if (faseAtualId.startsWith('bonus')) {
         alert(`[ BÔNUS ]\nConhecimento extra rendeu +${xpGanho} XP e +${coinsGanho} Coins!`);
-    } else if (faseAtualId.startsWith('teste-mod')) {
-        alert(`[ TESTE DE MÓDULO CONCLUÍDO ]\nParabéns! Você concluiu a avaliação do módulo.\nRecompensa: +${xpGanho} XP e +${coinsGanho} Coins!`);
+    } else if (isTesteMod) {
+        alert(`[ TESTE DE MÓDULO CONCLUÍDO ]\nParabéns! Você passou com ${porcentagem}% de aproveitamento.\nRecompensa: +${xpGanho} XP!`);
     }
 
     document.getElementById('menu-' + faseAtualId).click(); 
