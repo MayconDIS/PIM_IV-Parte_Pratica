@@ -2,7 +2,7 @@
 ╔══════════════════════════════════════════════════════╗
 ║   Nex_TI — Launcher (Backend + Frontend)             ║
 ║   Executa: dotnet run (porta 5000)                   ║
-║            HTTP Server  (porta 5500)                 ║
+║            HTTP Server  (porta 5501)                 ║
 ║   Encerrar: Ctrl+C                                   ║
 ╚══════════════════════════════════════════════════════╝
 """

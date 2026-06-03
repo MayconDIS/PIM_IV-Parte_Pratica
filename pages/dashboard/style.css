@@ -210,17 +210,11 @@ header {
 
 .target-icon {
     display: inline-block;
-    background: radial-gradient(circle at center, #ff3b30 28%, #ffd700 29%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
 }
 
 .stats-icon {
     display: inline-block;
-    background: linear-gradient(135deg, #00ff88 0%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
 }
 
