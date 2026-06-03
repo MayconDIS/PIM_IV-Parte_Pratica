@@ -258,7 +258,7 @@ INSERT INTO Flashcards (CodigoFase, Frente, Verso, Dica, Opcoes, Correta) VALUES
 
 -- =======================================================
 -- 4. TABELAS ADICIONAIS: MÓDULO DE PROVAS E SIMULADOS
---    (MAPEADO NO PIM III E PLANEJADO PARA O 4º SEMESTRE)
+--    (INTEGRADO E OPERANTE NO PIM IV - 4º SEMESTRE)
 -- =======================================================
 
 -- Tabela de Áreas de Conhecimento
