@@ -230,7 +230,9 @@ INSERT INTO Flashcards (CodigoFase, Frente, Verso, Dica) VALUES
 
 ('fase20', N'O que é um MVP (Minimum Viable Product)?', N'A versão mais simples de um produto, lançada rapidamente para testar o mercado.', N'Disciplina: Empreendedorismo e Gestão.'),
 ('fase20', N'O que é o Kanban?', N'Método visual de gestão de fluxo de trabalho (A Fazer, Fazendo, Feito).', N'Originou-se na Toyota.'),
-('fase20', N'O que é Escalabilidade Horizontal?', N'Adicionar MAIS servidores para dividir a carga do sistema (Cloud).', N'Diferente de Vertical, que é bo-- MÓDULO 05 (ENADE)
+('fase20', N'O que é Escalabilidade Horizontal?', N'Adicionar MAIS servidores para dividir a carga do sistema (Cloud).', N'Diferente de Vertical, que consiste em aumentar os recursos do servidor atual.');
+
+-- MÓDULO 05 (ENADE)
 INSERT INTO Flashcards (CodigoFase, Frente, Verso, Dica, Opcoes, Correta) VALUES
 ('fase21', N'(ENADE - Gestão) Uma empresa adotou metodologias ágeis. Durante uma iteração, a equipe percebeu que um dos requisitos estava mal detalhado, gerando atraso. Qual cerimônia do Scrum é o momento IDEAL para a equipe inspecionar esse problema de processo e sugerir melhorias para o próximo ciclo?', N'Alternativa D: Sprint Retrospective. Justificativa: A Retrospectiva serve exatamente para avaliar o processo, as falhas de comunicação e ferramentas, buscando melhoria contínua para a próxima Sprint.', N'Foco no processo e na equipe, não no produto.', N'A) Sprint Planning;B) Daily Scrum;C) Sprint Review;D) Sprint Retrospective', 3),
 ('fase21', N'(ENADE - LGPD) Uma clínica médica recolhe dados biométricos e histórico de doenças de seus pacientes. Segundo a Lei Geral de Proteção de Dados (LGPD), estes dados são classificados como:', N'Alternativa B: Dados Sensíveis. Justificativa: Dados sobre saúde, biometria, origem racial, religião e orientação sexual são sensíveis pois podem gerar discriminação, exigindo maior rigor de proteção.', N'A saúde é um tema que exige proteção redobrada.', N'A) Dados Públicos;B) Dados Sensíveis;C) Dados Anonimizados;D) Dados Temporários', 1),
@@ -305,4 +307,45 @@ CREATE TABLE tb_prova_questao (
     CONSTRAINT FK_PQ_Q FOREIGN KEY (id_questao) REFERENCES tb_questoes(id_questao)
 );
 GO
+
+-- =======================================================
+-- 5. POPULANDO AS TABELAS DE SIMULADOS E PROVAS (SEED)
+-- =======================================================
+
+-- Áreas de Conhecimento
+INSERT INTO tb_areas_conhecimento (nome_area) VALUES 
+('Engenharia de Software'),
+('Cibersegurança e LGPD'),
+('UX/UI Design'),
+('Algoritmos e Estruturas de Dados'),
+('Redes de Computadores');
 GO
+
+-- Prova
+INSERT INTO tb_provas (ano, tipo) VALUES (2021, 'ENADE');
+GO
+
+-- Questões (Mapeadas para as respectivas áreas)
+INSERT INTO tb_questoes (id_area, enunciado, origem) VALUES 
+(1, N'Uma empresa adotou metodologias ágeis. Durante uma iteração, a equipe percebeu que um dos requisitos estava mal detalhado, gerando atraso. Qual cerimônia do Scrum é o momento IDEAL para a equipe inspecionar esse problema de processo e sugerir melhorias para o próximo ciclo?', 'ENADE 2021'),
+(2, N'Uma clínica médica recolhe dados biométricos e histórico de doenças de seus pacientes. Segundo a Lei Geral de Proteção de Dados (LGPD), estes dados são classificados como:', 'ENADE 2021'),
+(3, N'Uma equipe está refatorando a interface de um sistema. O sistema atual possui textos com baixo contraste e depende apenas da cor vermelha para indicar erros. Qual das ações abaixo NÃO corresponde a uma boa prática de Acessibilidade (WCAG)?', 'ENADE 2021'),
+(4, N'Considere a estrutura de dados ''Fila'' (Queue) sendo usada para gerenciar requisições de impressão em um escritório. Foram inseridos, nesta ordem, os arquivos: A, B e C. Se o comando ''pop()'' ou ''dequeue()'' for executado duas vezes, qual arquivo restará na fila?', 'ENADE 2021'),
+(1, N'O padrão de arquitetura MVC divide o sistema em três camadas. Um desenvolvedor inseriu uma regra de negócio complexa de cálculo de juros bancários diretamente no botão da tela HTML (View). Esta prática fere o padrão MVC pois as regras de negócio deveriam estar no:', 'ENADE 2021'),
+(5, N'Para garantir a segurança de uma aplicação web, foi solicitado que todo o tráfego fosse criptografado usando SSL/TLS. Qual protocolo e qual porta padrão devem ser habilitados no firewall para essa configuração?', 'ENADE 2021');
+GO
+
+-- Alternativas
+INSERT INTO tb_alternativas (id_questao, texto, is_correta) VALUES 
+(1, 'A) Sprint Planning', 0), (1, 'B) Daily Scrum', 0), (1, 'C) Sprint Review', 0), (1, 'D) Sprint Retrospective', 1),
+(2, 'A) Dados Públicos', 0), (2, 'B) Dados Sensíveis', 1), (2, 'C) Dados Anonimizados', 0), (2, 'D) Dados Temporários', 0),
+(3, 'A) Adicionar atributos ''alt'' em imagens.', 0), (3, 'B) Depender exclusivamente da cor para mensagens de erro.', 1), (3, 'C) Garantir navegação completa via teclado (Tab).', 0), (3, 'D) Manter alto contraste entre fundo e texto.', 0),
+(4, 'A) Arquivo A', 0), (4, 'B) Arquivo B', 0), (4, 'C) Arquivo C', 1), (4, 'D) A fila ficará vazia', 0),
+(5, 'A) Controller', 0), (5, 'B) Model', 1), (5, 'C) View', 0), (5, 'D) Banco de Dados', 0),
+(6, 'A) HTTP - Porta 80', 0), (6, 'B) FTP - Porta 21', 0), (6, 'C) HTTPS - Porta 443', 1), (6, 'D) SSH - Porta 22', 0);
+GO
+
+-- Associação das Questões à Prova 1
+INSERT INTO tb_prova_questao (id_prova, id_questao) VALUES 
+(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6);
+GO
