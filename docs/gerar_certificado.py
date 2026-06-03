@@ -214,7 +214,7 @@ def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_p
     
     pdf.set_font(font_title, 'B', 13)
     pdf.set_text_color(0, 230, 230) # Cian tecnológico
-    pdf.cell(0, 8, 'NEX_TI - EDTECH LEARNING PLATFORM [20 HORAS]', 0, 1, 'C')
+    pdf.cell(0, 8, 'NEX_TI - EDTECH LEARNING PLATFORM == 20 HORAS', 0, 1, 'C')
     
     pdf.set_font(font_body, '', 11)
     pdf.set_text_color(197, 198, 199) # Cinza claro
