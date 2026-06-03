@@ -869,6 +869,53 @@ body.high-contrast-mode .xp-badge {
 .mini-flashcard p { font-size: 0.85rem; color: #c5c6c7; }
 
 /* =========================================
+   CLASSES UTILITÁRIAS PARA EVITAR ESTILOS INLINE (LINTER FIXES)
+   ========================================= */
+.cursor-pointer { cursor: pointer; }
+.logo span.logo-brand-white { color: #fff; }
+.hamburger-icon { font-size: 2rem; }
+.menu-user-name { color: #fff; font-weight: bold; }
+.menu-user-level { color: var(--alura-cyan); font-size: 0.8rem; }
+.mobile-a11y-container { cursor: default; flex-direction: column; align-items: flex-start; gap: 10px; }
+.a11y-title-text { color: var(--alura-cyan); font-weight: bold; }
+.a11y-buttons-container { display: flex; gap: 5px; width: 100%; }
+.a11y-btn { flex: 1; padding: 6px; }
+.contrast-icon { font-size: 1.2rem; }
+.status-online { color: var(--alura-green); }
+.xp-wrapper-flex { display: flex; gap: 20px; align-items: center; }
+.xp-badge-col { display: flex; flex-direction: column; align-items: center; }
+.xp-display-badge { font-size: 1rem; padding: 8px 15px; margin: 0; }
+.military-tech-icon { font-size: 1.2rem; }
+.badge-title-sub { font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 6px; color: #8b92a5; font-weight: bold; text-transform: uppercase; }
+.coin-display-badge { font-size: 1rem; padding: 8px 15px; margin: 0; border-color: #ffd700; color: #ffd700; background-color: rgba(255, 215, 0, 0.05); }
+.toll-icon-main { font-size: 1.2rem; }
+.menu-badges-wrapper { display: flex; gap: 5px; margin-left: auto; }
+.coin-badge { border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05); }
+.toll-icon-small { font-size: 1rem; }
+.aula-title-gold { color: #ffd700; }
+.enade-xp-badge { border-color: #ff4500; color: #ff4500; }
+.control-icon-spacing { margin-right: 5px; }
+.hidden { display: none; }
+.modal-title-icon { margin-right: 10px; }
+.modal-overlay-dark { background: rgba(0,0,0,0.95); }
+.modal-nivelamento { max-width: 600px; border-color: var(--alura-cyan); }
+.modal-header-cyan { border-bottom-color: var(--alura-cyan); }
+.text-cyan { color: var(--alura-cyan); }
+.modal-desc-text { color: #c5c6c7; font-size: 1.1rem; margin-bottom: 20px; }
+.btn-full-width { width: 100%; padding: 15px; justify-content: center; }
+.modal-mapa { max-width: 90vw; height: 90vh; border-color: var(--alura-purple); display: flex; flex-direction: column; }
+.modal-header-purple { border-bottom-color: var(--alura-purple); }
+.text-purple { color: var(--alura-purple); }
+.modal-body-mapa { flex: 1; position: relative; overflow: hidden; background: #0b0c10; padding: 0; border-radius: 0 0 12px 12px; cursor: grab; }
+.map-a11y-widget { position: absolute !important; bottom: 20px !important; left: 20px !important; z-index: 1000 !important; }
+.large-icon { font-size: 1.6rem; }
+.brand-text-white { color: #fff; }
+.green-icon-small { color: var(--alura-green); font-size: 1.2rem; }
+.footer-badge-text { font-size: 0.85rem; color: #8b92a5; font-weight: 500; }
+.extra-large-icon { font-size: 1.8rem; }
+.margin-left-auto { margin-left: auto; }
+
+/* =========================================
    RESPONSIVIDADE E LINHAS PONTILHADAS MOBILE
    ========================================= */
 @media (max-width: 800px) {
