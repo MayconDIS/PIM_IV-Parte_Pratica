@@ -1056,3 +1056,260 @@ body.high-contrast-mode .xp-badge {
         justify-content: center;
     }
 }
+
+/* =========================================
+   CERTIFICADO PREMIUM
+   ========================================= */
+.modal-certificado {
+    max-width: 900px !important;
+    border: 2px solid #ffd700 !important;
+}
+.modal-header-gold {
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3) !important;
+}
+.text-gold {
+    color: #ffd700 !important;
+}
+.btn-gold {
+    border-color: #ffd700 !important;
+    color: #ffd700 !important;
+}
+.btn-gold:hover {
+    background-color: rgba(255, 215, 0, 0.1) !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3) !important;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5) !important;
+}
+.modal-body-certificado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #0b0c10;
+    padding: 20px !important;
+}
+.certificado-container {
+    width: 100%;
+    background-color: #1a1e24;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.certificado-border-outer {
+    border: 5px double #ffd700;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    background-color: #161b22;
+}
+.certificado-border-inner {
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.certificado-header {
+    margin-bottom: 20px;
+}
+.certificado-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.certificado-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #8b92a5;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+.certificado-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 4px;
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(255,215,0,0.2);
+}
+.certificado-text {
+    font-size: 1.1rem;
+    color: #8b92a5;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+.certificado-student-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffd700;
+    margin: 15px 0;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 10px;
+    width: 80%;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.certificado-text-desc {
+    font-size: 1.05rem;
+    color: #c5c6c7;
+    max-width: 650px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+.certificado-meta {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 40px;
+    border-top: 1px dashed rgba(139, 146, 165, 0.2);
+    border-bottom: 1px dashed rgba(139, 146, 165, 0.2);
+    padding: 15px 0;
+}
+.certificado-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.meta-label {
+    font-size: 0.75rem;
+    color: #8b92a5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.meta-value {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #fff;
+}
+.certificado-signatures {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+.signature-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+.signature-line {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 215, 0, 0.4);
+    margin-bottom: 8px;
+}
+.signature-name {
+    font-size: 0.85rem;
+    color: #fff;
+    font-weight: 600;
+}
+.signature-role {
+    font-size: 0.75rem;
+    color: #8b92a5;
+}
+.signature-badge {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border: 3px double #ffd700;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1e24;
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+.badge-seal {
+    font-size: 1.4rem;
+    color: #ffd700;
+}
+.seal-text {
+    font-size: 0.55rem;
+    color: #ffd700;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+.certificado-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Suporte de Impressão */
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+    #modalCertificado, #modalCertificado * {
+        visibility: visible !important;
+    }
+    #modalCertificado {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: #fff !important;
+    }
+    .modal-content {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: #fff !important;
+        max-width: 100% !important;
+    }
+    .certificado-container {
+        box-shadow: none !important;
+        background-color: #fff !important;
+    }
+    .certificado-border-outer {
+        background-color: #fff !important;
+        border-color: #000 !important;
+        color: #000 !important;
+    }
+    .certificado-border-inner {
+        border-color: #ccc !important;
+    }
+    .certificado-student-name {
+        color: #000 !important;
+        border-bottom-color: #000 !important;
+    }
+    .certificado-logo {
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+        color: #000 !important;
+    }
+    .certificado-title {
+        color: #000 !important;
+        text-shadow: none !important;
+    }
+    .certificado-text-desc {
+        color: #333 !important;
+    }
+    .meta-value {
+        color: #000 !important;
+    }
+    .signature-name {
+        color: #000 !important;
+    }
+    .signature-badge {
+        background-color: #fff !important;
+        border-color: #000 !important;
+        box-shadow: none !important;
+    }
+    .badge-seal, .seal-text {
+        color: #000 !important;
+    }
+    .certificado-actions, .btn-close {
+        display: none !important;
+    }
+}

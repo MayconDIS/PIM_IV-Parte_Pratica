@@ -166,6 +166,17 @@
                     <span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 22: ENADE Análise e Desenvolvimento de Sistemas</span>
                     <div class="menu-badges-wrapper"><span class="xp-badge tech-font enade-xp-badge">30xp</span><span class="xp-badge tech-font flex-align coin-badge"><span class="material-symbols-outlined toll-icon-small">toll</span> 70</span></div>
                 </div>
+                <div class="aula-item" id="menu-teste-mod5" onclick="carregarAula('teste-mod5', 'Teste do Módulo 05: Preparatório ENADE', this)">
+                    <span class="icon-status material-symbols-outlined">play_circle</span>
+                    <span class="aula-title aula-title-cyan">[ TESTE ] Mod 05: Preparatório ENADE</span>
+                    <div class="menu-badges-wrapper">
+                        <span class="xp-badge tech-font teste-xp-badge">25xp</span>
+                    </div>
+                </div>
+                <div class="aula-item aula-locked-item" id="menu-certificado" onclick="tentarAbrirCertificado(this)">
+                    <span class="icon-status material-symbols-outlined" id="icon-certificado">lock</span>
+                    <span class="aula-title aula-title-gold">📜 [ CERTIFICADO ] Conclusão de Curso</span>
+                </div>
 
             </nav> 
             
@@ -319,6 +330,70 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CERTIFICADO PREMIUM -->
+    <div class="modal-overlay modal-overlay-dark" id="modalCertificado">
+        <div class="modal-content modal-certificado">
+            <div class="modal-header modal-header-gold">
+                <h2 class="text-gold flex-align"><span class="material-symbols-outlined modal-title-icon">workspace_premium</span> Certificado de Conclusão</h2>
+                <button class="btn-close flex-align" onclick="fecharModal('modalCertificado')"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="modal-body modal-body-certificado">
+                <div class="certificado-container" id="certificado-area">
+                    <div class="certificado-border-outer">
+                        <div class="certificado-border-inner">
+                            <div class="certificado-header">
+                                <div class="certificado-logo">Nex_TI</div>
+                                <div class="certificado-subtitle">EdTech Learning Platform</div>
+                            </div>
+                            <div class="certificado-title">CERTIFICADO DE CONCLUSÃO</div>
+                            <div class="certificado-text">
+                                Certificamos que o(a) aluno(a)
+                            </div>
+                            <div class="certificado-student-name" id="cert-nome-aluno">Carregando...</div>
+                            <div class="certificado-text-desc">
+                                concluiu com êxito o treinamento especializado em <strong>Tecnologia da Informação e Preparatório ENADE</strong> do programa Nex_TI, obtendo aproveitamento excelente de 80% ou superior nas avaliações finais.
+                            </div>
+                            <div class="certificado-meta">
+                                <div class="certificado-meta-item">
+                                    <span class="meta-label">Data de Emissão</span>
+                                    <span class="meta-value" id="cert-data">--/--/----</span>
+                                </div>
+                                <div class="certificado-meta-item">
+                                    <span class="meta-label">ID de Autenticidade</span>
+                                    <span class="meta-value text-cyan" id="cert-uuid">NEX-XXXX-XXXX-XX</span>
+                                </div>
+                            </div>
+                            <div class="certificado-signatures">
+                                <div class="signature-box">
+                                    <div class="signature-line"></div>
+                                    <span class="signature-name">Nex_TI EdTech Platform</span>
+                                    <span class="signature-role">Diretoria Acadêmica</span>
+                                </div>
+                                <div class="signature-badge">
+                                    <div class="badge-seal">★</div>
+                                    <span class="seal-text">APROVADO ENADE</span>
+                                </div>
+                                <div class="signature-box">
+                                    <div class="signature-line"></div>
+                                    <span class="signature-name">Algoritmo SM-2 Engine</span>
+                                    <span class="signature-role">Validação Digital</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="certificado-actions">
+                    <button class="btn-action btn-gold tech-font flex-align-center" onclick="imprimirCertificado()">
+                        <span class="material-symbols-outlined control-icon-spacing">print</span> IMPRIMIR()
+                    </button>
+                    <button class="btn-action btn-right tech-font flex-align-center" onclick="fecharModal('modalCertificado')">
+                        <span class="material-symbols-outlined control-icon-spacing">close</span> FECHAR()
+                    </button>
+                </div>
             </div>
         </div>
     </div>

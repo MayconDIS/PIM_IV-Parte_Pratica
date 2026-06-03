@@ -74,7 +74,7 @@ const ordemFases = [
     'fase6', 'fase7', 'fase8', 'fase9', 'fase10', 'teste-mod2',
     'fase11', 'fase12', 'fase13', 'fase14', 'fase15', 'teste-mod3',
     'fase16', 'fase17', 'fase18', 'fase19', 'fase20', 'teste-mod4',
-    'fase21', 'fase22'
+    'fase21', 'fase22', 'teste-mod5'
 ];
 
 let fasesDesbloqueadas = JSON.parse(localStorage.getItem(userKey + 'desbloqueadas')) || ['fase1'];
@@ -95,6 +95,20 @@ function atualizarFasesVisuais() {
             if (icon) icon.innerText = 'lock';
         }
     });
+
+    const certUnlocked = localStorage.getItem(userKey + 'certificado_unlocked') === 'true';
+    const menuCertificado = document.getElementById('menu-certificado');
+    if (menuCertificado) {
+        if (certUnlocked) {
+            menuCertificado.classList.remove('aula-locked-item');
+            const icon = menuCertificado.querySelector('.icon-status');
+            if (icon) icon.innerText = 'verified';
+        } else {
+            menuCertificado.classList.add('aula-locked-item');
+            const icon = menuCertificado.querySelector('.icon-status');
+            if (icon) icon.innerText = 'lock';
+        }
+    }
     
     const listaBonus = ['bonus1', 'bonus2', 'bonus3', 'bonus4'];
     listaBonus.forEach(bonusId => {
@@ -350,6 +364,7 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
         else if (numMod === 2) fasesDoModulo = ['fase6', 'fase7', 'fase8', 'fase9', 'fase10'];
         else if (numMod === 3) fasesDoModulo = ['fase11', 'fase12', 'fase13', 'fase14', 'fase15'];
         else if (numMod === 4) fasesDoModulo = ['fase16', 'fase17', 'fase18', 'fase19', 'fase20'];
+        else if (numMod === 5) fasesDoModulo = ['fase21', 'fase22'];
 
         let todosCards = [];
         fasesDoModulo.forEach(fId => {
@@ -753,15 +768,23 @@ function finalizarDeck() {
 
 function finalizarTesteModulo() {
     let porcentagem = Math.round((acertosTesteModulo / deckAtual.length) * 100);
-    let passou = porcentagem >= 70;
+    const isMod5 = faseAtualId === 'teste-mod5';
+    let corte = isMod5 ? 80 : 70;
+    let passou = porcentagem >= corte;
 
     if (passou) {
-        document.getElementById('texto-frente').innerText = "Teste Aprovado! 🎉";
-        document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nCódigo executado com sucesso!`;
-        document.getElementById('dica-verso').innerText = "Recolha seu XP abaixo.";
+        if (isMod5) {
+            document.getElementById('texto-frente').innerText = "Curso Concluído! 📜🎉";
+            document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nVocê desbloqueou o Certificado de Conclusão Oficial!`;
+            document.getElementById('dica-verso').innerText = "Parabéns! Recolha seu XP e verifique seu Certificado no menu lateral.";
+        } else {
+            document.getElementById('texto-frente').innerText = "Teste Aprovado! 🎉";
+            document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nCódigo executado com sucesso!`;
+            document.getElementById('dica-verso').innerText = "Recolha seu XP abaixo.";
+        }
     } else {
         document.getElementById('texto-frente').innerText = "Teste Reprovado ❌";
-        document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nVocê precisa de pelo menos 70% de acertos para passar.`;
+        document.getElementById('texto-verso').innerText = `Aproveitamento: ${porcentagem}% (${acertosTesteModulo}/${deckAtual.length} acertos).\n\nVocê precisa de pelo menos ${corte}% de acertos para passar.`;
         document.getElementById('dica-verso').innerText = "Estude mais o módulo e tente novamente.";
     }
     
@@ -779,7 +802,9 @@ function irParaProximaAula() {
 
     if (isTesteMod) {
         let porcentagem = Math.round((acertosTesteModulo / deckAtual.length) * 100);
-        testePassou = porcentagem >= 70;
+        const isMod5 = faseAtualId === 'teste-mod5';
+        let corte = isMod5 ? 80 : 70;
+        testePassou = porcentagem >= corte;
         if (testePassou) {
             xpGanho = 25;
             coinsGanho = 0;
@@ -798,7 +823,9 @@ function irParaProximaAula() {
     }
 
     if (isTesteMod && !testePassou) {
-        alert(`[ ACESSO NEGADO ]\nVocê não atingiu a pontuação mínima de 70% no Teste de Módulo (Aproveitamento: ${Math.round((acertosTesteModulo / deckAtual.length) * 100)}%).\n\nNenhuma recompensa foi concedida e o próximo nível permanece bloqueado. Tente novamente!`);
+        const isMod5 = faseAtualId === 'teste-mod5';
+        let corte = isMod5 ? 80 : 70;
+        alert(`[ ACESSO NEGADO ]\nVocê não atingiu a pontuação mínima de ${corte}% no Teste de Módulo (Aproveitamento: ${Math.round((acertosTesteModulo / deckAtual.length) * 100)}%).\n\nNenhuma recompensa foi concedida e o próximo nível permanece bloqueado. Tente novamente!`);
         document.getElementById('menu-' + faseAtualId).click(); 
         return;
     }
@@ -851,6 +878,10 @@ function irParaProximaAula() {
             } else {
                 alert(`[ SUCESSO ]\nTeste de Módulo Revisitado com ${porcentagem}%!\nVocê ganhou +${xpGanho} XP!`);
             }
+        } else if (faseAtualId === 'teste-mod5') {
+            localStorage.setItem(userKey + 'certificado_unlocked', 'true');
+            atualizarFasesVisuais(); 
+            alert(`[ CURSO CONCLUÍDO ]\nParabéns! Você passou no Simulado ENADE final com ${porcentagem}% de aproveitamento!\nRecompensa: +${xpGanho} XP.\n📜 CERTIFICADO DE CONCLUSÃO DESBLOQUEADO! Verifique no menu lateral.`);
         }
     } else if (indexAtual >= 0 && indexAtual < ordemFases.length - 1) {
         const proximaFase = ordemFases[indexAtual + 1];
@@ -1012,4 +1043,34 @@ function toggleA11yMenu() {
 function emDesenvolvimento(event) {
     event.preventDefault(); 
     alert("[ SISTEMA ]\n\nMódulo em desenvolvimento.\nEsta funcionalidade será liberada nas próximas atualizações!");
+}
+
+function tentarAbrirCertificado(elemento) {
+    const certUnlocked = localStorage.getItem(userKey + 'certificado_unlocked') === 'true';
+    if (!certUnlocked) {
+        alert("[ CERTIFICADO BLOQUEADO ]\n\nVocê ainda não possui permissão para emitir o certificado.\n\nPara desbloqueá-lo, você precisa concluir o Teste do Módulo 05 (Preparatório ENADE) com pelo menos 80% de aproveitamento.");
+        return;
+    }
+
+    const nomeAluno = localStorage.getItem('quest_user_name') || 'Desenvolvedor';
+    const dataAtual = new Date().toLocaleDateString('pt-BR');
+    
+    let hash = 0;
+    const str = nomeAluno + dataAtual + "NexTI_Academy_Enade_PIMIV";
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+    }
+    const hex = Math.abs(hash).toString(16).toUpperCase().padStart(8, '0');
+    const uuidAutenticidade = `NEX-${hex.slice(0, 4)}-${hex.slice(4, 8)}-${dataAtual.replace(/\//g, '')}`;
+
+    document.getElementById('cert-nome-aluno').innerText = nomeAluno;
+    document.getElementById('cert-data').innerText = dataAtual;
+    document.getElementById('cert-uuid').innerText = uuidAutenticidade;
+
+    abrirModal('modalCertificado');
+}
+
+function imprimirCertificado() {
+    window.print();
 }
