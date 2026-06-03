@@ -95,8 +95,8 @@ function abrirMapaMental() {
         let cartasFinalizadas = [];
         if (isFaseDesbloqueada) {
             cartasFinalizadas = cartasDaFase.filter(carta => {
-                const infoAnki = srsData[carta.frente];
-                return infoAnki && infoAnki.rep > 0;
+                const infoProgresso = srsData[carta.frente];
+                return infoProgresso && infoProgresso.rep > 0;
             });
         }
 

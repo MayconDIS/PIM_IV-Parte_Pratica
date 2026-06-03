@@ -32,7 +32,7 @@ function toggleMode(event) {
 async function handleAuth(event) {
     event.preventDefault();
     
-    const username = document.getElementById('email').value.trim(); // Usando email como username para compatibilidade visual
+    const username = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const btn = document.getElementById('btn-submit');
     
@@ -48,8 +48,6 @@ async function handleAuth(event) {
             setTimeout(() => { window.location.href = '../dashboard/index.html'; }, 800);
         } catch (error) {
             mostrarErro("Acesso Bloqueado!");
-        } finally {
-            btn.innerText = "Entrar no Terminal";
         }
     } else {
         const nickname = document.getElementById('nome').value.trim();
@@ -70,24 +68,22 @@ async function handleAuth(event) {
             setTimeout(() => { window.location.href = '../dashboard/index.html'; }, 1000);
         } catch (error) {
             mostrarErro(error.message);
-        } finally {
-            btn.innerText = "Criar Conta";
         }
     }
 }
 
 function mostrarErro(mensagem) {
     const btn = document.getElementById('btn-submit');
-    const textoOriginal = btn.innerText;
+    const textoReset = isLoginMode ? '> INITIALIZE_LOGIN()' : 'Criar Conta';
     
-    btn.innerText = mensagem;
+    btn.innerText = `⚠ ${mensagem}`;
     btn.style.color = "#ff5555"; 
     btn.style.borderColor = "#ff5555";
     
     setTimeout(() => { 
-        btn.innerText = textoOriginal; 
+        btn.innerText = textoReset; 
         btn.style.color = "var(--alura-cyan)"; 
         btn.style.borderColor = "var(--alura-cyan)"; 
-    }, 2500);
+    }, 3000);
 }
 

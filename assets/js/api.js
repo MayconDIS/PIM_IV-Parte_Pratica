@@ -2,7 +2,7 @@
 // SERVIÇO DE INTEGRAÇÃO COM A API (FETCH)
 // ==========================================
 
-const API_BASE_URL = 'https://localhost:5001/api';
+const API_BASE_URL = 'http://localhost:5000/api';
 
 const ApiService = {
     // 1. Verifica se a API está online

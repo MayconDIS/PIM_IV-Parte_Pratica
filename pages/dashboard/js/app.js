@@ -63,7 +63,7 @@ if (!meusDecks || !meusDecks.fase22 || meusDecks.fase22.length < 50) {
     localStorage.setItem(userKey + 'decks', JSON.stringify(meusDecks));
 }
 
-// Banco de dados do Algoritmo ANKI
+// Banco de dados de Repetição Espaçada (Algoritmo SM-2)
 let srsData = JSON.parse(localStorage.getItem(userKey + 'srs')) || {};
 
 // ==========================================
@@ -242,7 +242,7 @@ function finalizarNivelamento() {
 }
 
 // ==========================================
-// 4. MOTOR ANKI (SPACED REPETITION) E ENADE
+// 4. MOTOR DE REPETIÇÃO ESPAÇADA (SM-2) E ENADE
 // ==========================================
 let deckAtual = [];
 let deckRevisao = []; 
@@ -258,7 +258,7 @@ function formatarIntervalo(dias) {
     return Math.round(d / 365) + "a";
 }
 
-function gerarBotoesAnki(idCarta) {
+function gerarBotoesRepeticao(idCarta) {
     let dataSrs = srsData[idCarta] || { rep: 0, interval: 0, ease: 2.5 };
     let tAgain = "<1m", tHard = "<6m", tGood = "<10m", tEasy = "3d";
 
@@ -350,6 +350,8 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
                     }
                     return cardObj;
                 });
+            } else {
+                cartasDaFase = [...(meusDecks[faseId] || [])];
             }
         } catch (e) {
             console.error("Erro ao buscar flashcards da API, usando local:", e);
@@ -360,11 +362,11 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
     }
     let agora = new Date().getTime();
 
-    // Filtro ANKI
+    // Filtro de Repetição Espaçada
     deckAtual = cartasDaFase.filter(carta => {
-        let infoAnki = srsData[carta.frente];
-        if (!infoAnki) return true; // Nova
-        return infoAnki.next <= agora; // Devida
+        let infoProgresso = srsData[carta.frente];
+        if (!infoProgresso) return true; // Nova
+        return infoProgresso.next <= agora; // Devida
     });
 
     if (deckAtual.length === 0) {
@@ -373,7 +375,7 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
         leftPanel.classList.remove('fade-out-others');
         document.querySelectorAll('.dia-header').forEach(el => el.classList.remove('active-header'));
         
-        alert("✅ [ SISTEMA ANKI: REVISÃO EM DIA ]\n\nVocê já estudou todo o conteúdo desta disciplina por hoje!\nSeu cérebro precisa de descanso para fixar a memória. Volte amanhã para novas revisões espaçadas.");
+        alert("✅ [ SISTEMA Nex_TI: REVISÃO EM DIA ]\n\nVocê já estudou todo o conteúdo desta disciplina por hoje!\nSeu cérebro precisa de descanso para fixar a memória. Volte amanhã para novas revisões espaçadas.");
         
         rightPanel.classList.remove('active'); 
         setTimeout(() => { rightPanel.style.display = 'none'; }, 1000); 
@@ -498,7 +500,7 @@ function virarCarta() {
         card.classList.toggle('flipped');
         
         if (!isEnade && card.classList.contains('flipped')) {
-            document.getElementById('botoes-jogo').innerHTML = gerarBotoesAnki(deckAtual[indiceCarta].frente);
+            document.getElementById('botoes-jogo').innerHTML = gerarBotoesRepeticao(deckAtual[indiceCarta].frente);
         } else if (!isEnade && !card.classList.contains('flipped')) {
             document.getElementById('botoes-jogo').innerHTML = `<button class="btn-mostrar tech-font" onclick="virarCarta()">MOSTRAR RESPOSTA</button>`;
         }
@@ -549,7 +551,7 @@ function verificarEnade(escolhida, correta) {
         
         setTimeout(() => {
             document.getElementById('meuCard').classList.add('flipped');
-            document.getElementById('botoes-jogo').innerHTML = gerarBotoesAnki(deckAtual[indiceCarta].frente);
+            document.getElementById('botoes-jogo').innerHTML = gerarBotoesRepeticao(deckAtual[indiceCarta].frente);
             document.getElementById('botoes-jogo').style.display = 'flex';
         }, 3000);
 
