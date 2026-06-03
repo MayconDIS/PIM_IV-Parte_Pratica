@@ -7,6 +7,7 @@ window.scrollTo(0, 0);
 // ==========================================
 // 1. INICIALIZAÇÃO E BANCO DE DADOS
 // ==========================================
+let apiOnline = false;
 const nomeSalvo = localStorage.getItem('quest_user_name') || 'Desenvolvedor';
 
 const headerUserName = document.getElementById('header-user-name') || document.getElementById('header-user-name-title');
@@ -19,6 +20,36 @@ const userKey = `quest_${nomeSalvo}_`;
 
 let rankSalvo = localStorage.getItem(userKey + 'rank') || 'Rank: Pendente';
 document.getElementById('menu-user-level').innerText = rankSalvo;
+
+async function inicializarApi() {
+    apiOnline = await ApiService.checkStatus();
+    if (apiOnline) {
+        console.log("Integração API: Conectado ao servidor.");
+        const username = localStorage.getItem('quest_user_name');
+        if (username && username !== 'Desenvolvedor' && username !== 'Admin') {
+            const dataUser = await ApiService.getUsuario(username);
+            if (dataUser) {
+                xpTotal = dataUser.xp;
+                coinsTotal = dataUser.moedas;
+                let nivel = dataUser.nivel;
+                let nomeRank = `Rank: Nível ${nivel}`;
+                if (nivel === 1) nomeRank = "Rank: Ingressante";
+                else if (nivel >= 2 && nivel <= 5) nomeRank = "Rank: Intermediário";
+                else if (nivel > 5) nomeRank = "Rank: Expert";
+                
+                localStorage.setItem(userKey + 'xp', xpTotal);
+                localStorage.setItem(userKey + 'coins', coinsTotal);
+                localStorage.setItem(userKey + 'rank', nomeRank);
+                
+                document.getElementById('menu-user-level').innerText = nomeRank;
+                document.getElementById('xp-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">military_tech</span> ${xpTotal} XP`;
+                document.getElementById('coin-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">toll</span> ${coinsTotal}`;
+            }
+        }
+    } else {
+        console.log("Integração API: Servidor offline. Utilizando modo offline (localStorage).");
+    }
+}
 
 let xpTotal = parseInt(localStorage.getItem(userKey + 'xp')) || 0;
 let coinsTotal = parseInt(localStorage.getItem(userKey + 'coins')) || 0;
@@ -169,19 +200,23 @@ function responderNivelamento(indiceResposta) {
 function finalizarNivelamento() {
     let nivelMsg = "";
     let nomeRank = "";
+    let nivelId = 1;
     
     if (acertosNivelamento <= 3) {
         nivelMsg = `Você pontuou ${acertosNivelamento}/10. <br><br><b>Status: Ingressante.</b> Vamos focar na base do Módulo 01!`;
         fasesDesbloqueadas = ['fase1'];
         nomeRank = "Rank: Ingressante";
+        nivelId = 1;
     } else if (acertosNivelamento >= 4 && acertosNivelamento <= 7) {
         nivelMsg = `Você pontuou ${acertosNivelamento}/10. <br><br><b>Status: Intermediário.</b> Os Módulos 01 e 02 estão abertos!`;
         fasesDesbloqueadas = ['fase1', 'fase2', 'fase3', 'fase4', 'fase5', 'fase6', 'fase7', 'fase8', 'fase9', 'fase10'];
         nomeRank = "Rank: Intermediário";
+        nivelId = 3;
     } else {
         nivelMsg = `Você pontuou ${acertosNivelamento}/10. <br><br><b>Status: Expert Universitário.</b> Todas as 22 disciplinas regulares estão abertas!`;
         fasesDesbloqueadas = [...ordemFases]; 
         nomeRank = "Rank: Expert";
+        nivelId = 6;
     }
 
     localStorage.setItem(userKey + 'nivelado', 'true');
@@ -193,6 +228,11 @@ function finalizarNivelamento() {
     document.getElementById('menu-user-level').innerText = nomeRank;
     document.getElementById('xp-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">military_tech</span> ${xpTotal} XP`;
     document.getElementById('coin-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">toll</span> ${coinsTotal}`;
+
+    if (apiOnline) {
+        ApiService.updateUserStats(xpTotal, coinsTotal, nivelId)
+            .catch(err => console.error("Erro ao sincronizar estatísticas iniciais da API:", err));
+    }
 
     document.getElementById('nivelamento-body').innerHTML = `
         <h3 style="color: var(--alura-green); margin-bottom: 15px;">Avaliação Concluída!</h3>
@@ -250,7 +290,7 @@ function gerarBotoesAnki(idCarta) {
     `;
 }
 
-function carregarAula(faseId, nomeAula, elementoClicado) {
+async function carregarAula(faseId, nomeAula, elementoClicado) {
     if (!fasesDesbloqueadas.includes(faseId)) {
         alert("[ SISTEMA ]\n\nDisciplina bloqueada. Conclua as permissões anteriores!");
         return;
@@ -292,7 +332,32 @@ function carregarAula(faseId, nomeAula, elementoClicado) {
     document.getElementById('botao-proxima').style.display = 'none';
 
     faseAtualId = faseId;
-    let cartasDaFase = [...(meusDecks[faseId] || [])]; 
+    let cartasDaFase = [];
+    if (apiOnline) {
+        try {
+            const responseCards = await ApiService.getFlashcardsPorFase(faseId);
+            if (responseCards && responseCards.length > 0) {
+                cartasDaFase = responseCards.map(c => {
+                    let cardObj = {
+                        id: c.id,
+                        frente: c.frente,
+                        verso: c.verso,
+                        dica: c.dica
+                    };
+                    if (c.opcoes) {
+                        cardObj.opcoes = c.opcoes.split(';');
+                        cardObj.correta = c.correta;
+                    }
+                    return cardObj;
+                });
+            }
+        } catch (e) {
+            console.error("Erro ao buscar flashcards da API, usando local:", e);
+            cartasDaFase = [...(meusDecks[faseId] || [])];
+        }
+    } else {
+        cartasDaFase = [...(meusDecks[faseId] || [])];
+    }
     let agora = new Date().getTime();
 
     // Filtro ANKI
@@ -539,6 +604,21 @@ function processarResposta(resultado) {
     srsData[idCarta] = dataSrs;
     localStorage.setItem(userKey + 'srs', JSON.stringify(srsData));
     
+    if (apiOnline) {
+        const usuarioId = parseInt(localStorage.getItem('quest_user_id')) || 0;
+        const flashcardId = cartaAtual.id;
+        let qualidadeNum = 4;
+        if (resultado === 'again' || resultado === 'errei') qualidadeNum = 1;
+        else if (resultado === 'hard') qualidadeNum = 3;
+        else if (resultado === 'good' || resultado === 'acertei') qualidadeNum = 4;
+        else if (resultado === 'easy') qualidadeNum = 5;
+
+        if (usuarioId && flashcardId) {
+            ApiService.atualizarProgresso(usuarioId, flashcardId, qualidadeNum)
+                .catch(err => console.error("Erro ao sincronizar progresso com a API:", err));
+        }
+    }
+    
     indiceCarta++;
     document.getElementById('meuCard').classList.remove('flipped');
     
@@ -591,6 +671,31 @@ function irParaProximaAula() {
     
     document.getElementById('xp-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">military_tech</span> ${xpTotal} XP`;
     document.getElementById('coin-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">toll</span> ${coinsTotal}`;
+
+    let nivelAtual = 1;
+    let rankAtual = localStorage.getItem(userKey + 'rank') || 'Rank: Ingressante';
+    if (rankAtual.includes("Expert")) {
+        nivelAtual = 6;
+    } else if (rankAtual.includes("Intermediário")) {
+        nivelAtual = 3;
+    } else {
+        nivelAtual = 1;
+    }
+    
+    if (xpTotal >= 300) {
+        nivelAtual = Math.max(nivelAtual, 6);
+        localStorage.setItem(userKey + 'rank', "Rank: Expert");
+        document.getElementById('menu-user-level').innerText = "Rank: Expert";
+    } else if (xpTotal >= 100) {
+        nivelAtual = Math.max(nivelAtual, 3);
+        localStorage.setItem(userKey + 'rank', "Rank: Intermediário");
+        document.getElementById('menu-user-level').innerText = "Rank: Intermediário";
+    }
+
+    if (apiOnline) {
+        ApiService.updateUserStats(xpTotal, coinsTotal, nivelAtual)
+            .catch(err => console.error("Erro ao sincronizar estatísticas com a API:", err));
+    }
 
     const indexAtual = ordemFases.indexOf(faseAtualId);
     
@@ -690,7 +795,10 @@ function deslogar() {
     }
 }
 
-window.onload = verificarNivelamento;
+window.onload = async () => {
+    await inicializarApi();
+    verificarNivelamento();
+};
 
 // ==========================================
 // 6. EFEITO SCROLL: BOTÃO VOLTAR AO TOPO

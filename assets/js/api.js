@@ -104,6 +104,37 @@ const ApiService = {
             console.error("Erro ao atualizar progresso:", error);
             throw error;
         }
+    },
+
+    // 8. Atualiza estatísticas do usuário (XP, Moedas, Nível) (JWT)
+    updateUserStats: async (xp, moedas, nivel) => {
+        const token = localStorage.getItem('quest_jwt_token');
+        try {
+            const response = await fetch(`${API_BASE_URL}/usuarios/stats`, {
+                method: 'PUT',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ xp, moedas, nivel })
+            });
+            if (!response.ok) throw new Error("Erro ao atualizar estatísticas no servidor");
+            return await response.json();
+        } catch (error) {
+            console.error("Erro ao atualizar estatísticas:", error);
+            throw error;
+        }
+    },
+
+    // 9. Busca todas as questões de simulados ENADE (UML)
+    getSimuladoQuestoes: async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/simulados/questoes`);
+            return await response.json();
+        } catch (error) {
+            console.error("Erro ao buscar questões de simulado:", error);
+            return [];
+        }
     }
 };
 
