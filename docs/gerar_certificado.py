@@ -13,9 +13,9 @@ except ImportError:
 
 class NexTICertificadoPDF(FPDF):
     def draw_watermark(self):
-        # Desenha a marca d'água com prompt de terminal ( > _ ) em vetor
-        self.set_draw_color(242, 242, 250)
-        self.set_line_width(0.4)
+        # Desenha a marca d'água com prompt de terminal ( > _ ) em vetor cian escuro muito sutil
+        self.set_draw_color(20, 40, 45)
+        self.set_line_width(0.3)
         for y in range(15, 205, 30):
             for x in range(15, 285, 40):
                 # Desenha o símbolo ">"
@@ -25,11 +25,16 @@ class NexTICertificadoPDF(FPDF):
                 self.line(x + 5, y + 6, x + 9, y + 6)
 
     def draw_borders(self):
-        # Desenha a moldura interna elegante em azul escuro real
-        self.set_draw_color(27, 20, 100)
-        self.set_line_width(0.3)
-        self.rect(8, 8, 281, 194) # Moldura bem fina e externa
-        self.rect(10, 10, 277, 190) # Moldura interna principal
+        # Desenha a moldura interna elegante com tema tecnológico neon
+        # Moldura externa em Cyan Neon
+        self.set_draw_color(0, 230, 230)
+        self.set_line_width(0.5)
+        self.rect(8, 8, 281, 194) 
+        
+        # Moldura interna em Roxo Neon
+        self.set_draw_color(138, 43, 226)
+        self.set_line_width(0.35)
+        self.rect(10, 10, 277, 190)
 
 def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_path):
     pdf = NexTICertificadoPDF(orientation='L', unit='mm', format='A4')
@@ -38,6 +43,10 @@ def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_p
     
     pdf.add_page()
     
+    # Preenchimento de Fundo Escuro (Slate 950 / #0b0c10)
+    pdf.set_fill_color(11, 12, 16)
+    pdf.rect(0, 0, 297, 210, 'F')
+    
     # Marca d'água e bordas
     pdf.draw_watermark()
     pdf.draw_borders()
@@ -45,51 +54,50 @@ def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_p
     # 1. Cabeçalho do Logotipo
     pdf.ln(12)
     pdf.set_font('Helvetica', 'B', 24)
-    pdf.set_text_color(27, 20, 100) # Azul escuro real
+    pdf.set_text_color(0, 230, 230) # Cian tecnológico
     pdf.cell(0, 10, 'Nex_TI', 0, 1, 'C')
     
     pdf.set_font('Helvetica', 'B', 7.5)
-    pdf.set_text_color(110, 118, 129)
+    pdf.set_text_color(110, 118, 129) # Cinza de suporte
     pdf.cell(0, 4, 'EDTECH LEARNING PLATFORM', 0, 1, 'C')
     pdf.ln(12)
     
     # 2. Título "Certificado" grande
     pdf.set_font('Helvetica', 'B', 44)
-    pdf.set_text_color(27, 20, 100)
+    pdf.set_text_color(255, 255, 255) # Branco no dark mode
     pdf.cell(0, 18, 'Certificado', 0, 1, 'C')
     pdf.ln(8)
     
     # 3. Corpo de Texto do Certificado
     pdf.set_font('Helvetica', '', 11.5)
-    pdf.set_text_color(79, 86, 107)
+    pdf.set_text_color(139, 146, 165) # Cinza azulado claro
     pdf.cell(0, 6, 'Certificamos que', 0, 1, 'C')
     pdf.ln(4)
     
     # Nome do Aluno
     pdf.set_font('Helvetica', 'B', 26)
-    pdf.set_text_color(0, 0, 0)
+    pdf.set_text_color(255, 255, 255) # Branco com destaque
     pdf.cell(0, 12, nome_aluno, 0, 1, 'C')
     pdf.ln(6)
     
     # Descrição do curso
     pdf.set_font('Helvetica', '', 11)
-    pdf.set_text_color(51, 51, 51)
+    pdf.set_text_color(197, 198, 199) # Cinza claro
     pdf.cell(0, 6, 'concluiu com êxito a trilha de aprendizado de estudo ativo na plataforma', 0, 1, 'C')
     
     pdf.set_font('Helvetica', 'B', 13)
-    pdf.set_text_color(27, 20, 100)
+    pdf.set_text_color(0, 230, 230) # Cian tecnológico
     pdf.cell(0, 8, 'NEX_TI - EDTECH LEARNING PLATFORM [20 HORAS]', 0, 1, 'C')
     
     pdf.set_font('Helvetica', '', 11)
-    pdf.set_text_color(51, 51, 51)
-    pdf.cell(0, 6, 'concluiu com êxito a trilha de aprendizado de estudo ativo na plataforma', 0, 1, 'C')
+    pdf.set_text_color(197, 198, 199) # Cinza claro
     pdf.cell(0, 6, 'com duração total de 20 horas, realizando todas as atividades', 0, 1, 'C')
     pdf.cell(0, 6, 'e avaliações necessárias, com aproveitamento superior a 80% no Simulado ENADE final.', 0, 1, 'C')
     pdf.ln(8)
     
     # Registro de Conclusão e Código
     pdf.set_font('Helvetica', '', 10.5)
-    pdf.set_text_color(51, 51, 51)
+    pdf.set_text_color(197, 198, 199) # Cinza claro
     pdf.cell(0, 6, f'A conclusão foi registrada em {data_conclusao}.', 0, 1, 'C')
     
     # Linha do Código do Certificado
@@ -106,7 +114,7 @@ def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_p
     
     # 5. Assinatura Manuscrita
     # Desenho da Assinatura
-    pdf.set_draw_color(27, 20, 100)
+    pdf.set_draw_color(0, 230, 230) # Cian brilhante
     pdf.set_line_width(0.35)
     
     # Rabisco simulando assinatura
@@ -122,7 +130,7 @@ def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_p
     
     # Cargo
     pdf.set_font('Helvetica', '', 8.5)
-    pdf.set_text_color(79, 86, 107)
+    pdf.set_text_color(139, 146, 165) # Cinza azulado claro
     pdf.cell(0, 4, 'Diretoria Nex_TI Academy', 0, 1, 'C')
     
     # Salva o arquivo PDF
