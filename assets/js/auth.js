@@ -52,11 +52,20 @@ async function handleAuth(event) {
             btn.innerText = "Entrar no Terminal";
         }
     } else {
-        const nome = document.getElementById('nome').value.trim();
+        const nickname = document.getElementById('nome').value.trim();
+        const email = document.getElementById('email').value.trim();
         btn.innerText = "Criando Conta...";
         try {
-            await ApiService.register(username, username + "@nexti.com", password);
-            localStorage.setItem('quest_user_name', nome);
+            // 1. Registra o usuário com as credenciais corretas
+            await ApiService.register(nickname, email, password);
+            
+            // 2. Realiza o login automático para obter o Token JWT e ID do usuário
+            const loginData = await ApiService.login(nickname, password);
+            
+            localStorage.setItem('quest_jwt_token', loginData.token);
+            localStorage.setItem('quest_user_id', loginData.user.id);
+            localStorage.setItem('quest_user_name', loginData.user.username);
+            localStorage.setItem('quest_user_nivel', loginData.user.nivel);
             
             setTimeout(() => { window.location.href = '../dashboard/index.html'; }, 1000);
         } catch (error) {

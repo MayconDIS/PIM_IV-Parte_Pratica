@@ -40,7 +40,7 @@ namespace NexTI_API.Endpoints
 
             app.MapPost("/api/auth/login", async (LoginRequest request, AppDbContext db) =>
             {
-                var user = await db.Usuarios.FirstOrDefaultAsync(u => u.Username == request.Username);
+                var user = await db.Usuarios.FirstOrDefaultAsync(u => u.Username == request.Username || u.Email == request.Username);
                 if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.SenhaHash))
                     return Results.Unauthorized();
 
