@@ -839,7 +839,20 @@ function irParaProximaAula() {
 
     const indexAtual = ordemFases.indexOf(faseAtualId);
     
-    if (indexAtual >= 0 && indexAtual < ordemFases.length - 1) {
+    if (isTesteMod) {
+        let porcentagem = Math.round((acertosTesteModulo / deckAtual.length) * 100);
+        if (indexAtual >= 0 && indexAtual < ordemFases.length - 1) {
+            const proximaFase = ordemFases[indexAtual + 1];
+            if (!fasesDesbloqueadas.includes(proximaFase)) {
+                fasesDesbloqueadas.push(proximaFase);
+                localStorage.setItem(userKey + 'desbloqueadas', JSON.stringify(fasesDesbloqueadas));
+                atualizarFasesVisuais(); 
+                alert(`[ SUCESSO ]\nTeste de Módulo Concluído com ${porcentagem}%!\nRecompensa: +${xpGanho} XP.\n🔓 Novo acesso concedido!`);
+            } else {
+                alert(`[ SUCESSO ]\nTeste de Módulo Revisitado com ${porcentagem}%!\nVocê ganhou +${xpGanho} XP!`);
+            }
+        }
+    } else if (indexAtual >= 0 && indexAtual < ordemFases.length - 1) {
         const proximaFase = ordemFases[indexAtual + 1];
         if (!fasesDesbloqueadas.includes(proximaFase)) {
             fasesDesbloqueadas.push(proximaFase);
@@ -853,8 +866,6 @@ function irParaProximaAula() {
         alert(`[ MISSÃO FINALIZADA ]\nConcluiu o ENADE! Receba +${xpGanho} XP e +${coinsGanho} Coins!`);
     } else if (faseAtualId.startsWith('bonus')) {
         alert(`[ BÔNUS ]\nConhecimento extra rendeu +${xpGanho} XP e +${coinsGanho} Coins!`);
-    } else if (isTesteMod) {
-        alert(`[ TESTE DE MÓDULO CONCLUÍDO ]\nParabéns! Você passou com ${porcentagem}% de aproveitamento.\nRecompensa: +${xpGanho} XP!`);
     }
 
     document.getElementById('menu-' + faseAtualId).click(); 
