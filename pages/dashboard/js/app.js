@@ -69,8 +69,13 @@ let srsData = JSON.parse(localStorage.getItem(userKey + 'srs')) || {};
 // ==========================================
 // 2. SISTEMA DE DESBLOQUEIO E BÔNUS
 // ==========================================
-const ordemFases = [];
-for (let i = 1; i <= 22; i++) { ordemFases.push('fase' + i); }
+const ordemFases = [
+    'fase1', 'fase2', 'fase3', 'fase4', 'fase5', 'teste-mod1',
+    'fase6', 'fase7', 'fase8', 'fase9', 'fase10', 'teste-mod2',
+    'fase11', 'fase12', 'fase13', 'fase14', 'fase15', 'teste-mod3',
+    'fase16', 'fase17', 'fase18', 'fase19', 'fase20', 'teste-mod4',
+    'fase21', 'fase22'
+];
 
 let fasesDesbloqueadas = JSON.parse(localStorage.getItem(userKey + 'desbloqueadas')) || ['fase1'];
 let bonusDesbloqueados = JSON.parse(localStorage.getItem(userKey + 'bonus_unlocked')) || [];
@@ -209,7 +214,7 @@ function finalizarNivelamento() {
         nivelId = 1;
     } else if (acertosNivelamento >= 4 && acertosNivelamento <= 7) {
         nivelMsg = `Você pontuou ${acertosNivelamento}/10. <br><br><b>Status: Intermediário.</b> Os Módulos 01 e 02 estão abertos!`;
-        fasesDesbloqueadas = ['fase1', 'fase2', 'fase3', 'fase4', 'fase5', 'fase6', 'fase7', 'fase8', 'fase9', 'fase10'];
+        fasesDesbloqueadas = ['fase1', 'fase2', 'fase3', 'fase4', 'fase5', 'teste-mod1', 'fase6', 'fase7', 'fase8', 'fase9', 'fase10', 'teste-mod2'];
         nomeRank = "Rank: Intermediário";
         nivelId = 3;
     } else {
@@ -333,7 +338,63 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
 
     faseAtualId = faseId;
     let cartasDaFase = [];
-    if (apiOnline) {
+    if (faseId.startsWith('teste-mod')) {
+        let numMod = parseInt(faseId.replace('teste-mod', ''));
+        let fasesDoModulo = [];
+        if (numMod === 1) fasesDoModulo = ['fase1', 'fase2', 'fase3', 'fase4', 'fase5'];
+        else if (numMod === 2) fasesDoModulo = ['fase6', 'fase7', 'fase8', 'fase9', 'fase10'];
+        else if (numMod === 3) fasesDoModulo = ['fase11', 'fase12', 'fase13', 'fase14', 'fase15'];
+        else if (numMod === 4) fasesDoModulo = ['fase16', 'fase17', 'fase18', 'fase19', 'fase20'];
+
+        let todosCards = [];
+        fasesDoModulo.forEach(fId => {
+            todosCards = todosCards.concat(meusDecks[fId] || []);
+        });
+
+        let totalDesejado = Math.min(20, todosCards.length);
+        let selecionados = [];
+        let copiaCards = [...todosCards];
+        for (let i = 0; i < totalDesejado; i++) {
+            let idxRand = Math.floor(Math.random() * copiaCards.length);
+            selecionados.push(copiaCards.splice(idxRand, 1)[0]);
+        }
+
+        cartasDaFase = selecionados.map(card => {
+            let respostaCorreta = card.verso;
+            let outrosVersos = todosCards
+                .filter(c => c.verso !== respostaCorreta)
+                .map(c => c.verso);
+            
+            outrosVersos = [...new Set(outrosVersos)];
+
+            let distratores = [];
+            for (let i = 0; i < 3; i++) {
+                if (outrosVersos.length === 0) break;
+                let idxRand = Math.floor(Math.random() * outrosVersos.length);
+                distratores.push(outrosVersos.splice(idxRand, 1)[0]);
+            }
+
+            let alternativas = [respostaCorreta, ...distratores];
+
+            for (let i = alternativas.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [alternativas[i], alternativas[j]] = [alternativas[j], alternativas[i]];
+            }
+
+            let corretaIdx = alternativas.indexOf(respostaCorreta);
+            let letras = ["A", "B", "C", "D"];
+            let opcoesFormatadas = alternativas.map((alt, idx) => `${letras[idx]}) ${alt}`);
+
+            return {
+                id: card.id || Math.floor(Math.random() * 100000),
+                frente: card.frente,
+                verso: card.verso,
+                dica: card.dica,
+                opcoes: opcoesFormatadas,
+                correta: corretaIdx
+            };
+        });
+    } else if (apiOnline) {
         try {
             const responseCards = await ApiService.getFlashcardsPorFase(faseId);
             if (responseCards && responseCards.length > 0) {
@@ -363,11 +424,15 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
     let agora = new Date().getTime();
 
     // Filtro de Repetição Espaçada
-    deckAtual = cartasDaFase.filter(carta => {
-        let infoProgresso = srsData[carta.frente];
-        if (!infoProgresso) return true; // Nova
-        return infoProgresso.next <= agora; // Devida
-    });
+    if (faseId.startsWith('teste-mod')) {
+        deckAtual = [...cartasDaFase];
+    } else {
+        deckAtual = cartasDaFase.filter(carta => {
+            let infoProgresso = srsData[carta.frente];
+            if (!infoProgresso) return true; // Nova
+            return infoProgresso.next <= agora; // Devida
+        });
+    }
 
     if (deckAtual.length === 0) {
         elementoClicado.classList.remove('active-lesson');
@@ -602,22 +667,24 @@ function processarResposta(resultado) {
         dataSrs.rep++;
     }
 
-    dataSrs.next = agora + (dataSrs.interval * 86400000); 
-    srsData[idCarta] = dataSrs;
-    localStorage.setItem(userKey + 'srs', JSON.stringify(srsData));
-    
-    if (apiOnline) {
-        const usuarioId = parseInt(localStorage.getItem('quest_user_id')) || 0;
-        const flashcardId = cartaAtual.id;
-        let qualidadeNum = 4;
-        if (resultado === 'again' || resultado === 'errei') qualidadeNum = 1;
-        else if (resultado === 'hard') qualidadeNum = 3;
-        else if (resultado === 'good' || resultado === 'acertei') qualidadeNum = 4;
-        else if (resultado === 'easy') qualidadeNum = 5;
+    if (!faseAtualId.startsWith('teste-mod')) {
+        dataSrs.next = agora + (dataSrs.interval * 86400000); 
+        srsData[idCarta] = dataSrs;
+        localStorage.setItem(userKey + 'srs', JSON.stringify(srsData));
+        
+        if (apiOnline) {
+            const usuarioId = parseInt(localStorage.getItem('quest_user_id')) || 0;
+            const flashcardId = cartaAtual.id;
+            let qualidadeNum = 4;
+            if (resultado === 'again' || resultado === 'errei') qualidadeNum = 1;
+            else if (resultado === 'hard') qualidadeNum = 3;
+            else if (resultado === 'good' || resultado === 'acertei') qualidadeNum = 4;
+            else if (resultado === 'easy') qualidadeNum = 5;
 
-        if (usuarioId && flashcardId) {
-            ApiService.atualizarProgresso(usuarioId, flashcardId, qualidadeNum)
-                .catch(err => console.error("Erro ao sincronizar progresso com a API:", err));
+            if (usuarioId && flashcardId) {
+                ApiService.atualizarProgresso(usuarioId, flashcardId, qualidadeNum)
+                    .catch(err => console.error("Erro ao sincronizar progresso com a API:", err));
+            }
         }
     }
     
@@ -656,11 +723,16 @@ function irParaProximaAula() {
 
     if (faseAtualId.startsWith('fase')) {
         let numFase = parseInt(faseAtualId.replace('fase', ''));
-        if (numFase >= 1 && numFase <= 5)        { xpGanho = 5;  coinsGanho = 10; } 
-        else if (numFase >= 6 && numFase <= 10)  { xpGanho = 10; coinsGanho = 10; } 
-        else if (numFase >= 11 && numFase <= 15) { xpGanho = 15; coinsGanho = 10; } 
-        else if (numFase >= 16 && numFase <= 20) { xpGanho = 20; coinsGanho = 10; } 
-        else if (numFase >= 21 && numFase <= 22) { xpGanho = 30; coinsGanho = 70; } 
+        if (!isNaN(numFase)) {
+            if (numFase >= 1 && numFase <= 5)        { xpGanho = 5;  coinsGanho = 10; } 
+            else if (numFase >= 6 && numFase <= 10)  { xpGanho = 10; coinsGanho = 10; } 
+            else if (numFase >= 11 && numFase <= 15) { xpGanho = 15; coinsGanho = 10; } 
+            else if (numFase >= 16 && numFase <= 20) { xpGanho = 20; coinsGanho = 10; } 
+            else if (numFase >= 21 && numFase <= 22) { xpGanho = 30; coinsGanho = 70; } 
+        }
+    } else if (faseAtualId.startsWith('teste-mod')) {
+        xpGanho = 25;
+        coinsGanho = 50;
     } else if (faseAtualId.startsWith('bonus')) {
         xpGanho = 25; coinsGanho = 15;
     }
@@ -715,6 +787,8 @@ function irParaProximaAula() {
         alert(`[ MISSÃO FINALIZADA ]\nConcluiu o ENADE! Receba +${xpGanho} XP e +${coinsGanho} Coins!`);
     } else if (faseAtualId.startsWith('bonus')) {
         alert(`[ BÔNUS ]\nConhecimento extra rendeu +${xpGanho} XP e +${coinsGanho} Coins!`);
+    } else if (faseAtualId.startsWith('teste-mod')) {
+        alert(`[ TESTE DE MÓDULO CONCLUÍDO ]\nParabéns! Você concluiu a avaliação do módulo.\nRecompensa: +${xpGanho} XP e +${coinsGanho} Coins!`);
     }
 
     document.getElementById('menu-' + faseAtualId).click(); 

@@ -917,6 +917,8 @@ body.high-contrast-mode .xp-badge {
 .footer-badge-text { font-size: 0.85rem; color: #8b92a5; font-weight: 500; }
 .extra-large-icon { font-size: 1.8rem; }
 .margin-left-auto { margin-left: auto; }
+.teste-xp-badge { border-color: var(--alura-cyan); color: var(--alura-cyan); }
+.aula-title-cyan { color: var(--alura-cyan); }
 
 /* =========================================
    RESPONSIVIDADE E LINHAS PONTILHADAS MOBILE
