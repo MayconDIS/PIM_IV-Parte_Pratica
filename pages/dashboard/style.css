@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;700&display=swap');
+
 /* =========================================
    VARIÁVEIS E FONTES
    ========================================= */
@@ -1113,6 +1115,7 @@ body.high-contrast-mode .xp-badge {
     font-size: 2.2rem;
     font-weight: 800;
     letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
 }
 .brand-text-dark {
     color: #ffffff; /* Texto branco no dark mode */
@@ -1131,6 +1134,7 @@ body.high-contrast-mode .xp-badge {
     text-transform: uppercase;
     margin-top: 5px;
     font-weight: 600;
+    font-family: 'Fira Code', monospace;
 }
 .certificado-title {
     font-size: 4rem;
@@ -1138,13 +1142,14 @@ body.high-contrast-mode .xp-badge {
     color: #ffffff; 
     text-shadow: 0 0 12px rgba(0, 230, 230, 0.4); /* Brilho neon cian */
     margin: 10px 0 25px 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     letter-spacing: 2px;
 }
 .certificado-text-label {
     font-size: 1.15rem;
     color: #8b92a5;
     margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
 }
 .certificado-student-name {
     font-size: 2.8rem;
@@ -1153,7 +1158,7 @@ body.high-contrast-mode .xp-badge {
     text-shadow: 0 0 10px rgba(138, 43, 226, 0.5); /* Brilho neon roxo */
     margin: 10px 0 25px 0;
     padding-bottom: 5px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     letter-spacing: 0.5px;
 }
 .certificado-text-desc {
@@ -1162,6 +1167,7 @@ body.high-contrast-mode .xp-badge {
     max-width: 750px;
     line-height: 1.8;
     margin-bottom: 20px;
+    font-family: 'Space Grotesk', sans-serif;
 }
 .certificado-course-title {
     font-size: 1.3rem;
@@ -1171,16 +1177,19 @@ body.high-contrast-mode .xp-badge {
     margin: 15px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: 'Orbitron', sans-serif;
 }
 .certificado-date {
     font-size: 1.1rem;
     color: #c5c6c7;
     margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
 }
 .certificado-code {
     font-size: 1.1rem;
     color: #c5c6c7;
     margin-bottom: 35px;
+    font-family: 'Fira Code', monospace;
 }
 .certificado-code strong {
     color: var(--alura-cyan);
@@ -1193,6 +1202,7 @@ body.high-contrast-mode .xp-badge {
     padding-top: 15px;
     width: 100%;
     margin-bottom: 40px;
+    font-family: 'Space Grotesk', sans-serif;
 }
 .certificado-signatures {
     display: flex;
@@ -1216,6 +1226,7 @@ body.high-contrast-mode .xp-badge {
     font-size: 0.85rem;
     color: #8b92a5;
     font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
 }
 .certificado-actions {
     display: flex;
