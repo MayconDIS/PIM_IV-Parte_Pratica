@@ -102,7 +102,8 @@ namespace NexTI_API.Endpoints
                 var userIdClaim = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (string.IsNullOrEmpty(userIdClaim)) return Results.Unauthorized();
                 
-                int currentUserId = int.Parse(userIdClaim);
+                if (!int.TryParse(userIdClaim, out int currentUserId))
+                    return Results.BadRequest(new { message = "Identificador de usuário inválido no token." });
                 if (currentUserId != request.UsuarioId) return Results.Forbid();
 
                 var progresso = await db.Progresso_Flashcards.FindAsync(currentUserId, request.FlashcardId);
@@ -131,10 +132,24 @@ namespace NexTI_API.Endpoints
                 var userIdClaim = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (string.IsNullOrEmpty(userIdClaim)) return Results.Unauthorized();
                 
-                int currentUserId = int.Parse(userIdClaim);
+                if (!int.TryParse(userIdClaim, out int currentUserId))
+                    return Results.BadRequest(new { message = "Identificador de usuário inválido no token." });
                 var user = await db.Usuarios.FindAsync(currentUserId);
                 if (user == null) return Results.NotFound(new { message = "Usuário não encontrado" });
                 
+                // Validações básicas de segurança na atualização de estatísticas (Anti-Cheat)
+                if (request.XP < user.XP) return Results.BadRequest(new { message = "O progresso de XP não pode diminuir." });
+                if (request.Nivel < user.Nivel) return Results.BadRequest(new { message = "O nível não pode diminuir." });
+                
+                // Limitar ganho máximo de XP por transição (Máximo em fase final é 30 XP, colocamos margem de segurança de 150 XP)
+                int xpDelta = request.XP - user.XP;
+                if (xpDelta > 150) return Results.BadRequest(new { message = "Incremento de XP suspeito detectado (máx. permitido por ciclo é 150 XP)." });
+                
+                // Limitar ganho máximo de Moedas por transição (Fase final concede até 70 Coins, margem de segurança de 150 Coins)
+                // Obs: O usuário pode perder moedas ao comprar bônus na loja, então moedasDelta pode ser negativo (permitido).
+                int moedasDelta = request.Moedas - user.Moedas;
+                if (moedasDelta > 150) return Results.BadRequest(new { message = "Incremento de Moedas suspeito detectado (máx. permitido por ciclo é 150 Coins)." });
+
                 user.XP = request.XP;
                 user.Moedas = request.Moedas;
                 user.Nivel = request.Nivel;
