@@ -6,7 +6,7 @@
 # Project: Nex_TI Platform - Practical MVP
 
 ### What This Is
-This directory (`PIM_III-Parte_Pratica`) contains the practical implementation of the Nex_TI platform. It serves as the Minimum Viable Product (MVP) focusing on the Frontend (HTML/CSS/JS) and the initial SQL Database structure.
+This directory (`PIM_IV-Parte_Pratica`) contains the practical implementation of the Nex_TI platform. It serves as the Minimum Viable Product (MVP) focusing on the Frontend (HTML/CSS/JS) and the initial SQL Database structure.
 
 ### Core Value
 To provide a functional, interactive, and gamified interface that demonstrates the user journey (Splash, Login, Registration, Dashboard) while preparing a solid database schema for future backend integration.
@@ -31,7 +31,7 @@ To provide a functional, interactive, and gamified interface that demonstrates t
 # Projeto: Plataforma Nex_TI - MVP Prático
 
 ### What This Is
-Este diretório (`PIM_III-Parte_Pratica`) contém a implementação prática da plataforma Nex_TI. Ele serve como o Produto Mínimo Viável (MVP) com foco no Frontend (HTML/CSS/JS) e na estrutura inicial do Banco de Dados SQL.
+Este diretório (`PIM_IV-Parte_Pratica`) contém a implementação prática da plataforma Nex_TI. Ele serve como o Produto Mínimo Viável (MVP) com foco no Frontend (HTML/CSS/JS) e na estrutura inicial do Banco de Dados SQL.
 
 ### Core Value
 Fornecer uma interface funcional, interativa e gamificada que demonstre a jornada do usuário (Splash, Login, Cadastro, Dashboard), enquanto prepara um esquema de banco de dados sólido para futura integração com backend.

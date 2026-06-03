@@ -123,7 +123,7 @@ To achieve this, the platform integrates:
 - **Universal Accessibility:** Strict adherence to W3C semantics, native high-contrast mode, and zoom controls.
 - **Neural Map (Obsidian View):** Interactive academic progress visualization with spring physics, drag-and-drop, and state persistence.
 
-This repository hosts the complete Fullstack system (PIM III), focused on a clean architecture (Separation of Concerns), integrating Frontend, RESTful API, and Relational Database.
+This repository hosts the complete Fullstack system (PIM IV), focused on a clean architecture (Separation of Concerns), integrating Frontend, RESTful API, and Relational Database.
 
 ### 🚀 Technologies and Architecture
 
@@ -136,7 +136,7 @@ The project was built adhering to industry best practices:
 ### 📂 Repository Structure
 
 ```text
-📦 PIM_III-Parte_Pratica
+📦 PIM_IV-Parte_Pratica
  ┣ 📂 .planning/      # Project intelligence, roadmap, and architecture
  ┣ 📂 assets/         # Global resources and Design System
  ┃ ┣ 📂 css/          # global.css, splash.css
@@ -174,7 +174,7 @@ Para lograr esto, la plataforma integra:
 - **Accesibilidad Universal:** Enfoque total en semántica W3C, modo de alto contraste nativo y controles de zoom.
 - **Mapa Neural (Obsidian View):** Visualización interactiva del progreso académico con física de resortes (physics springs), drag-and-drop y persistencia de estado.
 
-Este repositorio alberga el sistema Fullstack completo (PIM III), centrado en una arquitectura limpia (Separation of Concerns), integrando Frontend, API RESTful y base de datos relacional.
+Este repositorio alberga el sistema Fullstack completo (PIM IV), centrado en una arquitectura limpia (Separation of Concerns), integrando Frontend, API RESTful y base de datos relacional.
 
 ### 🚀 Tecnologías y Arquitectura
 
@@ -187,7 +187,7 @@ El proyecto fue construido siguiendo las mejores prácticas del mercado:
 ### 📂 Estructura del Repositorio
 
 ```text
-📦 PIM_III-Parte_Pratica
+📦 PIM_IV-Parte_Pratica
  ┣ 📂 .planning/      # Inteligencia del proyecto, hoja de ruta y arquitectura
  ┣ 📂 assets/         # Recursos globales y Design System
  ┃ ┣ 📂 css/          # global.css, splash.css
