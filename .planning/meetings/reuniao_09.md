@@ -10,10 +10,10 @@
 ### 1. O que foi feito (Progresso)
 
 - **Elaboração de Manuais de Extensão**: Escrevemos os manuais técnicos exigidos para o projeto de Extensão Universitária, facilitando a análise técnica e prática pela banca:
-  - [MANUAL_DE_EXECUCAO.md](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica/MANUAL_DE_EXECUCAO.md): Guia com instruções para rodar o banco SQL Server, configurar a API C# (.NET 10) na porta `5001` e executar o front-end via Live Server na porta `5500`.
-  - [MANUAL_PRATICO.md](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica/MANUAL_PRATICO.md): Manual de uso do sistema para os alunos, explicando a gamificação (XP/moedas) e a lógica de repetição espaçada.
-  - [MANUAL_TECNICO.md](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica/MANUAL_TECNICO.md): Detalhamento da arquitetura 3 camadas, endpoints HTTP da API e segurança de dados conforme a LGPD.
-- **Padronização de Dados**: Alinhamos os nomes, RAs dos integrantes e a data de fechamento para `Julho / 2026` em todos os manuais.
+  - [MANUAL_DE_EXECUCAO.md](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/MANUAL_DE_EXECUCAO.md): Guia com instruções para rodar o banco SQL Server, configurar a API C# (.NET 10) na porta `5001` e executar o front-end via Live Server na porta `5500`.
+  - [MANUAL_PRATICO.md](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/MANUAL_PRATICO.md): Manual de uso do sistema para os alunos, explicando a gamificação (XP/moedas) e a lógica de repetição espaçada.
+  - [MANUAL_TECNICO.md](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/MANUAL_TECNICO.md): Detalhamento da arquitetura 3 camadas, endpoints HTTP da API e segurança de dados conforme a LGPD.
+- **Padronização de Dados**: Alinhamos os nomes, RAs dos integrantes e a data de fechamento para `Novembro / 2026` em todos os manuais.
 
 ### 2. O que será feito (Planejamento)
 
