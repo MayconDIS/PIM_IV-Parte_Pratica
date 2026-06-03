@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações - Nex_TI</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e6e6'><path d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z'/></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <style>
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            padding-top: 80px;
+            background-image: 
+                linear-gradient(rgba(0, 230, 230, 0.03) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(0, 230, 230, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .logo { 
+            font-size: 1.4rem; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+            display: flex; 
+            align-items: center;
+        }
+
+        .tech-text { 
+            background: linear-gradient(90deg, var(--alura-cyan, #00e6e6), var(--alura-purple, #8a2be2)); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: 800; 
+        }
+
+        header {
+            background-color: rgba(22, 27, 34, 0.9); 
+            backdrop-filter: blur(10px);
+            padding: 0 40px; 
+            height: 80px; 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center; 
+            border-bottom: 1px solid #30363d; 
+            position: fixed; 
+            top: 0; 
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .container-docs {
+            display: flex;
+            max-width: 1200px;
+            margin: 30px auto;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .left-panel {
+            width: 320px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .right-panel {
+            flex-grow: 1;
+            background: var(--alura-card, #161b22);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        .dia-header {
+            display: flex; 
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            color: #fff; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-top: 20px; 
+            margin-bottom: 5px; 
+        }
+
+        .dia-line {
+            flex-grow: 1; 
+            height: 1px; 
+        }
+
+        .mod-inst span { color: var(--alura-green, #00ff88); }
+        .mod-inst .dia-line { background: linear-gradient(90deg, var(--alura-green, #00ff88), transparent); }
+
+        .mod-ecos span { color: #ffd700; }
+        .mod-ecos .dia-line { background: linear-gradient(90deg, #ffd700, transparent); }
+
+        .mod-sup span { color: #ff4500; }
+        .mod-sup .dia-line { background: linear-gradient(90deg, #ff4500, transparent); }
+
+        .aula-item {
+            background-color: var(--alura-card, #161b22); 
+            border: 1px solid #30363d; 
+            border-left: 4px solid #30363d; 
+            padding: 15px 20px; 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .aula-item:hover {
+            border-color: #30363d; 
+            border-left-color: var(--alura-cyan, #00e6e6); 
+            background-color: rgba(0, 230, 230, 0.05);
+            transform: translateX(5px); 
+        }
+
+        .aula-item.active {
+            border-left-color: var(--alura-cyan, #00e6e6); 
+            background-color: rgba(0, 230, 230, 0.1);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #30363d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #c5c6c7;
+        }
+
+        .btn-back {
+            color: var(--alura-cyan, #00e6e6);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            text-shadow: 0 0 10px rgba(0, 230, 230, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <header role="banner">
+        <div class="logo tech-font">
+            <span style="color: #fff;">Nex_</span><span class="tech-text">TI</span>
+        </div>
+        <div class="header-right">
+            <a href="../dashboard/index.html" class="btn-back tech-font"><span class="material-symbols-outlined">arrow_back</span> Voltar ao App</a>
+        </div>
+    </header>
+
+    <div class="container-docs">
+        
+        <!-- PAINEL ESQUERDO: NAVEGAÇÃO IGUAL AO DASHBOARD -->
+        <nav class="left-panel">
+            
+            <div class="dia-header mod-inst"><span class="tech-font">Institucional</span><div class="dia-line"></div></div>
+            <a href="#sobre" class="aula-item" onclick="showSection('sobre')">
+                <span class="material-symbols-outlined" style="color: var(--alura-green);">corporate_fare</span>
+                <span>Sobre a Nex_TI</span>
+            </a>
+            <a href="#metodologia" class="aula-item" onclick="showSection('metodologia')">
+                <span class="material-symbols-outlined" style="color: var(--alura-green);">menu_book</span>
+                <span>Metodologia</span>
+            </a>
+            <a href="#opensource" class="aula-item" onclick="showSection('opensource')">
+                <span class="material-symbols-outlined" style="color: var(--alura-green);">code</span>
+                <span>Open Source</span>
+            </a>
+            <a href="#carreiras" class="aula-item" onclick="showSection('carreiras')">
+                <span class="material-symbols-outlined" style="color: var(--alura-green);">work</span>
+                <span>Carreiras & Vagas</span>
+            </a>
+
+            <div class="dia-header mod-ecos"><span class="tech-font">Ecossistema</span><div class="dia-line"></div></div>
+            <a href="#trilhas" class="aula-item" onclick="showSection('trilhas')">
+                <span class="material-symbols-outlined" style="color: #ffd700;">route</span>
+                <span>Trilhas e Disciplinas</span>
+            </a>
+            <a href="#enade" class="aula-item" onclick="showSection('enade')">
+                <span class="material-symbols-outlined" style="color: #ffd700;">school</span>
+                <span>Simulado ENADE</span>
+            </a>
+            <a href="#comunidade" class="aula-item" onclick="showSection('comunidade')">
+                <span class="material-symbols-outlined" style="color: #ffd700;">groups</span>
+                <span>Comunidade Devs</span>
+            </a>
+            <a href="#loja" class="aula-item" onclick="showSection('loja')">
+                <span class="material-symbols-outlined" style="color: #ffd700;">store</span>
+                <span>Loja de Bônus</span>
+            </a>
+
+            <div class="dia-header mod-sup"><span class="tech-font">Suporte & Legal</span><div class="dia-line"></div></div>
+            <a href="#faq" class="aula-item" onclick="showSection('faq')">
+                <span class="material-symbols-outlined" style="color: #ff4500;">help</span>
+                <span>Central de Ajuda</span>
+            </a>
+            <a href="#termos" class="aula-item" onclick="showSection('termos')">
+                <span class="material-symbols-outlined" style="color: #ff4500;">gavel</span>
+                <span>Termos de Uso</span>
+            </a>
+            <a href="#privacidade" class="aula-item" onclick="showSection('privacidade')">
+                <span class="material-symbols-outlined" style="color: #ff4500;">shield</span>
+                <span>Privacidade (LGPD)</span>
+            </a>
+            <a href="#contato" class="aula-item" onclick="showSection('contato')">
+                <span class="material-symbols-outlined" style="color: #ff4500;">mail</span>
+                <span>Contato</span>
+            </a>
+
+        </nav>
+
+        <!-- PAINEL DIREITO: CONTEÚDO SEPARADO -->
+        <main class="right-panel">
+
+            <!-- INSTITUCIONAL -->
+            <div id="content-sobre" class="content-section active">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">corporate_fare</span> Sobre a Nex_TI</h1>
+                <p>A Nex_TI é uma EdTech nascida de um Projeto Integrado Multidisciplinar (PIM III). Nosso objetivo principal é combater a Curva de Esquecimento de Ebbinghaus no processo de aprendizado de tecnologia através do uso massivo do Algoritmo SM-2 (Repetição Espaçada) acoplado a um ecossistema gamificado.</p>
+                <p>Nossa plataforma foi desenhada por estudantes de Análise e Desenvolvimento de Sistemas para ser a ferramenta de extensão universitária definitiva.</p>
+            </div>
+
+            <div id="content-metodologia" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">menu_book</span> Metodologia de Ensino</h1>
+                <p>Substituímos o aprendizado passivo por estímulos de Estudo Ativo. Ao invés de vídeos longos, o aluno consome conceitos atômicos através de "Flashcards" interativos, onde a performance no recall do conhecimento (Erro/Acerto) dita quando aquela informação será apresentada novamente.</p>
+            </div>
+
+            <div id="content-opensource" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">code</span> Manifesto Open Source</h1>
+                <p>Acreditamos que o código que molda o futuro da educação deve ser aberto. O núcleo do Nex_TI, incluindo a lógica do Anki Engine, a arquitetura em Vanilla JS e o backend C# (.NET 10), está disponível livremente no GitHub para auditoria, extensão e bifurcação pela comunidade.</p>
+            </div>
+
+            <div id="content-carreiras" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">work</span> Carreiras & Vagas</h1>
+                <p>Estamos sempre em busca de talentos que queiram revolucionar a educação no Brasil. No momento, somos um projeto de extensão universitária e não possuímos vagas CLT abertas.</p>
+                <p>Contribuições via Pull Request no repositório oficial do GitHub são muito bem-vindas e contam como experiência comprovada!</p>
+            </div>
+
+            <!-- ECOSSISTEMA -->
+            <div id="content-trilhas" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">route</span> Trilhas e Disciplinas</h1>
+                <p>Nossa plataforma é modular. Oferecemos pacotes curriculares focados em Engenharia de Software, Lógica de Programação, Cibersegurança e Arquitetura de Nuvem. Cada trilha é dividida em missões progressivas que dão XP ao serem concluídas.</p>
+            </div>
+
+            <div id="content-enade" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">school</span> Simulado ENADE</h1>
+                <p>Módulo exclusivo de preparação para o ENADE, contendo questões reais de provas anteriores de Análise e Desenvolvimento de Sistemas formatadas no modelo de Flashcard. Responda, verifique o verso para explicação detalhada e ganhe pontuação dobrada.</p>
+            </div>
+
+            <div id="content-comunidade" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">groups</span> Comunidade Devs</h1>
+                <p>A seção de comunidade visa conectar alunos em diferentes níveis (Júnior, Pleno e Sênior) baseados no XP da plataforma. É um espaço assíncrono para tirar dúvidas de código e trocar experiências sobre carreira.</p>
+                <p><em>(Funcionalidade prevista para implantação na Versão 2.0).</em></p>
+            </div>
+
+            <div id="content-loja" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">store</span> Loja de Bônus (Coins)</h1>
+                <p>As Moedas Virtuais (Coins) que você minera estudando diariamente servem para desbloquear Flashcards ocultos de disciplinas avançadas ou "Easter Eggs" sobre cultura hacker e curiosidades de TI. Quanto mais você estuda, mais acesso você tem ao conteúdo premium gratuito.</p>
+            </div>
+
+            <!-- SUPORTE E LEGAL -->
+            <div id="content-faq" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">help</span> Central de Ajuda</h1>
+                <p><strong>P: Como recomeço o meu progresso?</strong><br>
+                R: No Dashboard, abra o menu superior direito e clique em "Formatar Sistema". ISSO APAGARÁ TODO SEU PROGRESSO ATUAL.</p>
+                <p><strong>P: Como o algoritmo decide quando vou ver a carta de novo?</strong><br>
+                R: Usamos o SM-2 modificado. Se você errar, verá a carta logo em seguida. Se acertar, ela vai para a caixa de revisão de amanhã. Acertos consecutivos multiplicam o tempo de distância.</p>
+            </div>
+
+            <div id="content-termos" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">gavel</span> Termos de Uso</h1>
+                <p>Ao acessar o Nex_TI, você compreende que trata-se de um sistema de avaliação e extensão acadêmica. É estritamente proibido o uso de automação, scripts, ou bots para inflar XP e farmar Moedas falsamente.</p>
+                <p>Contas identificadas com comportamento anômalo serão expurgadas sumariamente do nosso servidor SQL.</p>
+            </div>
+
+            <div id="content-privacidade" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">shield</span> Aviso de Privacidade</h1>
+                <p>A Nex_TI atua em conformidade estrita com a LGPD. Não capturamos cookies de rastreamento de terceiros em nossa aplicação.</p>
+                <p>Seu E-mail e Username são mantidos em banco de dados isolado e protegido, e suas senhas são armazenadas exclusivamente através de hash criptográfico unidirecional. Você possui total controle para solicitar a deleção definitiva do seu perfil ("Direito ao Esquecimento").</p>
+            </div>
+
+            <div id="content-contato" class="content-section">
+                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">mail</span> Contato</h1>
+                <p>Para suporte técnico, instabilidades na API ou para reportar vulnerabilidades de segurança (Bug Bounty), por favor abra uma "Issue" no repositório oficial do GitHub.</p>
+                <p>Para assuntos administrativos, comunique-se com a equipe de desenvolvimento do PIM III através dos canais de comunicação da coordenação UNIP.</p>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Esconde todas as sessões
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            
+            // Remove a classe 'active' de todos os links do menu
+            document.querySelectorAll('.aula-item').forEach(el => el.classList.remove('active'));
+            
+            // Mostra a sessão desejada
+            const target = document.getElementById('content-' + sectionId);
+            if (target) {
+                target.classList.add('active');
+            }
+            
+            // Marca o link do menu como ativo
+            const link = document.querySelector(`a[href="#${sectionId}"]`);
+            if (link) {
+                link.classList.add('active');
+            }
+        }
+
+        // Lê a URL na hora de carregar para abrir a sessão certa
+        window.addEventListener('DOMContentLoaded', () => {
+            let hash = window.location.hash.substring(1);
+            if (!hash) { hash = 'sobre'; } // Default
+            showSection(hash);
+        });
+
+        // Caso o hash mude na URL manualmente
+        window.addEventListener('hashchange', () => {
+            let hash = window.location.hash.substring(1);
+            if (hash) { showSection(hash); }
+        });
+    </script>
+</body>
+</html>

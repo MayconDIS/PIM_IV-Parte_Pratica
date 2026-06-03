@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nex_TI</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e6e6'><path d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z'/></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="style.css?v=8">
+</head>
+<body>
+
+    <header role="banner">
+        <div class="logo tech-font" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" style="cursor: pointer;">
+            <span style="color: #fff;">Nex_</span><span class="tech-text">TI</span>
+        </div>
+        <div class="header-right">
+            <button class="btn-action tech-font flex-align" onclick="abrirModal('modalCriacao')">
+                <span class="material-symbols-outlined">add_box</span> Criar Carta
+            </button>
+            <div class="hamburger-menu">
+                <button class="hamburger-btn flex-align" onclick="toggleMenu()">
+                    <span class="material-symbols-outlined" style="font-size: 2rem;">menu</span>
+                </button>
+                <div class="dropdown-content" id="dropdownMenu">
+                    <div class="dropdown-header">
+                        <div class="avatar tech-font flex-align">
+                            <span class="material-symbols-outlined">terminal</span>
+                        </div>
+                        <div>
+                            <div style="color: #fff; font-weight: bold;" id="menu-user-name">Aluno</div>
+                            <div style="color: var(--alura-cyan); font-size: 0.8rem;" class="tech-font" id="menu-user-level">Rank: Pendente</div>
+                        </div>
+                    </div>
+                    <a class="dropdown-item flex-align" onclick="refazerDiagnostico()">
+                        <span class="material-symbols-outlined target-icon">radar</span> Refazer Diagnóstico
+                    </a>
+                    <a class="dropdown-item flex-align" onclick="mostrarProgresso()">
+                        <span class="material-symbols-outlined stats-icon">monitoring</span> Minhas Estatísticas
+                    </a>
+                    <a class="dropdown-item flex-align" onclick="abrirMapaMental()">
+                        <span class="material-symbols-outlined" style="color: var(--alura-purple);">hub</span> Mapa Neural
+                    </a>
+                    <a class="dropdown-item danger flex-align" onclick="resetarProgresso()">
+                        <span class="material-symbols-outlined">warning</span> Formatar Sistema
+                    </a>
+                    <div class="dropdown-item mobile-a11y" style="cursor: default; flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <span class="flex-align" style="color: var(--alura-cyan); font-weight: bold;">
+                            <span class="material-symbols-outlined">accessibility_new</span> Acessibilidade
+                        </span>
+                        <div style="display: flex; gap: 5px; width: 100%;">
+                            <button class="btn-action tech-font flex-align-center" onclick="mudarZoom(-1)" style="flex: 1; padding: 6px;">A-</button>
+                            <button class="btn-action tech-font flex-align-center" onclick="mudarZoom(1)" style="flex: 1; padding: 6px;">A+</button>
+                            <button class="btn-action tech-font flex-align-center" onclick="toggleAltoContraste()" style="flex: 1; padding: 6px;" title="Alto Contraste">
+                                <span class="material-symbols-outlined" style="font-size: 1.2rem;">contrast</span>
+                            </button>
+                        </div>
+                    </div>
+                    <a class="dropdown-item flex-align" onclick="deslogar()">
+                        <span class="material-symbols-outlined">logout</span> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" role="main" aria-label="Dashboard Principal">
+        
+        <section class="dashboard-header" aria-labelledby="header-user-name">
+            <div class="welcome-text">
+                <h1>Terminal | Usuário: <span class="tech-text" id="header-user-name">Aluno</span></h1>
+                <p>Status da missão ENADE: <span style="color: var(--alura-green);">Online</span></p>
+            </div>
+            <div class="xp-wrapper" style="display: flex; gap: 20px; align-items: center;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <span class="xp-badge tech-font flex-align" id="xp-display" style="font-size: 1rem; padding: 8px 15px; margin: 0;">
+                        <span class="material-symbols-outlined" style="font-size: 1.2rem;">military_tech</span> 0 XP
+                    </span>
+                    <span style="font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 6px; color: #8b92a5; font-weight: bold; text-transform: uppercase;">Nível</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <span class="xp-badge tech-font flex-align" id="coin-display" style="font-size: 1rem; padding: 8px 15px; margin: 0; border-color: #ffd700; color: #ffd700; background-color: rgba(255, 215, 0, 0.05);">
+                        <span class="material-symbols-outlined" style="font-size: 1.2rem;">toll</span> 0
+                    </span>
+                    <span style="font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 6px; color: #8b92a5; font-weight: bold; text-transform: uppercase;">Coins</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <nav class="left-panel" aria-label="Trilhas de Aprendizagem">
+                
+                <div class="dia-header mod-01"><span class="tech-font">[ Mod_01 ]</span> Fundamentos Algorítmicos<div class="dia-line"></div></div>
+                <div class="aula-item" id="menu-fase1" onclick="carregarAula('fase1', 'Lógica com Python', this)"><span class="icon-status material-symbols-outlined">check_circle</span><span class="aula-title">Fase 01: Lógica com Python</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">5xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase2" onclick="carregarAula('fase2', 'Matemática e Estatística', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 02: Matemática e Estatística</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">5xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase3" onclick="carregarAula('fase3', 'Infraestrutura e Tecnologia da Informação', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 03: Infraestrutura e Tecnologia</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">5xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase4" onclick="carregarAula('fase4', 'Cibersegurança e Proteção de Dados', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 04: Cibersegurança e Proteção de Dados</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">5xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase5" onclick="carregarAula('fase5', 'Ética e Humanidades', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 05: Ética e Humanidades</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">5xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-bonus1" onclick="tentarAbrirBonus('bonus1', 50, 'Curiosidades e Hackers', this)"><span class="icon-status material-symbols-outlined" id="icon-bonus1">lock</span><span class="aula-title" style="color: #ffd700;">[ BÔNUS ] Curiosidades e Hackers</span><div style="margin-left: auto;"><span class="xp-badge tech-font flex-align" id="price-bonus1" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 50</span></div></div>
+
+                <div class="dia-header mod-02"><span class="tech-font">[ Mod_02 ]</span> Engenharia e Estruturas<div class="dia-line"></div></div>
+                <div class="aula-item" id="menu-fase6" onclick="carregarAula('fase6', 'Algoritmos em Python', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 06: Algoritmos em Python</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">10xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase7" onclick="carregarAula('fase7', 'Programação em C', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 07: Programação em C</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">10xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase8" onclick="carregarAula('fase8', 'Análise e Engenharia de Sistemas', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 08: Análise e Engenharia de Sistemas</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">10xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase9" onclick="carregarAula('fase9', 'Redes e Sistemas Distribuídos', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 09: Redes de Computadores</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">10xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase10" onclick="carregarAula('fase10', 'Inteligência Artificial', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 10: Inteligência Artificial</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">10xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-bonus2" onclick="tentarAbrirBonus('bonus2', 50, 'História e Cultura da Tecnologia', this)"><span class="icon-status material-symbols-outlined" id="icon-bonus2">lock</span><span class="aula-title" style="color: #ffd700;">[ BÔNUS ] História e Cultura da Tecnologia</span><div style="margin-left: auto;"><span class="xp-badge tech-font flex-align" id="price-bonus2" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 50</span></div></div>
+
+                <div class="dia-header mod-03"><span class="tech-font">[ Mod_03 ]</span> Desenvolvimento Profissional<div class="dia-line"></div></div>
+                <div class="aula-item" id="menu-fase11" onclick="carregarAula('fase11', 'Banco de Dados e NoSQL', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 11: Banco de Dados</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">15xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase12" onclick="carregarAula('fase12', 'Programação Orientada a Objetos com C#', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 12: Programação Orientada a Objetos</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">15xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase13" onclick="carregarAula('fase13', 'Web Responsivo e UX/UI Design', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 13: Web Responsivo e UX/UI Design</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">15xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase14" onclick="carregarAula('fase14', 'Aprendizado de Máquina (Machine Learning)', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 14: Machine Learning</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">15xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase15" onclick="carregarAula('fase15', 'Engenharia de Software Ágil', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 15: Engenharia de Software Ágil</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">15xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-bonus3" onclick="tentarAbrirBonus('bonus3', 50, 'Carreira e Mercado', this)"><span class="icon-status material-symbols-outlined" id="icon-bonus3">lock</span><span class="aula-title" style="color: #ffd700;">[ BÔNUS ] Carreira e Mercado</span><div style="margin-left: auto;"><span class="xp-badge tech-font flex-align" id="price-bonus3" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 50</span></div></div>
+
+                <div class="dia-header mod-04"><span class="tech-font">[ Mod_04 ]</span> Tecnologias Avançadas<div class="dia-line"></div></div>
+                <div class="aula-item" id="menu-fase16" onclick="carregarAula('fase16', 'Web e Aplicativos com .NET', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 16: Web e Aplicativos .NET</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">20xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase17" onclick="carregarAula('fase17', 'Desenvolvimento Mobile', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 17: Desenvolvimento Mobile</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">20xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase18" onclick="carregarAula('fase18', 'Programação de Banco de Dados', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 18: Programação de Banco de Dados</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">20xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase19" onclick="carregarAula('fase19', 'Cloud Computing e DevOps', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 19: Cloud Computing e DevOps</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">20xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-fase20" onclick="carregarAula('fase20', 'Empreendedorismo em Tecnologia', this)"><span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 20: Empreendedorismo em Tecnologia</span><div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font">20xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 10</span></div></div>
+                <div class="aula-item" id="menu-bonus4" onclick="tentarAbrirBonus('bonus4', 50, 'Mercado das Startups', this)"><span class="icon-status material-symbols-outlined" id="icon-bonus4">lock</span><span class="aula-title" style="color: #ffd700;">[ BÔNUS ] Mercado das Startups</span><div style="margin-left: auto;"><span class="xp-badge tech-font flex-align" id="price-bonus4" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 50</span></div></div>
+
+                <div class="dia-header mod-05"><span class="tech-font">[ Mod_05 ]</span> Preparatório ENADE<div class="dia-line"></div></div>
+                <div class="aula-item" id="menu-fase21" onclick="carregarAula('fase21', 'ENADE: Conhecimentos Gerais e Negócios', this)">
+                    <span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 21: ENADE Conhecimentos Gerais</span>
+                    <div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font" style="border-color: #ff4500; color: #ff4500;">30xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 70</span></div>
+                </div>
+                <div class="aula-item" id="menu-fase22" onclick="carregarAula('fase22', 'ENADE: Específicos de Análise e Desenvolvimento de Sistemas', this)">
+                    <span class="icon-status material-symbols-outlined">play_circle</span><span class="aula-title">Fase 22: ENADE Análise e Desenvolvimento de Sistemas</span>
+                    <div style="display: flex; gap: 5px; margin-left: auto;"><span class="xp-badge tech-font" style="border-color: #ff4500; color: #ff4500;">30xp</span><span class="xp-badge tech-font flex-align" style="border-color: #ffd700; color: #ffd700; background: rgba(255, 215, 0, 0.05);"><span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> 70</span></div>
+                </div>
+
+            </nav> 
+            
+            <article id="right-panel" aria-live="polite" aria-atomic="true">
+                <div class="painel-header">
+                    <div id="titulo-aula">Running Script...</div>
+                    <div id="contador-cartas" class="tech-font">Item 1/X</div>
+                </div>
+
+                <div class="card-container" onclick="virarCarta()">
+                    <div class="card-inner" id="meuCard">
+                        <div class="carta-frente">
+                            <div class="carta-texto" id="texto-frente">Texto Frente</div>
+                            <div class="carta-dica tech-font" id="dica-frente">Aperte [ESPAÇO] para debugar</div>
+                        </div>
+                        <div class="carta-verso">
+                            <div class="carta-texto" id="texto-verso">Texto Verso</div>
+                            <div class="carta-dica tech-font" id="dica-verso">Dica extra aqui</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-controls" id="botoes-jogo">
+                    <button class="btn-jogo btn-erro tech-font flex-align-center" onclick="processarResposta('errei')">
+                        <span class="material-symbols-outlined" style="margin-right:5px;">close</span> ERRO
+                    </button>
+                    <button class="btn-jogo btn-acerto tech-font flex-align-center" onclick="processarResposta('acertei')">
+                        <span class="material-symbols-outlined" style="margin-right:5px;">check</span> SUCESSO
+                    </button>
+                </div>
+                
+                <button class="btn-action btn-proxima tech-font flex-align-center" id="botao-proxima" style="display: none;" onclick="irParaProximaAula()">
+                    <span class="material-symbols-outlined" style="margin-right:5px;">keyboard_double_arrow_right</span> CONCLUIR_ROTINA()
+                </button>
+            </article>
+        </div> 
+    </main>
+
+    <div class="modal-overlay" id="modalCriacao">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="flex-align"><span class="material-symbols-outlined" style="margin-right:10px;">add_box</span> Criar Flashcard</h2>
+                <button class="btn-close flex-align" onclick="fecharModal('modalCriacao')"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Disciplina de Destino</label>
+                    <select id="nova-fase" style="cursor: pointer;">
+                        <option value="fase1">Fase 01: Lógica com Python</option>
+                        <option value="fase2">Fase 02: Matemática e Estatística</option>
+                        <option value="fase3">Fase 03: Infraestrutura e Tecnologia</option>
+                        <option value="fase4">Fase 04: Cibersegurança e Proteção de Dados</option>
+                        <option value="fase5">Fase 05: Ética e Humanidades</option>
+                        <option value="bonus1">BÔNUS 1: Curiosidades e Hackers</option>
+                        <option value="fase6">Fase 06: Algoritmos em Python</option>
+                        <option value="fase7">Fase 07: Programação em C</option>
+                        <option value="fase8">Fase 08: Análise e Engenharia de Sistemas</option>
+                        <option value="fase9">Fase 09: Redes de Computadores</option>
+                        <option value="fase10">Fase 10: Inteligência Artificial</option>
+                        <option value="bonus2">BÔNUS 2: História e Cultura da Tecnologia</option>
+                        <option value="fase11">Fase 11: Banco de Dados</option>
+                        <option value="fase12">Fase 12: Programação Orientada a Objetos com C#</option>
+                        <option value="fase13">Fase 13: Web Responsivo e UX/UI Design</option>
+                        <option value="fase14">Fase 14: Machine Learning</option>
+                        <option value="fase15">Fase 15: Engenharia de Software Ágil</option>
+                        <option value="bonus3">BÔNUS 3: Carreira e Mercado</option>
+                        <option value="fase16">Fase 16: Web e Aplicativos .NET</option>
+                        <option value="fase17">Fase 17: Desenvolvimento Mobile</option>
+                        <option value="fase18">Fase 18: Programação de Banco de Dados</option>
+                        <option value="fase19">Fase 19: Cloud Computing e DevOps</option>
+                        <option value="fase20">Fase 20: Empreendedorismo em Tecnologia</option>
+                        <option value="bonus4">BÔNUS 4: Mercado das Startups</option>
+                        <option value="fase21">Fase 21: ENADE Conhecimentos Gerais</option>
+                        <option value="fase22">Fase 22: ENADE Análise e Desenvolvimento de Sistemas</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Frente da Carta (Pergunta/Termo)</label>
+                    <textarea id="nova-frente" rows="2" placeholder="Ex: O que é..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Verso da Carta (Resposta/Explicação)</label>
+                    <textarea id="nova-verso" rows="3" placeholder="Ex: É um sistema..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Dica (Opcional)</label>
+                    <input type="text" id="nova-dica" placeholder="Ex: Lembre-se da regra X">
+                </div>
+                <button class="btn-action btn-right tech-font flex-align" onclick="salvarFlashcard()">
+                    <span class="material-symbols-outlined" style="margin-right: 5px;">save</span> Salvar_Dado()
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalProgresso">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="flex-align"><span class="material-symbols-outlined" style="margin-right:10px;">monitoring</span> Seu Histórico Acadêmico</h2>
+                <button class="btn-close flex-align" onclick="fecharModal('modalProgresso')"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="modal-body" id="progresso-body">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalNivelamento" style="background: rgba(0,0,0,0.95);">
+        <div class="modal-content" style="max-width: 600px; border-color: var(--alura-cyan);">
+            <div class="modal-header" style="border-bottom-color: var(--alura-cyan);">
+                <h2 style="color: var(--alura-cyan);" class="flex-align"><span class="material-symbols-outlined" style="margin-right:10px;">radar</span> Executar Diagnóstico</h2>
+            </div>
+            <div class="modal-body" id="nivelamento-body">
+                <p style="color: #c5c6c7; font-size: 1.1rem; margin-bottom: 20px;">
+                    Iniciando protocolo de avaliação. Para calibrarmos sua árvore de habilidades, responda às 10 questões técnicas abaixo.
+                </p>
+                <button class="btn-action btn-right tech-font flex-align-center" style="width: 100%; padding: 15px; justify-content: center;" onclick="iniciarQuizNivelamento()">
+                    <span class="material-symbols-outlined" style="margin-right:5px;">play_arrow</span> START_SCAN()
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: MAPA NEURAL (OBSIDIAN VIEW) -->
+    <div class="modal-overlay" id="modalMapaMental" style="background: rgba(0,0,0,0.95);">
+        <div class="modal-content" style="max-width: 90vw; height: 90vh; border-color: var(--alura-purple); display: flex; flex-direction: column;">
+            <div class="modal-header" style="border-bottom-color: var(--alura-purple);">
+                <h2 style="color: var(--alura-purple);" class="flex-align"><span class="material-symbols-outlined" style="margin-right:10px;">hub</span> Mapa Neural</h2>
+                <button class="btn-close flex-align" onclick="fecharModal('modalMapaMental')"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            
+            <div class="modal-body" id="mapa-mental-body" style="flex: 1; position: relative; overflow: hidden; background: #0b0c10; padding: 0; border-radius: 0 0 12px 12px; cursor: grab;">
+                
+                <!-- A Teia Neural -->
+                <div id="obsidian-canvas" class="obsidian-canvas"></div>
+                
+                <!-- WIDGET DE CONTROLE DA CÂMERA DO MAPA -->
+                <div class="a11y-widget" id="a11y-widget-map" style="position: absolute !important; bottom: 20px !important; left: 20px !important; z-index: 1000 !important;">
+                    <button class="a11y-toggle flex-align-center" onclick="document.getElementById('a11y-widget-map').classList.toggle('open')" title="Controles da Câmera">
+                        <span class="material-symbols-outlined" style="font-size: 1.6rem;">settings_overscan</span>
+                    </button>
+                    <div class="a11y-options">
+                        <button class="btn-action tech-font flex-align-center" id="btn-zoom-out-map" title="Afastar (Zoom Out)">
+                            <span class="material-symbols-outlined">zoom_out</span>
+                        </button>
+                        <button class="btn-action tech-font flex-align-center" id="btn-zoom-in-map" title="Aproximar (Zoom In)">
+                            <span class="material-symbols-outlined">zoom_in</span>
+                        </button>
+                        <button class="btn-action tech-font flex-align-center" onclick="toggleAltoContraste()" title="Alternar Alto Contraste">
+                            <span class="material-symbols-outlined">contrast</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo tech-font">
+                    <span style="color: #fff;">Nex_</span><span class="tech-text">TI</span>
+                </div>
+                <p class="footer-desc">A plataforma definitiva para acelerar a sua jornada acadêmica e profissional em Tecnologia da Informação.</p>
+                <div class="social-icons">
+                    <a href="#" onclick="emDesenvolvimento(event)" class="social-link" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    
+                                <a href="https://github.com/MayconDIS/PIM_III-Parte_Pratica" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192 .694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                </a>
+                    
+                    <a href="#" onclick="emDesenvolvimento(event)" class="social-link" title="YouTube">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-title tech-font">Institucional</h3>
+                <ul>
+                    <li><a href="../sobre/index.html#sobre">Sobre a Nex_TI</a></li>
+                    <li><a href="../sobre/index.html#metodologia">Metodologia de Ensino</a></li>
+                    <li><a href="../sobre/index.html#opensource">Manifesto Open Source</a></li>
+                    <li><a href="../sobre/index.html#carreiras">Carreiras & Vagas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-title tech-font">Ecossistema</h3>
+                <ul>
+                    <li><a href="../sobre/index.html#trilhas">Trilhas e Disciplinas</a></li>
+                    <li><a href="../sobre/index.html#enade">Simulado ENADE</a></li>
+                    <li><a href="../sobre/index.html#comunidade">Comunidade Devs</a></li>
+                    <li><a href="../sobre/index.html#loja">Loja de Bônus (Coins)</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-title tech-font">Suporte & Legal</h3>
+                <ul>
+                    <li><a href="../sobre/index.html#faq">Central de Ajuda (FAQ)</a></li>
+                    <li><a href="../sobre/index.html#termos">Termos de Uso</a></li>
+                    <li><a href="../sobre/index.html#privacidade">Aviso de Privacidade</a></li>
+                    <li><a href="../sobre/index.html#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-copyright tech-font">
+                &copy; 2026 Nex_TI Academy. Todos os direitos reservados.
+            </div>
+            <div class="footer-badges flex-align">
+                <span class="material-symbols-outlined" style="color: var(--alura-green); font-size: 1.2rem;">verified_user</span> 
+                <span style="font-size: 0.85rem; color: #8b92a5; font-weight: 500;">Ambiente Seguro & LGPD Compliant</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="a11y-widget" id="a11y-widget">
+        <button class="a11y-toggle flex-align-center" onclick="toggleA11yMenu()" title="Acessibilidade">
+            <span class="material-symbols-outlined" style="font-size: 1.6rem;">accessibility_new</span>
+        </button>
+        <div class="a11y-options">
+            <button class="btn-action tech-font flex-align-center" onclick="mudarZoom(-1)" title="Diminuir Texto">A-</button>
+            <button class="btn-action tech-font flex-align-center" onclick="mudarZoom(1)" title="Aumentar Texto">A+</button>
+            <button class="btn-action tech-font flex-align-center" onclick="toggleAltoContraste()" title="Alternar Alto Contraste">
+                <span class="material-symbols-outlined">contrast</span>
+            </button>
+        </div>
+    </div>
+
+    <button id="btn-voltar-topo" class="btn-action flex-align-center" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <span class="material-symbols-outlined" style="font-size: 1.8rem;">keyboard_arrow_up</span>
+    </button>
+
+    <script src="../../assets/js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/neural-map.js"></script>
+</body>
+</html>

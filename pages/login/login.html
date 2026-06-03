@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nex_TI</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e6e6'><path d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <main class="login-container" aria-labelledby="form-title">
+        <header class="login-header">
+            <h1 id="form-title" class="logo-main tech-font">Nex_<span class="tech-text">TI</span></h1>
+            <p id="form-subtitle" class="subtitle">Welcome back, developer.</p>
+        </header>
+        
+        <form class="login-form" onsubmit="handleAuth(event)" aria-label="Formulário de Autenticação">
+            <div class="form-group" id="group-nome" style="display: none;">
+                <label for="nome" class="tech-font">Nickname</label>
+                <div class="input-with-icon">
+                    <input type="text" id="nome" placeholder="Ex: Maycon" aria-label="Seu nickname">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="tech-font">E-mail</label>
+                <div class="input-with-icon">
+                    <input type="email" id="email" placeholder="dev@quest.com" required aria-required="true">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="tech-font">Password</label>
+                <div class="input-with-icon">
+                    <input type="password" id="password" placeholder="••••••••" required aria-required="true">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-login tech-font" id="btn-submit" aria-live="assertive">> INITIALIZE_LOGIN()</button>
+        </form>
+        
+        <footer class="extra-links">
+            <p id="footer-text">Acesso negado? <a href="#" onclick="toggleMode(event)" aria-label="Alternar para ecrã de registo">Solicitar Cadastro</a></p>
+        </footer>
+    </main>
+
+    <script src="../../assets/js/auth.js"></script>
+</body>
+</html>
