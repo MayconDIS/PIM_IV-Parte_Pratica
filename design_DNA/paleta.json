@@ -1,0 +1,44 @@
+{
+  "theme": "dark",
+  "colors": {
+    "background": {
+      "main": "#0b0c10",
+      "card": "#161b22",
+      "card_header": "#18181c"
+    },
+    "borders": {
+      "default": "rgba(255, 255, 255, 0.05)",
+      "accent_olive": "rgba(168, 184, 101, 0.25)"
+    },
+    "brand": {
+      "olive_text": "#a8b865",
+      "olive_bg": "#353822",
+      "gold": "#c9b177",
+      "gold_dim": "rgba(201, 177, 119, 0.6)",
+      "cyan": "#00e6e6"
+    },
+    "glows": {
+      "purple": "rgba(168, 85, 247, 0.15)",
+      "cyan": "rgba(0, 230, 230, 0.11)"
+    },
+    "accents": {
+      "success": "#00ff88",
+      "success_dark": "#84cc16",
+      "purple": "#8a2be2",
+      "purple_light": "#c084fc",
+      "blue": "#2f81f7",
+      "blue_light": "#60a5fa",
+      "warning": "#f59e0b",
+      "warning_light": "#fbbf24",
+      "danger": "#f43f5e",
+      "danger_light": "#fb7185",
+      "muted": "#8c8c96",
+      "dark_muted": "#585860"
+    }
+  },
+  "typography": {
+    "serif": "Lora, serif",
+    "sans": "Inter, sans-serif",
+    "mono": "Fira Code, monospace"
+  }
+}

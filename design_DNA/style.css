@@ -1,0 +1,528 @@
+/* ==========================================================================
+   Your Project DNA — Estilo Fiel às Imagens Modelo
+   ========================================================================== */
+
+:root {
+    --bg-color: #0b0c10;
+    --card-bg: #161b22;
+    --card-bg-header: #18181c;
+    --border-color: rgba(255, 255, 255, 0.05);
+    
+    /* Cores Específicas do Modelo */
+    --accent-olive-bg: #353822; /* Fundo do add a logo e botões de lápis */
+    --accent-olive-text: #a8b865; /* Texto amarelo-oliva */
+    --accent-gold: #c9b177; /* Cor dourada/amarela das abas */
+    --accent-gold-dim: rgba(201, 177, 119, 0.6);
+    --link-cyan: #00e6e6; /* Cor do link e do círculo ciano */
+    
+    /* Tipografia */
+    --font-serif: 'Lora', serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+    
+    /* Textos */
+    --text-main: #e8e8ec;
+    --text-muted: #8c8c96;
+    --text-dark: #585860;
+}
+
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
+/* Focos de luz radiais no fundo (Glows de exemplo) */
+.radial-glow {
+    position: fixed;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(140px);
+    opacity: 0.55;
+    transition: opacity 0.5s ease;
+}
+
+.glow-left {
+    top: -25vh;
+    left: -20vw;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    animation: floatGlowLeft 22s infinite alternate ease-in-out;
+}
+
+.glow-right {
+    bottom: -25vh;
+    right: -20vw;
+    background: radial-gradient(circle, rgba(0, 230, 230, 0.11) 0%, rgba(0, 0, 0, 0) 70%);
+    animation: floatGlowRight 22s infinite alternate ease-in-out;
+}
+
+@keyframes floatGlowLeft {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(5vw, 4vh) scale(1.12); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes floatGlowRight {
+    0% { transform: translate(0, 0) scale(1.12); }
+    50% { transform: translate(-5vw, -4vh) scale(1); }
+    100% { transform: translate(0, 0) scale(1.12); }
+}
+
+.main-wrapper {
+    max-width: 820px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cabeçalho Principal (DNA Header) */
+.dna-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.dna-icon-container {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.dna-svg {
+    width: 32px;
+    height: 32px;
+}
+
+.dna-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.italic-serif {
+    font-style: italic;
+    font-family: var(--font-serif);
+}
+
+.dna-subtitle {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 400;
+    max-width: 600px;
+    line-height: 1.4;
+}
+
+/* Container do Painel */
+.panel-container {
+    background-color: var(--card-bg-header);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Painel de Conteúdo */
+.panel-body {
+    padding: 2.2rem;
+    background-color: var(--card-bg-header);
+}
+
+.panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Cards do DNA */
+.dna-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.dna-card:hover {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Nex_TI Header Card */
+.brand-header-card {
+    gap: 0.5rem;
+}
+
+.brand-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+}
+
+.brand-url-container {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-muted);
+}
+
+.link-icon {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.brand-link-url {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.brand-link-url:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* Row Layout */
+.card-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.2rem;
+}
+
+/* Add Logo Card */
+.logo-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-height: 120px;
+    overflow: hidden;
+    padding: 1.2rem;
+    transition: opacity 0.25s ease;
+}
+
+.logo-card:hover {
+    opacity: 0.9;
+}
+
+.logo-image {
+    width: 100%;
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Fonts Card */
+.fonts-card {
+    gap: 0.8rem;
+}
+
+.card-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    letter-spacing: 0.2px;
+}
+
+.fonts-preview-container {
+    display: flex;
+    gap: 4rem;
+}
+
+.font-preview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.font-huge-char {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--link-cyan);
+}
+
+.font-fira {
+    font-family: var(--font-mono);
+}
+
+.font-inter {
+    font-family: var(--font-sans);
+}
+
+.font-name-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Colors Card */
+.colors-card {
+    gap: 1.2rem;
+}
+
+.colors-list {
+    display: flex;
+    gap: 3rem;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.color-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.color-circle.c-0b0c10 { background-color: #0b0c10; }
+.color-circle.c-161b22 { background-color: #161b22; }
+.color-circle.c-00ff88 { background-color: #00ff88; }
+.color-circle.c-00e6e6 { background-color: #00e6e6; }
+.color-circle.c-8a2be2 { background-color: #8a2be2; }
+.color-circle.c-2f81f7 { background-color: #2f81f7; }
+
+.color-hex-text {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Tagline Card */
+.tagline-card {
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.tagline-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--link-cyan);
+    font-weight: 500;
+}
+
+/* Values, Aesthetic & Tone Cards (Badges) */
+.values-card, .aesthetic-card, .tone-card {
+    gap: 1rem;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.outline-badge {
+    font-size: 0.78rem;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 0.35rem 0.7rem;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+/* Business Overview Card */
+.overview-card {
+    gap: 0.8rem;
+}
+
+.overview-text {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.55;
+}
+
+/* ABA 2: BUSINESS DETAILS */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+}
+
+.col-span-2-detail {
+    grid-column: span 2;
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 1.8rem;
+    min-height: 80px;
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.detail-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.title-with-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-icon {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    cursor: help;
+}
+
+/* Social Card Icons */
+.social-icons-preview {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+}
+
+.social-icon {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+/* Botões de Edição (Lápis) */
+.edit-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent-olive-bg);
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.edit-btn:hover {
+    background-color: #3b3f27;
+    transform: scale(1.05);
+}
+
+.pen-icon {
+    font-size: 0.72rem;
+    color: var(--accent-olive-text);
+}
+
+
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .card-row {
+        grid-template-columns: 1fr;
+    }
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    .col-span-2-detail {
+        grid-column: span 1;
+    }
+    .colors-list {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+}
+
+/* Rodapé do Projeto */
+.project-footer {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.project-footer p {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+/* Links de Referência DNA */
+.dna-link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.dna-link:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Links no Canto Superior Direito dos Cards */
+.card-top-link {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--link-cyan);
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    opacity: 0.75;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: opacity 0.2s ease, text-shadow 0.2s ease;
+}
+
+.card-top-link:hover {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(0, 230, 230, 0.4);
+}
