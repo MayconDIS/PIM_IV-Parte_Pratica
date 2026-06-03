@@ -124,10 +124,51 @@ namespace NexTI_API.Endpoints
 
                 return Results.Ok(progresso);
             }).RequireAuthorization();
+
+            // --- ATUALIZAR ESTATÍSTICAS DO USUÁRIO (PROTEGIDO) ---
+            app.MapPut("/api/usuarios/stats", async (UserStatsUpdate request, AppDbContext db, ClaimsPrincipal userClaims) =>
+            {
+                var userIdClaim = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userIdClaim)) return Results.Unauthorized();
+                
+                int currentUserId = int.Parse(userIdClaim);
+                var user = await db.Usuarios.FindAsync(currentUserId);
+                if (user == null) return Results.NotFound(new { message = "Usuário não encontrado" });
+                
+                user.XP = request.XP;
+                user.Moedas = request.Moedas;
+                user.Nivel = request.Nivel;
+                
+                await db.SaveChangesAsync();
+                return Results.Ok(new { message = "Estatísticas atualizadas!", xp = user.XP, moedas = user.Moedas, nivel = user.Nivel });
+            }).RequireAuthorization();
+
+            // --- SIMULADOS (UML PIM IV) ---
+            app.MapGet("/api/simulados/areas", async (AppDbContext db) =>
+            {
+                var areas = await db.AreasConhecimento.ToListAsync();
+                return Results.Ok(areas);
+            });
+
+            app.MapGet("/api/simulados/questoes", async (AppDbContext db) =>
+            {
+                var questoes = await db.Questoes
+                    .Include(q => q.Alternativas)
+                    .Select(q => new {
+                        q.Id,
+                        q.IdArea,
+                        q.Enunciado,
+                        q.Origem,
+                        Alternativas = q.Alternativas.Select(a => new { a.Id, a.Texto, a.IsCorreta })
+                    })
+                    .ToListAsync();
+                return Results.Ok(questoes);
+            });
         }
     }
 
     // DTOs para requests
     public record LoginRequest(string Username, string Password);
     public record ProgressoUpdate(int UsuarioId, int FlashcardId, int Qualidade);
+    public record UserStatsUpdate(int XP, int Moedas, int Nivel);
 }

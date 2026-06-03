@@ -22,6 +22,10 @@ namespace NexTI_API.Models
         [MaxLength(255)]
         public string? Dica { get; set; }
 
+        public string? Opcoes { get; set; }
+
+        public int? Correta { get; set; }
+
         [ForeignKey("CodigoFase")]
         public Fase? Fase { get; set; }
 

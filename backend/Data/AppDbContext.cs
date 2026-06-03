@@ -11,6 +11,10 @@ namespace NexTI_API.Data
         public DbSet<Fase> Fases { get; set; }
         public DbSet<Flashcard> Flashcards { get; set; }
         public DbSet<ProgressoFlashcard> Progresso_Flashcards { get; set; }
+        public DbSet<AreaConhecimento> AreasConhecimento { get; set; }
+        public DbSet<Prova> Provas { get; set; }
+        public DbSet<Questao> Questoes { get; set; }
+        public DbSet<Alternativa> Alternativas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +32,16 @@ namespace NexTI_API.Data
             modelBuilder.Entity<Usuario>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            // Many-to-many relationship tb_prova_questao
+            modelBuilder.Entity<Questao>()
+                .HasMany(q => q.Provas)
+                .WithMany(p => p.Questoes)
+                .UsingEntity<System.Collections.Generic.Dictionary<string, object>>(
+                    "tb_prova_questao",
+                    j => j.HasOne<Prova>().WithMany().HasForeignKey("id_prova"),
+                    j => j.HasOne<Questao>().WithMany().HasForeignKey("id_questao")
+                );
         }
     }
 }
