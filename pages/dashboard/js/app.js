@@ -1053,19 +1053,21 @@ function tentarAbrirCertificado(elemento) {
     }
 
     const nomeAluno = localStorage.getItem('quest_user_name') || 'Desenvolvedor';
-    const dataAtual = new Date().toLocaleDateString('pt-BR');
+    const dataNumerica = new Date().toLocaleDateString('pt-BR');
+    const opcoesData = { year: 'numeric', month: 'long', day: 'numeric' };
+    const dataPorExtenso = new Date().toLocaleDateString('pt-BR', opcoesData);
     
     let hash = 0;
-    const str = nomeAluno + dataAtual + "NexTI_Academy_Enade_PIMIV";
+    const str = nomeAluno + dataNumerica + "NexTI_Academy_Enade_PIMIV";
     for (let i = 0; i < str.length; i++) {
         hash = (hash << 5) - hash + str.charCodeAt(i);
         hash |= 0;
     }
     const hex = Math.abs(hash).toString(16).toUpperCase().padStart(8, '0');
-    const uuidAutenticidade = `NEX-${hex.slice(0, 4)}-${hex.slice(4, 8)}-${dataAtual.replace(/\//g, '')}`;
+    const uuidAutenticidade = `NEX-${hex.slice(0, 4)}-${hex.slice(4, 8)}-${dataNumerica.replace(/\//g, '')}`;
 
     document.getElementById('cert-nome-aluno').innerText = nomeAluno;
-    document.getElementById('cert-data').innerText = dataAtual;
+    document.getElementById('cert-data').innerText = dataPorExtenso;
     document.getElementById('cert-uuid').innerText = uuidAutenticidade;
 
     abrirModal('modalCertificado');
