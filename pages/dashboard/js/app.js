@@ -806,7 +806,7 @@ function irParaProximaAula() {
         let corte = isMod5 ? 80 : 70;
         testePassou = porcentagem >= corte;
         if (testePassou) {
-            xpGanho = 25;
+            xpGanho = isMod5 ? 50 : 25;
             coinsGanho = 0;
         }
     } else if (faseAtualId.startsWith('fase')) {
