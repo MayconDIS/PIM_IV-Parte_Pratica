@@ -1,3 +1,25 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "cSpell.enabled": false,
+    "cSpell.language": "pt-BR,en",
+    "html.validate.styles": false,
+    "html.validate.scripts": false,
+    "xml.validation.enabled": false,
+    "xml.validation.noGrammar": "ignore",
+    "xml.validation.resolveExternalEntities": false,
+    "redhat.telemetry.enabled": false,
+    "eslint.enable": false,
+    "prettier.enable": false,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.formatOnSave": false
+    },
+    "[css]": {
+        "editor.formatOnSave": false
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false
+    },
+    "errorLens.enabled": false,
+    "errorLens.enabledDiagnosticLevels": []
 }

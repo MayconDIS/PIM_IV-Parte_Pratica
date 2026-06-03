@@ -48,6 +48,12 @@
 - [x] Clean up and refactor Program.cs entry point
 - [x] Verify compilation and end-to-end integration
 
+## Phase 7: Bugfixes and Robustness
+**Status: Completed**
+- [x] Add seeds for Simulated Exams and ENADE questions to the database schema (`NexTI_DB.sql`)
+- [x] Apply defensive claims validation via TryParse in C# endpoints
+- [x] Implement robust offline-first fallback for flashcards in frontend (`app.js`)
+
 ---
 ## Versão em Português
 
@@ -95,3 +101,9 @@
 - [x] Extrair rotas de API em mapeamentos de extensão modular para limpar o Program.cs (SRP)
 - [x] Limpar e reestruturar o arquivo de entrada Program.cs
 - [x] Validar compilação e integração de ponta a ponta
+
+## Fase 7: Correções e Robustez
+**Status: Concluído**
+- [x] Adicionar sementes de dados (Seed) para Simulados e ENADE no script SQL (`NexTI_DB.sql`)
+- [x] Aplicar validação de claims defensiva com TryParse nos endpoints C# do backend
+- [x] Implementar fallback local offline-first robusto para flashcards no frontend (`app.js`)
