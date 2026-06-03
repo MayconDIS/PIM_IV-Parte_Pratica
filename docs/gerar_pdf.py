@@ -29,7 +29,7 @@ class NexTIPDF(FPDF):
         # Subtítulo
         self.set_font('Helvetica', 'B', 10)
         self.set_text_color(0, 230, 230)
-        self.cell(0, 4, 'Guia de Engenharia de Software & Desenhos do PIM III', 0, 1, 'C')
+        self.cell(0, 4, 'Guia de Engenharia de Software & Desenhos do PIM IV', 0, 1, 'C')
         
         self.set_y(40)
 
@@ -129,7 +129,7 @@ def gerar_apresentacao(output_path):
     
     pdf.set_font('Helvetica', 'I', 10)
     pdf.set_text_color(71, 85, 105)
-    pdf.multi_cell(0, 4.5, 'Este roteiro resume a organizacao das ideias, desenhos técnicos e telas projetadas para o trabalho do PIM III (3º Semestre).')
+    pdf.multi_cell(0, 4.5, 'Este roteiro resume a organizacao das ideias, desenhos técnicos e telas projetadas para o trabalho do PIM IV (4º Semestre).')
     pdf.ln(3)
     
     # 1. Levantamento e Análise de Requisitos
@@ -276,7 +276,7 @@ def gerar_apresentacao(output_path):
     pdf.ln(1.5)
     pdf.add_bullet_point('Rituais Scrum', 'Realizacao de rituais reais de planejamento e revisao (Sprint Planning e Sprint Review) registrados nas atas (01 a 10) e facilitados rotativamente (Gabriel e Maciel como Scrum Masters).')
     pdf.add_bullet_point('Manuais de Extensao', 'Elaboracao de manuais tecnicos complementares (Manual de Execucao, Manual Pratico e Manual Tecnico) para formalizar a entrega e o uso da plataforma.')
-    pdf.add_bullet_point('Controle de Impedimentos', 'Gerenciamento de conflitos de escopo (como a separacao dos modulos de simulados do Enade e loja para entrega conceitual do 3º semestre).')
+    pdf.add_bullet_point('Controle de Impedimentos', 'Gerenciamento de conflitos de escopo e ativacao de integracoes reais de simulados do Enade e loja no 4º semestre.')
     pdf.ln(4)
     
     # Q&As Etapa 7

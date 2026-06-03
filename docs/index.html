@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nex_TI - Documentação PIM III</title>
+    <title>Nex_TI - Documentação PIM IV</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,10 +11,10 @@
     <nav class="sidebar">
         <div class="logo-container">
             <h2>Nex_TI Docs</h2>
-            <p>PIM III - ADS (UNIP)</p>
+            <p>PIM IV - ADS (UNIP)</p>
         </div>
         <ul class="nav-links">
-            <li><a href="#capa" class="active">Capa e Equipa</a></li>
+            <li><a href="#capa" class="active">Capa e Equipe</a></li>
             <li><a href="#resumo">Resumo & Abstract</a></li>
             <li><a href="#introducao">1. Introdução</a></li>
             <li class="menu-title">2. Desenvolvimento</li>
@@ -38,7 +38,7 @@
             <div class="capa-header">
                 <img src="https://via.placeholder.com/150x50/202024/8257e5?text=UNIP+Logo" alt="Logo UNIP" class="unip-logo">
                 <h1>Sistema Acadêmico Colaborativo Gamificado - Nex_TI</h1>
-                <h3>Projeto Integrado Multidisciplinar - PIM III</h3>
+                <h3>Projeto Integrado Multidisciplinar - PIM IV</h3>
                 <p>Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas</p>
             </div>
             
@@ -94,20 +94,16 @@
                 <h4>Exemplo: MD_ÉPICO 3 - Flashcards e Estudo Ativo</h4>
                 <span class="badge red">Prioridade: Alta</span>
                 <span class="badge points">13 Points</span>
-                <p><strong>US04:</strong> Como aluno, quero estudar utilizando o método de repetição espaçada (Anki), para focar nas cartas em que tenho mais dificuldade e otimizar o meu tempo.</p>
-            </div>
-        </section>
-
-        <section id="etapa3" class="section">
-            <h2>Etapa 3: Modelagem de Banco de Dados e NoSQL</h2>
-            <p>Para o Produto Mínimo Viável (MVP) entregue neste semestre, a persistência e o tráfego de dados foram implementados no lado do cliente utilizando a <strong>Web Storage API (LocalStorage)</strong> e ficheiros estruturados em JSON. Isto garantiu a validação rápida da interface e da lógica de gamificação sem custos de servidor.</p>
-            <p>Contudo, a modelagem conceptual e lógica para um Banco de Dados Relacional definitivo (ex: SQL Server) já foi projetada teoricamente e mapeada no Roadmap do sistema para <strong>implementação futura</strong>, visando a escalabilidade.</p>
+                <p><strong>US04:</strong> Como aluno, quero estudar utilizando o método de repetição espaçada (Anki), para focar nas cartas em que tenho mais        <section id="etapa3" class="section">
+            <h2>Etapa 3: Modelagem de Banco de Dados e Persistência Real</h2>
+            <p>Para a entrega final do PIM IV, a persistência de dados foi implementada de forma definitiva utilizando o banco de dados relacional <strong>Microsoft SQL Server</strong>. As tabelas concebidas e estruturadas em `database/NexTI_DB.sql` foram populadas com dados reais de disciplinas e de simulados ENADE, incluindo a tabela de progresso dos flashcards baseada nos parâmetros do algoritmo SM-2.</p>
+            <p>Com essa integração, dados de progresso e gamificação (XP, moedas e nível) persistem em tempo real no servidor, garantindo a integridade dos dados e a segurança das informações dos usuários.</p>
         </section>
 
         <section id="etapa4" class="section">
-            <h2>Etapa 4: POO em C#</h2>
-            <p>Atualmente, a prova de conceito do sistema — incluindo a lógica de negócios, o motor do Algoritmo SM-2 e o sistema de economia virtual (XP/Moedas) — opera de forma fluida através de <strong>JavaScript (ES6+)</strong>.</p>
-            <p>Para cumprir o ciclo completo de Engenharia de Software a longo prazo, a migração desta lógica para um <strong>Back-end robusto em C#</strong> (API RESTful) está sob análise técnica. Esta transição aplicará os paradigmas de Programação Orientada a Objetos (encapsulamento, herança e polimorfismo) como requisito obrigatório para as futuras fases de implantação do sistema.</p>
+            <h2>Etapa 4: POO em C# (.NET 10)</h2>
+            <p>A API RESTful do backend foi construída utilizando a linguagem <strong>C# (.NET 10)</strong> com a tecnologia de Minimal APIs e o Entity Framework Core para o mapeamento objeto-relacional. A arquitetura aplica rigorosamente os princípios de Programação Orientada a Objetos, encapsulando lógicas de negócios, tratamento de transações de moedas e o motor do algoritmo SM-2 (ISm2Engine) em classes desacopladas e testáveis.</p>
+            <p>A comunicação entre o frontend e a API é protegida através de tokens JWT (JSON Web Tokens), garantindo conformidade com padrões modernos de segurança de software.</p>
         </section>
 
         <section id="etapa5" class="section">
@@ -135,7 +131,7 @@
 
         <section id="etapa9" class="section">
             <h2>Etapa 9: Integração e Avaliação Final</h2>
-            <p>A arquitetura atual integra com sucesso a interface gráfica à regra de negócios simulada no navegador. O uso do Diagrama de Classes e do Diagrama de Sequência provou que o fluxo de gamificação (responder carta -> calcular intervalo -> atribuir XP) é sólido. A principal limitação atual é a ausência do banco de dados relacional (SQL), que será suprimida nas próximas iterações do software.</p>
+            <p>A arquitetura agora integra com sucesso a interface gráfica do frontend ao backend real em C# (.NET 10) e ao banco de dados SQL Server. A remoção de emulações no localStorage para o fluxo principal de autenticação e a implementação de endpoints seguros para o algoritmo SM-2 e progresso consolidam uma plataforma robusta e escalável, cumprindo todos os requisitos estabelecidos.</p>
             <div class="diagram-placeholder">
                 <p>[ Inserir aqui os prints do Diagrama de Classes e de Sequência ]</p>
             </div>
@@ -143,7 +139,7 @@
 
         <section id="conclusao" class="section">
             <h2>3. Conclusão</h2>
-            <p>O desenvolvimento do Nex_TI consolidou a aplicação prática dos conhecimentos de Engenharia de Software Ágil e desenvolvimento Front-end. A estratégia de entregar um MVP web responsivo provou ser eficaz para validar a ideia de gamificação e repetição espaçada na educação. A estrutura lógica desenhada garante que a futura migração para C# e Banco de Dados Relacional ocorra de forma segura e planeada, atestando a maturidade técnica da equipa.</p>
+            <p>O desenvolvimento e a evolução do Nex_TI para a versão de PIM IV consolidaram com absoluto sucesso o ciclo de vida completo do software. A migração das regras locais de simulação para uma API robusta em C# baseada no paradigma de POO, juntamente com a integração real ao banco de dados Microsoft SQL Server, validou os conceitos teóricos de engenharia de software estudados e atesta a maturidade técnica da equipe na criação de soluções educacionais gamificadas e escaláveis.</p>
         </section>
 
         <section id="referencias" class="section">

@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/img/Logo%20UNIP.png" alt="Logo UNIP" width="150" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/UNIP_Logo.svg/1200px-UNIP_Logo.svg.png'"/>
   <h1>Nex_TI – EdTech Learning Platform</h1>
-  <p><strong>Projeto Integrado Multidisciplinar (PIM III) - Análise e Desenvolvimento de Sistemas</strong></p>
+  <p><strong>Projeto Integrado Multidisciplinar (PIM IV) - Análise e Desenvolvimento de Sistemas</strong></p>
 
   <!-- Badges -->
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
@@ -18,33 +18,33 @@
 
 ---
 
-## 🔗 Ecossistema do Projeto (PIM III) / Project Ecosystem / Ecosistema del Proyecto
+## 🔗 Ecossistema do Projeto (PIM IV) / Project Ecosystem / Ecosistema del Proyecto
 
 <details open>
   <summary>🇧🇷 <b>Português</b></summary>
 
-  O ecossistema do projeto **Nex_TI** desenvolvido para o PIM III (UNIP) é estruturado em três repositórios complementares:
-  1. 📄 **[PIM_III-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Teorica)**: Contém a monografia acadêmica e o Relatório ABNT interativo (HTML/CSS), protótipos de interface, cronogramas e atas teóricas.
-  2. 📐 **[PIM_III-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Documentacao_UML)**: Abriga a modelagem UML completa e fonte no Astah (`.asta`), os diagramas globais exportados (Classes, Sequência, Casos de Uso) e a documentação detalhada em Markdown do Backlog do Produto e Sprints.
-  3. 💻 **[PIM_III-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica)**: A implementação funcional em código, englobando o Frontend (HTML/CSS/JS com modo de acessibilidade e o mapa neural interativo), a API do Backend em C# (.NET 10 Minimal APIs) e os scripts do banco de dados (Microsoft SQL Server).
+  O ecossistema do projeto **Nex_TI** desenvolvido para o PIM IV (UNIP) é estruturado em três repositórios complementares:
+  1. 📄 **[PIM_IV-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Teorica)**: Contém a monografia acadêmica e o Relatório ABNT interativo (HTML/CSS), protótipos de interface, cronogramas e atas teóricas.
+  2. 📐 **[PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)**: Abriga a modelagem UML completa e fonte no Astah (`.asta`), os diagramas globais exportados (Classes, Sequência, Casos de Uso) e a documentação detalhada em Markdown do Backlog do Produto e Sprints.
+  3. 💻 **[PIM_IV-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica)**: A implementação funcional em código, englobando o Frontend (HTML/CSS/JS com modo de acessibilidade e o mapa neural interativo), a API do Backend em C# (.NET 10 Minimal APIs) e os scripts do banco de dados (Microsoft SQL Server).
 </details>
 
 <details>
   <summary>🇺🇸 <b>English</b></summary>
 
-  The **Nex_TI** project ecosystem for PIM III (UNIP) is structured into three complementary repositories:
-  1. 📄 **[PIM_III-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Teorica)**: Contains the academic monograph and the interactive ABNT Report (HTML/CSS), interface prototypes, schedules, and theoretical minutes.
-  2. 📐 **[PIM_III-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Documentacao_UML)**: Hosts the complete UML modeling and Astah source (`.asta`), global exported diagrams (Class, Sequence, Use Case), and detailed Markdown documentation of Product and Sprint Backlogs.
-  3. 💻 **[PIM_III-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica)**: The functional code implementation, encompassing the Frontend (HTML/CSS/JS with accessibility mode and interactive neural map), the Backend C# API (.NET 10 Minimal APIs), and database scripts (Microsoft SQL Server).
+  The **Nex_TI** project ecosystem for PIM IV (UNIP) is structured into three complementary repositories:
+  1. 📄 **[PIM_IV-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Teorica)**: Contains the academic monograph and the interactive ABNT Report (HTML/CSS), interface prototypes, schedules, and theoretical minutes.
+  2. 📐 **[PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)**: Hosts the complete UML modeling and Astah source (`.asta`), global exported diagrams (Class, Sequence, Use Case), and detailed Markdown documentation of Product and Sprint Backlogs.
+  3. 💻 **[PIM_IV-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica)**: The functional code implementation, encompassing the Frontend (HTML/CSS/JS with accessibility mode and interactive neural map), the Backend C# API (.NET 10 Minimal APIs), and database scripts (Microsoft SQL Server).
 </details>
 
 <details>
   <summary>🇪🇸 <b>Español</b></summary>
 
-  El ecosistema del proyecto **Nex_TI** para PIM III (UNIP) está estructurado en tres repositórios complementarios:
-  1. 📄 **[PIM_III-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Teorica)**: Contiene la monografía académica y el Informe ABNT interactivo (HTML/CSS), prototipos de interfaz, cronogramas y actas teóricas.
-  2. 📐 **[PIM_III-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Documentacao_UML)**: Alberga el modelado UML completo y la fuente en Astah (`.asta`), los diagramas globales exportados (Clases, Secuencia, Casos de Uso) y la documentación detallada en Markdown del Backlog del Producto y Sprints.
-  3. 💻 **[PIM_III-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica)**: La implementación funcional en código, que abarca el Frontend (HTML/CSS/JS con modo de accesibilidad y mapa neuronal interactivo), la API del Backend en C# (.NET 10 Minimal APIs) y los scripts de la base de datos (Microsoft SQL Server).
+  El ecosistema del proyecto **Nex_TI** para PIM IV (UNIP) está estructurado en tres repositórios complementarios:
+  1. 📄 **[PIM_IV-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Teorica)**: Contiene la monografía académica y el Informe ABNT interactivo (HTML/CSS), prototipos de interfaz, cronogramas y actas teóricas.
+  2. 📐 **[PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)**: Alberga el modelado UML completo y la fuente en Astah (`.asta`), los diagramas globales exportados (Clases, Secuencia, Casos de Uso) y la documentación detallada en Markdown del Backlog del Producto y Sprints.
+  3. 💻 **[PIM_IV-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica)**: La implementación funcional en código, que abarca el Frontend (HTML/CSS/JS con modo de accesibilidad y mapa neuronal interactivo), la API del Backend en C# (.NET 10 Minimal APIs) y los scripts de la base de datos (Microsoft SQL Server).
 </details>
 
 ---
@@ -60,34 +60,33 @@ Para isso, a plataforma integra:
 - **Acessibilidade Universal:** Foco total em semântica W3C, modo de alto contraste nativo e controles de zoom.
 - **Mapa Neural (Obsidian View):** Visualização interativa do progresso acadêmico com física de molas, drag-and-drop e persistência de estado.
 
-Este repositório abriga o sistema Fullstack completo (PIM III), focado em uma arquitetura limpa (Separation of Concerns), integrando Frontend, API RESTful e Banco de Dados Relacional.
+Este repositório abriga o sistema Fullstack completo (PIM IV), focado em uma arquitetura limpa (Separation of Concerns), integrando Frontend, API RESTful e Banco de Dados Relacional.
 
-### 📐 Delimitação de Escopo (PIM III - 3º Semestre vs 4º Semestre)
+### 📐 Estado do Escopo e Integrações (Versão Final - PIM IV)
 
-Para fins de avaliação da banca do PIM III, destaca-se que a estrutura de banco de dados e os modelos C# foram desenvolvidos de forma completa para dar suporte às entregas conceituais do projeto. No entanto, a implementação das interfaces e lógicas de negócios foi dividida entre o semestre atual e o próximo:
+Toda a infraestrutura planejada para o ecossistema Nex_TI foi completamente integrada no PIM IV (4º Semestre), eliminando quaisquer emulações de dados locais (bypasses) e ativando a persistência em tempo real no banco de dados Microsoft SQL Server.
 
-
-| Funcionalidade / Módulo | 3º Semestre (MVP Funcional) | 4º Semestre (Planejado / Em Construção) | Status no Código Prático |
-|---|---|---|---|
-| **Cadastro, Login & Acessibilidade** | Completo e integrado | Ajustes finais assistivos | 100% Funcional e Persistido |
-| **Motor SM-2 e Flashcards** | Completo e funcional | Algoritmo preditivo de trilhas | 100% Funcional e Persistido |
-| **Mapa Neural (Obsidian View)** | Mapeamento dinâmico e física | Expansão de layouts | 100% Funcional e Persistido |
-| **Simulado ENADE (Questões)** | Modelagem e Tabelas DDL no BD | Telas de simulados e lógicas de quiz | **Omitido no Frontend / Tabelas e Modelos prontos no DB** |
-| **Loja de Moedas & Customização** | Modelagem física e saldo HUD | Sistema de transações e resgates | **Omitido no Frontend / Saldo persistido no HUD** |
+| Funcionalidade / Módulo | Estado Atual (PIM IV) | Mecanismo de Persistência / Integração |
+|---|---|---|
+| **Cadastro, Login & Acessibilidade** | 100% Funcional e Sincronizado | JWT Token / API C# e SQL Server |
+| **Motor SM-2 e Flashcards** | 100% Funcional e Sincronizado | Agendamento via API (C#) e SQL Server |
+| **Mapa Neural (Obsidian View)** | 100% Funcional e Sincronizado | Armazenamento de estados via API e SQL Server |
+| **Simulado ENADE (Questões)** | 100% Funcional e Sincronizado | Banco de dados via `GET /api/simulados/questoes` e `tb_questoes` |
+| **Loja de Moedas & Customização** | 100% Funcional e Sincronizado | Transações debitadas e persistidas via `PUT /api/usuarios/stats` |
 
 
 ### 🚀 Tecnologias e Arquitetura
 
 O projeto foi construído seguindo as melhores práticas do mercado:
 
-* **Frontend:** Desenvolvido em HTML5 semântico, responsivo via CSS Puro (Design System Global) e lógicas isoladas em Vanilla JS, consumindo a API via `fetch`.
+* **Frontend:** Desenvolvido em HTML5 semântico, responsivo via CSS Puro (Design System Global) e lógicas isoladas in Vanilla JS, consumindo a API via `fetch`.
 * **Backend:** API RESTful desenvolvida em `C# (.NET 10)` utilizando **Minimal APIs** e **Entity Framework Core**, com políticas de CORS e mitigação de vulnerabilidades (OWASP).
 * **Banco de Dados:** SGBD `SQL Server` estruturado (`NexTI_DB.sql`) garantindo restrições de gamificação no nível do banco.
 
 ### 📂 Estrutura do Repositório
 
 ```text
-📦 PIM_III-Parte_Pratica
+📦 PIM_IV-Parte_Pratica
  ┣ 📂 .planning/      # Inteligência do projeto, roadmap e arquitetura
  ┣ 📂 assets/         # Recursos globais e Design System
  ┃ ┣ 📂 css/          # global.css, splash.css

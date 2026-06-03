@@ -19,15 +19,19 @@ A arquitetura segue o modelo de 3 Camadas (3-Tier):
 ---
 
 ## 🔌 2. Integração via API (O Backend C#)
-A aplicação .NET atua na porta HTTP padrão `5001`. A comunicação com a interface ocorre puramente via protocolo `HTTP (GET, POST)` retornando formato `JSON`.
+A aplicação .NET responde na porta HTTPS `5001` (com fallback HTTP `5000`). A comunicação com o frontend é feita por meio de chamadas assíncronas `fetch` com requisições e respostas em formato `JSON`.
 
-**Endpoints Públicos:**
+**Endpoints Principais:**
 * `GET /api/status` - Health check.
-* `GET /api/usuarios/{username}` - Autentica/recupera estado do player (Moedas, Nível, XP).
-* `GET /api/fases` - Retorna mapeamento de módulos do banco.
-* `GET /api/fases/{codigo}/flashcards` - Recupera as cartas interligadas pelo ForeignKey.
+* `POST /api/auth/login` e `POST /api/auth/register` - Autenticação JWT.
+* `GET /api/usuarios/{username}` - Recupera o perfil do estudante (XP, Moedas, Nível).
+* `PUT /api/usuarios/stats` - Atualiza estatísticas de gamificação do usuário (XP, Moedas, Nível - Protegido por JWT).
+* `GET /api/fases` - Retorna a lista de disciplinas/fases cadastradas.
+* `GET /api/fases/{codigo}/flashcards` - Retorna as cartas interligadas a uma fase específica.
+* `POST /api/progresso/atualizar` - Atualiza o progresso do flashcard no SM-2 (Protegido por JWT).
+* `GET /api/simulados/areas` e `GET /api/simulados/questoes` - Retorna dados estruturados do ENADE.
 
-O **Entity Framework Core** foi empregado em abordagem *Code-First/Database-First* hibrida, eliminando a necessidade de redigir DataReaders (SQLClient) de forma bruta.
+O **Entity Framework Core** foi empregado como ORM, eliminando a necessidade de redigir instruções ADO.NET brutas, estruturando relacionamentos complexos e garantindo integridade transacional.
 
 ---
 
@@ -39,37 +43,35 @@ Visando aprovação como projeto de extensão inclusivo, o Front-end cumpre espe
 
 ---
 
-## 🧠 4. O Algoritmo SM-2 (Banco de Dados)
-A inteligência do projeto reside na tabela `Progresso_Flashcards`. 
-Para adicionar suporte real ao Algoritmo de SuperMemo, o SQL e o C# monitoram:
-- **IntervaloDias (Float):** Quanto tempo a carta deve sumir.
-- **FatorFacilidade (Float >= 1.3):** Quão difícil a carta está para o aluno específico.
-- **Repetições (Int):** Histórico de constância.
+## 🧠 4. O Algoritmo SM-2 (Integração Real C#)
+A inteligência do projeto reside no serviço [ISm2Engine](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/backend/Services/ISm2Engine.cs) e na persistência da tabela `Progresso_Flashcards`.
+A plataforma monitora:
+- **IntervaloDias (Float):** Dias de espera antes da próxima revisão.
+- **FatorFacilidade (Float >= 1.3):** Multiplicador de facilidade do flashcard para o aluno.
+- **Repetições (Int):** Histórico de acertos consecutivos.
 
-Para estender a aplicação no futuro, basta alterar a lógica nos *Controllers C#* para que os fatores sejam atualizados mediante um request `POST` quando o aluno clicar no botão de "Fácil" ou "Difícil" na tela.
+A aplicação real no frontend dispara chamadas assíncronas em tempo real ao endpoint `POST /api/progresso/atualizar` repassando o nível de resposta de 0 a 5 dado pelo usuário. O backend processa o algoritmo SM-2 via inversão de dependência (DIP) e agenda a data de revisão futura.
 
 ---
 
 ## 📐 5. Consistência e Transição UML para Código de Produção
-Para fins de rastreabilidade técnica e avaliação acadêmica, a relação entre a especificação teórica (Diagramas UML do repositório [PIM_III-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Documentacao_UML)) e a implementação em produção deste repositório foi projetada seguindo regras claras de transição:
+Para fins de rastreabilidade técnica e avaliação acadêmica, a relação entre a especificação teórica (Diagramas UML do repositório [PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)) e a implementação em produção deste repositório foi projetada seguindo regras claras de transição:
 
 1. **Abstração Conceitual vs Persistência Relacional (EF Core):**
    * No modelo de classes abstrato UML, entidades como `Flashcards`, `Modulos` e `Fases` representam a lógica conceitual de domínio. No código de produção C# (`backend/Models/`), elas são mapeadas como entidades de banco relacionais singulares (`Flashcard`, `Fase`) com anotações de persistência e validação do Entity Framework (`[Key]`, `[Required]`, `[ForeignKey]`).
 2. **Materialização da Regra SM-2:**
-   * A regra de associação conceitual do algoritmo de repetição espaçada SM-2 entre as classes `Aluno` e `Flashcards` é materializada no código real pela entidade de junção relacional [ProgressoFlashcard.cs](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica/backend/Models/ProgressoFlashcard.cs). Ela é responsável por registrar de forma independente o histórico de revisões de cada estudante (`Repeticoes`, `IntervaloDias`, `FatorFacilidade`, `DataProximaRevisao`).
+   * A regra de associação conceitual do algoritmo de repetição espaçada SM-2 entre as classes `Aluno` e `Flashcards` é materializada no código real pela entidade de junção relacional [ProgressoFlashcard.cs](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/backend/Models/ProgressoFlashcard.cs). Ela é responsável por registrar de forma independente o histórico de revisões de cada estudante (`Repeticoes`, `IntervaloDias`, `FatorFacilidade`, `DataProximaRevisao`).
 3. **Consolidação de Atributos de Gamificação:**
-   * A classe [Aluno.cs](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica/backend/Models/Aluno.cs) herda de [Usuario.cs](file:///C:/Users/mayco/Documents/GitHub/PIM_III-Parte_Pratica/backend/Models/Usuario.cs). Para simplificar a autenticação de sessão e otimizar as consultas SQL no Entity Framework, os atributos de gamificação (`XP`, `Moedas`, `Nivel`) foram consolidados diretamente na classe base `Usuario`.
+   * A classe `Aluno` herda de `Usuario`. Para simplificar a autenticação de sessão e otimizar as consultas SQL no Entity Framework, os atributos de gamificação (`XP`, `Moedas`, `Nivel`) foram consolidados diretamente na classe base `Usuario`.
 4. **Classes de Apoio Lógico:**
    * Lógicas representadas por classes auxiliares conceituais no diagrama UML (como `Gamificacao` e `Motor_SM2`) foram convertidas em lógicas de serviço em JavaScript no Front-end (`auth.js`, `api.js`) e mapeamentos no backend para otimizar a experiência SPA e tempo de resposta da API.
 
 ---
 
-## 📐 6. Delimitação de Escopo (3º Semestre vs 4º Semestre)
-Para a avaliação do PIM III no **3º Semestre**, detalhamos as seguintes diretrizes de escopo aplicadas no código:
+## 📐 6. Consolidação e Entrega de Escopo (4º Semestre - PIM IV)
+Para a entrega final do **PIM IV**, todas as pendências e emulações locais de dados foram resolvidas:
 
-1. **Estrutura de Banco de Dados de Simulados (4º Semestre)**: As tabelas relacionadas ao módulo de simulado ENADE (`tb_areas_conhecimento`, `tb_provas`, `tb_questoes`, `tb_alternativas`, `tb_prova_questao`) foram inseridas no script do banco (`NexTI_DB.sql`) para adiantar o próximo semestre e garantir a integridade com a modelagem UML conceitual. A lógica do quiz e as telas de execução correspondentes no front-end estão **em desenvolvimento**, sendo escopo planejado para o 4º Semestre.
-2. **Loja de Customização**: O saldo do HUD exibe as moedas acumuladas do usuário, mas a loja de compras de novas trilhas foi omitida no front-end, pois sua lógica de transação completa será finalizada no próximo semestre.
-3. **Escopo Entregue (3º Semestre)**: A parte prática funcional foca na gestão de autenticação (Login e Cadastro), acessibilidade (WAI-ARIA e modo de contraste), no motor do algoritmo de repetição espaçada SM-2 (flashcards) e na visualização interativa do progresso acadêmico via Mapa Neural.
-
-
-
+1. **Integração do Simulado ENADE**: O módulo de simulado com questões de múltiplas alternativas foi completamente integrado. As questões são obtidas da API do backend (`GET /api/simulados/questoes`) a partir de tabelas dedicadas (`tb_questoes`, `tb_alternativas`) e consumidas no frontend.
+2. **Loja de Customização e Saldo Real**: O saldo HUD de Moedas Tech e XP do usuário agora é atualizado e persistido de verdade através da API (`PUT /api/usuarios/stats`), refletindo no banco de dados a progressão real do perfil de forma persistente.
+3. **Desbloqueio de Módulos Bônus**: Módulos bônus restritos agora exigem moedas reais acumuladas pelo estudante, debitando o valor no banco de dados e persistindo o acesso em `bonus_unlocked`.
+4. **Remoção de Bypasses de Login**: O sistema de autenticação local foi inteiramente limpo, deixando a autenticação do frontend dependente estritamente do backend JWT (.NET 10) e banco de dados Microsoft SQL Server.

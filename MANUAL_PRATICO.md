@@ -21,16 +21,16 @@ A entrada do sistema simula um terminal de comandos.
 Para manter os alunos motivados e engajados a longo prazo (especialmente em projetos de extensão), o Nex_TI usa um HUD interativo:
 - **XP (Pontos de Experiência):** Ganhos ao acertar perguntas ou concluir módulos de estudo de disciplinas específicas.
 - **Níveis (Level Up):** Acumular XP aumenta o seu nível de aluno na plataforma, destravando status entre a comunidade de estudantes.
-- **Moedas Tech:** Podem ser ganhas através do desempenho diário e futuramente poderão ser trocadas por personalizações de avatar ou recursos de estudo avançados.
+- **Moedas Tech:** Ganhas através do desempenho diário, permitindo a liberação imediata de módulos bônus e de extensão na própria plataforma.
 
 ---
 
 ## 📚 4. Explorando Módulos e Flashcards
-No Dashboard, o menu esquerdo ("Missões de Aprendizagem") exibe todas as disciplinas mapeadas (ex: Lógica de Programação, Redes, UX/UI, Cibersegurança).
+No Dashboard, o menu esquerdo ("Missões de Aprendizagem") exibe todas as disciplinas mapeadas (ex: Lógica de Programação, Redes, UX/UI, Cibersegurança), culminando nos **Simulados ENADE** nas etapas finais do percurso técnico.
 
 ### Como estudar:
-1. Clique em uma **Fase/Disciplina**.
-2. O sistema fará o download dos **Flashcards** daquela disciplina direto do banco de dados oficial.
+1. Clique em uma **Fase/Disciplina** ou no **Simulado ENADE**.
+2. O sistema fará o download dos **Flashcards/Questões** daquela disciplina direto do banco de dados oficial.
 3. Você verá a **Frente da Carta** com uma pergunta. Pense na resposta!
 4. Clique na carta para revelar o **Verso** (A resposta correta).
 5. **A Mágica acontece aqui:** Você deve ser honesto e informar ao sistema quão fácil foi lembrar a resposta. O algoritmo agendará automaticamente o momento em que esta carta deverá voltar para a sua tela!
