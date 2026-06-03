@@ -42,6 +42,7 @@
 
         header {
             background-color: rgba(22, 27, 34, 0.9); 
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             padding: 0 40px; 
             height: 80px; 
@@ -180,13 +181,21 @@
         .btn-back:hover {
             text-shadow: 0 0 10px rgba(0, 230, 230, 0.5);
         }
+
+        .logo-white { color: #fff; }
+        .icon-green { color: var(--alura-green, #00ff88); }
+        .icon-yellow { color: #ffd700; }
+        .icon-red { color: #ff4500; }
+        .title-icon-green { font-size: 2rem; color: var(--alura-green, #00ff88); }
+        .title-icon-yellow { font-size: 2rem; color: #ffd700; }
+        .title-icon-red { font-size: 2rem; color: #ff4500; }
     </style>
 </head>
 <body>
 
     <header role="banner">
         <div class="logo tech-font">
-            <span style="color: #fff;">Nex_</span><span class="tech-text">TI</span>
+            <span class="logo-white">Nex_</span><span class="tech-text">TI</span>
         </div>
         <div class="header-right">
             <a href="../dashboard/index.html" class="btn-back tech-font"><span class="material-symbols-outlined">arrow_back</span> Voltar ao App</a>
@@ -200,55 +209,55 @@
             
             <div class="dia-header mod-inst"><span class="tech-font">Institucional</span><div class="dia-line"></div></div>
             <a href="#sobre" class="aula-item" onclick="showSection('sobre')">
-                <span class="material-symbols-outlined" style="color: var(--alura-green);">corporate_fare</span>
+                <span class="material-symbols-outlined icon-green">corporate_fare</span>
                 <span>Sobre a Nex_TI</span>
             </a>
             <a href="#metodologia" class="aula-item" onclick="showSection('metodologia')">
-                <span class="material-symbols-outlined" style="color: var(--alura-green);">menu_book</span>
+                <span class="material-symbols-outlined icon-green">menu_book</span>
                 <span>Metodologia</span>
             </a>
             <a href="#opensource" class="aula-item" onclick="showSection('opensource')">
-                <span class="material-symbols-outlined" style="color: var(--alura-green);">code</span>
+                <span class="material-symbols-outlined icon-green">code</span>
                 <span>Open Source</span>
             </a>
             <a href="#carreiras" class="aula-item" onclick="showSection('carreiras')">
-                <span class="material-symbols-outlined" style="color: var(--alura-green);">work</span>
+                <span class="material-symbols-outlined icon-green">work</span>
                 <span>Carreiras & Vagas</span>
             </a>
 
             <div class="dia-header mod-ecos"><span class="tech-font">Ecossistema</span><div class="dia-line"></div></div>
             <a href="#trilhas" class="aula-item" onclick="showSection('trilhas')">
-                <span class="material-symbols-outlined" style="color: #ffd700;">route</span>
+                <span class="material-symbols-outlined icon-yellow">route</span>
                 <span>Trilhas e Disciplinas</span>
             </a>
             <a href="#enade" class="aula-item" onclick="showSection('enade')">
-                <span class="material-symbols-outlined" style="color: #ffd700;">school</span>
+                <span class="material-symbols-outlined icon-yellow">school</span>
                 <span>Simulado ENADE</span>
             </a>
             <a href="#comunidade" class="aula-item" onclick="showSection('comunidade')">
-                <span class="material-symbols-outlined" style="color: #ffd700;">groups</span>
+                <span class="material-symbols-outlined icon-yellow">groups</span>
                 <span>Comunidade Devs</span>
             </a>
             <a href="#loja" class="aula-item" onclick="showSection('loja')">
-                <span class="material-symbols-outlined" style="color: #ffd700;">store</span>
+                <span class="material-symbols-outlined icon-yellow">store</span>
                 <span>Loja de Bônus</span>
             </a>
 
             <div class="dia-header mod-sup"><span class="tech-font">Suporte & Legal</span><div class="dia-line"></div></div>
             <a href="#faq" class="aula-item" onclick="showSection('faq')">
-                <span class="material-symbols-outlined" style="color: #ff4500;">help</span>
+                <span class="material-symbols-outlined icon-red">help</span>
                 <span>Central de Ajuda</span>
             </a>
             <a href="#termos" class="aula-item" onclick="showSection('termos')">
-                <span class="material-symbols-outlined" style="color: #ff4500;">gavel</span>
+                <span class="material-symbols-outlined icon-red">gavel</span>
                 <span>Termos de Uso</span>
             </a>
             <a href="#privacidade" class="aula-item" onclick="showSection('privacidade')">
-                <span class="material-symbols-outlined" style="color: #ff4500;">shield</span>
+                <span class="material-symbols-outlined icon-red">shield</span>
                 <span>Privacidade (LGPD)</span>
             </a>
             <a href="#contato" class="aula-item" onclick="showSection('contato')">
-                <span class="material-symbols-outlined" style="color: #ff4500;">mail</span>
+                <span class="material-symbols-outlined icon-red">mail</span>
                 <span>Contato</span>
             </a>
 
@@ -259,52 +268,52 @@
 
             <!-- INSTITUCIONAL -->
             <div id="content-sobre" class="content-section active">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">corporate_fare</span> Sobre a Nex_TI</h1>
+                <h1><span class="material-symbols-outlined title-icon-green">corporate_fare</span> Sobre a Nex_TI</h1>
                 <p>A Nex_TI é uma EdTech nascida de um Projeto Integrado Multidisciplinar (PIM IV). Nosso objetivo principal é combater a Curva de Esquecimento de Ebbinghaus no processo de aprendizado de tecnologia através do uso massivo do Algoritmo SM-2 (Repetição Espaçada) acoplado a um ecossistema gamificado.</p>
                 <p>Nossa plataforma foi desenhada por estudantes de Análise e Desenvolvimento de Sistemas para ser a ferramenta de extensão universitária definitiva.</p>
             </div>
 
             <div id="content-metodologia" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">menu_book</span> Metodologia de Ensino</h1>
+                <h1><span class="material-symbols-outlined title-icon-green">menu_book</span> Metodologia de Ensino</h1>
                 <p>Substituímos o aprendizado passivo por estímulos de Estudo Ativo. Ao invés de vídeos longos, o aluno consome conceitos atômicos através de "Flashcards" interativos, onde a performance no recall do conhecimento (Erro/Acerto) dita quando aquela informação será apresentada novamente.</p>
             </div>
 
             <div id="content-opensource" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">code</span> Manifesto Open Source</h1>
-                <p>Acreditamos que o código que molda o futuro da educação deve ser aberto. O núcleo do Nex_TI, incluindo a lógica do Anki Engine, a arquitetura em Vanilla JS e o backend C# (.NET 10), está disponível livremente no GitHub para auditoria, extensão e bifurcação pela comunidade.</p>
+                <h1><span class="material-symbols-outlined title-icon-green">code</span> Manifesto Open Source</h1>
+                <p>Acreditamos que o código que molda o futuro da educação deve ser aberto. O núcleo do Nex_TI, incluindo a lógica do algoritmo de repetição espaçada (SM-2), a arquitetura em Vanilla JS e o backend C# (.NET 10), está disponível livremente no GitHub para auditoria, extensão e bifurcação pela comunidade.</p>
             </div>
 
             <div id="content-carreiras" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: var(--alura-green);">work</span> Carreiras & Vagas</h1>
+                <h1><span class="material-symbols-outlined title-icon-green">work</span> Carreiras & Vagas</h1>
                 <p>Estamos sempre em busca de talentos que queiram revolucionar a educação no Brasil. No momento, somos um projeto de extensão universitária e não possuímos vagas CLT abertas.</p>
                 <p>Contribuições via Pull Request no repositório oficial do GitHub são muito bem-vindas e contam como experiência comprovada!</p>
             </div>
 
             <!-- ECOSSISTEMA -->
             <div id="content-trilhas" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">route</span> Trilhas e Disciplinas</h1>
+                <h1><span class="material-symbols-outlined title-icon-yellow">route</span> Trilhas e Disciplinas</h1>
                 <p>Nossa plataforma é modular. Oferecemos pacotes curriculares focados em Engenharia de Software, Lógica de Programação, Cibersegurança e Arquitetura de Nuvem. Cada trilha é dividida em missões progressivas que dão XP ao serem concluídas.</p>
             </div>
 
             <div id="content-enade" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">school</span> Simulado ENADE</h1>
+                <h1><span class="material-symbols-outlined title-icon-yellow">school</span> Simulado ENADE</h1>
                 <p>Módulo exclusivo de preparação para o ENADE, contendo questões reais de provas anteriores de Análise e Desenvolvimento de Sistemas formatadas no modelo de Flashcard. Responda, verifique o verso para explicação detalhada e ganhe pontuação dobrada.</p>
             </div>
 
             <div id="content-comunidade" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">groups</span> Comunidade Devs</h1>
+                <h1><span class="material-symbols-outlined title-icon-yellow">groups</span> Comunidade Devs</h1>
                 <p>A seção de comunidade visa conectar alunos em diferentes níveis (Júnior, Pleno e Sênior) baseados no XP da plataforma. É um espaço assíncrono para tirar dúvidas de código e trocar experiências sobre carreira.</p>
                 <p><em>(Funcionalidade prevista para implantação na Versão 2.0).</em></p>
             </div>
 
             <div id="content-loja" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ffd700;">store</span> Loja de Bônus (Coins)</h1>
+                <h1><span class="material-symbols-outlined title-icon-yellow">store</span> Loja de Bônus (Coins)</h1>
                 <p>As Moedas Virtuais (Coins) que você minera estudando diariamente servem para desbloquear Flashcards ocultos de disciplinas avançadas ou "Easter Eggs" sobre cultura hacker e curiosidades de TI. Quanto mais você estuda, mais acesso você tem ao conteúdo premium gratuito.</p>
             </div>
 
             <!-- SUPORTE E LEGAL -->
             <div id="content-faq" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">help</span> Central de Ajuda</h1>
+                <h1><span class="material-symbols-outlined title-icon-red">help</span> Central de Ajuda</h1>
                 <p><strong>P: Como recomeço o meu progresso?</strong><br>
                 R: No Dashboard, abra o menu superior direito e clique em "Formatar Sistema". ISSO APAGARÁ TODO SEU PROGRESSO ATUAL.</p>
                 <p><strong>P: Como o algoritmo decide quando vou ver a carta de novo?</strong><br>
@@ -312,19 +321,19 @@
             </div>
 
             <div id="content-termos" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">gavel</span> Termos de Uso</h1>
+                <h1><span class="material-symbols-outlined title-icon-red">gavel</span> Termos de Uso</h1>
                 <p>Ao acessar o Nex_TI, você compreende que trata-se de um sistema de avaliação e extensão acadêmica. É estritamente proibido o uso de automação, scripts, ou bots para inflar XP e farmar Moedas falsamente.</p>
                 <p>Contas identificadas com comportamento anômalo serão expurgadas sumariamente do nosso servidor SQL.</p>
             </div>
 
             <div id="content-privacidade" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">shield</span> Aviso de Privacidade</h1>
+                <h1><span class="material-symbols-outlined title-icon-red">shield</span> Aviso de Privacidade</h1>
                 <p>A Nex_TI atua em conformidade estrita com a LGPD. Não capturamos cookies de rastreamento de terceiros em nossa aplicação.</p>
                 <p>Seu E-mail e Username são mantidos em banco de dados isolado e protegido, e suas senhas são armazenadas exclusivamente através de hash criptográfico unidirecional. Você possui total controle para solicitar a deleção definitiva do seu perfil ("Direito ao Esquecimento").</p>
             </div>
 
             <div id="content-contato" class="content-section">
-                <h1><span class="material-symbols-outlined" style="font-size: 2rem; color: #ff4500;">mail</span> Contato</h1>
+                <h1><span class="material-symbols-outlined title-icon-red">mail</span> Contato</h1>
                 <p>Para suporte técnico, instabilidades na API ou para reportar vulnerabilidades de segurança (Bug Bounty), por favor abra uma "Issue" no repositório oficial do GitHub.</p>
                 <p>Para assuntos administrativos, comunique-se com a equipe de desenvolvimento do PIM IV através dos canais de comunicação da coordenação UNIP.</p>
             </div>
