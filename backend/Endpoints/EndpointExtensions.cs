@@ -179,6 +179,87 @@ namespace NexTI_API.Endpoints
                     .ToListAsync();
                 return Results.Ok(questoes);
             });
+
+            // --- GERAÇÃO DE CERTIFICADO EM PDF ---
+            app.MapGet("/api/certificado/pdf", async (string nome, string data, string codigo) =>
+            {
+                if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(data) || string.IsNullOrEmpty(codigo))
+                {
+                    return Results.BadRequest(new { message = "Parâmetros 'nome', 'data' e 'codigo' são obrigatórios." });
+                }
+
+                // Diretório temporário
+                string tempDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp_certs");
+                Directory.CreateDirectory(tempDir);
+                
+                string uniqueId = Guid.NewGuid().ToString("N");
+                string pdfFileName = $"certificado_{uniqueId}.pdf";
+                string pdfPath = Path.Combine(tempDir, pdfFileName);
+
+                try
+                {
+                    // Encontra o caminho do script gerar_certificado.py na raiz do projeto
+                    string projectRoot = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), ".."));
+                    string scriptPath = Path.Combine(projectRoot, "docs", "gerar_certificado.py");
+                    
+                    if (!File.Exists(scriptPath))
+                    {
+                        scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "docs", "gerar_certificado.py");
+                    }
+                    
+                    if (!File.Exists(scriptPath))
+                    {
+                        scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "docs", "gerar_certificado.py");
+                    }
+
+                    // Tenta usar o interpretador Python
+                    string pythonExecutable = "python";
+                    
+                    var processInfo = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = pythonExecutable,
+                        Arguments = $"\"{scriptPath}\" \"{nome}\" \"{data}\" \"{codigo}\" \"{pdfPath}\"",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+
+                    using (var process = System.Diagnostics.Process.Start(processInfo))
+                    {
+                        if (process == null)
+                        {
+                            return Results.Problem("Não foi possível iniciar o interpretador Python.");
+                        }
+
+                        await process.WaitForExitAsync();
+                        string output = await process.StandardOutput.ReadToEndAsync();
+                        string error = await process.StandardError.ReadToEndAsync();
+
+                        if (process.ExitCode != 0)
+                        {
+                            Console.WriteLine($"Erro do Python: {error}");
+                            return Results.Problem($"Erro ao executar script Python: {error}. Saída: {output}");
+                        }
+                    }
+
+                    if (!File.Exists(pdfPath))
+                    {
+                        return Results.Problem("O arquivo PDF do certificado não foi gerado pelo script.");
+                    }
+
+                    byte[] pdfBytes = await File.ReadAllBytesAsync(pdfPath);
+                    
+                    // Limpa o arquivo temporário após carregar em memória
+                    try { File.Delete(pdfPath); } catch { }
+
+                    return Results.File(pdfBytes, "application/pdf", $"certificado_{nome.Replace(" ", "_")}.pdf");
+                }
+                catch (Exception ex)
+                {
+                    return Results.Problem($"Erro interno do servidor: {ex.Message}");
+                }
+            });
         }
     }
 

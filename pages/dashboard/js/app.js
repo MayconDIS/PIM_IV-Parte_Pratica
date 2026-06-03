@@ -1076,3 +1076,44 @@ function tentarAbrirCertificado(elemento) {
 function imprimirCertificado() {
     window.print();
 }
+
+function baixarCertificadoPDF() {
+    const nomeAluno = document.getElementById('cert-nome-aluno').innerText;
+    const dataPorExtenso = document.getElementById('cert-data').innerText;
+    const uuidAutenticidade = document.getElementById('cert-uuid').innerText;
+
+    const apiUrl = `https://localhost:5001/api/certificado/pdf?nome=${encodeURIComponent(nomeAluno)}&data=${encodeURIComponent(dataPorExtenso)}&codigo=${encodeURIComponent(uuidAutenticidade)}`;
+    
+    const btn = document.querySelector('button[onclick="baixarCertificadoPDF()"]');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span class="material-symbols-outlined">sync</span> GERANDO...`;
+    }
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) throw new Error("Erro na geração do PDF no servidor.");
+            return response.blob();
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `Certificado_${nomeAluno.replace(/\s+/g, '_')}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            alert("[ DOWNLOAD CONCLUÍDO ]\nCertificado digital premium baixado com sucesso!");
+        })
+        .catch(err => {
+            console.error(err);
+            alert("[ ERRO ]\nNão foi possível baixar o PDF. Certifique-se de que o backend (.NET 10) está rodando localmente.");
+        })
+        .finally(() => {
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = `<span class="material-symbols-outlined">download</span> BAIXAR_PDF()`;
+            }
+        });
+}
