@@ -42,50 +42,6 @@
 - [x] Accessibility widget (Zoom In/Out, High Contrast) inside modal
 
 ## Phase 6: SOLID Backend Refactoring
-*Read in: [English](#english-version) | [Português](#versao-em-portugues)*
-
----
-## English Version
-
-# ROADMAP
-
-## Phase 1: MVP Frontend Core
-**Status: Completed**
-- [x] Initial Splash Screen (`index.html`)
-- [x] Login and Authentication Screens (`pages/login/`)
-- [x] Main Dashboard (`pages/dashboard/`)
-- [x] Interactive UI logic (`assets/js/`, `pages/dashboard/js/`)
-
-## Phase 2: Database Architecture
-**Status: Completed**
-- [x] Initial DDL script (`database/NexTI_DB.sql`)
-- [x] Refine tables for SM-2 Algorithm
-- [x] Gamification logic constraints (XP, Coins)
-
-## Phase 3: C# Backend & API Integration
-**Status: Completed**
-- [x] Setup ASP.NET Core API project
-- [x] Implement Entity Framework Core
-- [x] Connect frontend to backend via fetch API
-
-## Phase 4: Security & Documentation (University Extension)
-**Status: Completed**
-- [x] Implement API security patches (CORS, IDOR mitigation)
-- [x] Create Execution Manual for Evaluators
-- [x] Create Practical and Technical Manuals for Extension
-
-## Phase 5: Neural Map (Obsidian View)
-**Status: Completed**
-- [x] Migrate legacy neural map engine from `OLD/` codebase
-- [x] Create modular `js/neural-map.js` (Separation of Concerns)
-- [x] Spring physics engine (orbital nodes with 0.15 damping)
-- [x] Pan & Zoom camera system with mouse wheel and buttons
-- [x] LocalStorage persistence for node positions and camera state
-- [x] Synaptic flashcard popups on card node click
-- [x] CSS animations: neural pulse, glow effects, mini-flashcard tooltips
-- [x] Accessibility widget (Zoom In/Out, High Contrast) inside modal
-
-## Phase 6: SOLID Backend Refactoring
 **Status: Completed**
 - [x] Isolate SM-2 spaced repetition calculation logic in a dedicated service (SRP/DIP)
 - [x] Extract Minimal API route registrations from Program.cs to modular extensions (SRP)
@@ -117,6 +73,14 @@
 **Status: Completed**
 - [x] Enable neural map by removing blocking alert placeholder
 - [x] Apply cache-busting version query on neural-map.js script tag
+
+## Phase 11: VLibras Widget Integration (National Accessibility)
+**Status: Completed**
+- [x] Integrate official VLibras widget script on landing page (`index.html`)
+- [x] Add VLibras widget to authentication page (`pages/login/login.html`)
+- [x] Add VLibras widget to main dashboard (`pages/dashboard/index.html`)
+- [x] Add VLibras widget to about screen (`pages/sobre/index.html`)
+- [x] Maintain clean spacing and position alignment on all viewports
 
 ---
 ## Versão em Português
@@ -191,3 +155,11 @@
 **Status: Concluído**
 - [x] Habilitar o mapa neural removendo o placeholder do alerta de bloqueio
 - [x] Aplicar versão de cache-busting no carregamento do script neural-map.js
+
+## Fase 11: Integração com VLibras Widget (Acessibilidade Nacional)
+**Status: Concluído**
+- [x] Integrar script e widget oficial do VLibras na página inicial (`index.html`)
+- [x] Adicionar widget VLibras na tela de autenticação (`pages/login/login.html`)
+- [x] Adicionar widget VLibras no dashboard principal (`pages/dashboard/index.html`)
+- [x] Adicionar widget VLibras na tela sobre (`pages/sobre/index.html`)
+- [x] Garantir espaçamento e alinhamento visual limpo em todas as telas
