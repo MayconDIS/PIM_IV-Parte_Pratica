@@ -916,11 +916,7 @@ body.high-contrast-mode .xp-badge {
     position: relative;
     width: 4000px;
     height: 4000px;
-    background-color: #0b0c10;
-    background-image: 
-        linear-gradient(rgba(0, 230, 230, 0.08) 1px, transparent 1px), 
-        linear-gradient(90deg, rgba(0, 230, 230, 0.08) 1px, transparent 1px);
-    background-size: 30px 30px;
+    background-color: transparent;
     transform-origin: 0 0;
     will-change: transform;
 }
@@ -1021,7 +1017,19 @@ body.high-contrast-mode .xp-badge {
 .modal-mapa { max-width: 90vw; height: 90vh; border-color: var(--nexti-purple); display: flex; flex-direction: column; }
 .modal-header-purple { border-bottom-color: var(--nexti-purple); }
 .text-purple { color: var(--nexti-purple); }
-.modal-body-mapa { flex: 1; position: relative; overflow: hidden; background: #0b0c10; padding: 0; border-radius: 0 0 12px 12px; cursor: grab; }
+.modal-body-mapa { 
+    flex: 1; 
+    position: relative; 
+    overflow: hidden; 
+    background-color: #0b0c10; 
+    background-image: 
+        linear-gradient(rgba(0, 230, 230, 0.08) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(0, 230, 230, 0.08) 1px, transparent 1px);
+    background-size: 30px 30px;
+    padding: 0; 
+    border-radius: 0 0 12px 12px; 
+    cursor: grab; 
+}
 .map-a11y-widget { position: absolute !important; bottom: 20px !important; left: 20px !important; z-index: 1000 !important; }
 .large-icon { font-size: 1.6rem; }
 .brand-text-white { color: #fff; }
