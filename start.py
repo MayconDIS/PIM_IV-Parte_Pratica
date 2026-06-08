@@ -113,7 +113,16 @@ def iniciar_frontend():
     handler = http.server.SimpleHTTPRequestHandler
 
     class SilentHandler(handler):
-        """Suprime os logs padrão do servidor HTTP para não poluir o terminal."""
+        """Suprime os logs e garante charset UTF-8 nos arquivos de texto."""
+        extensions_map = {
+            **handler.extensions_map,
+            '.js': 'text/javascript; charset=utf-8',
+            '.mjs': 'text/javascript; charset=utf-8',
+            '.css': 'text/css; charset=utf-8',
+            '.html': 'text/html; charset=utf-8',
+            '.json': 'application/json; charset=utf-8',
+            '.svg': 'image/svg+xml; charset=utf-8',
+        }
         def log_message(self, format, *args):
             pass
 

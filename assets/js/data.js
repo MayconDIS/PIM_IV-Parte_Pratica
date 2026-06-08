@@ -1,4 +1,4 @@
-// js/data.js
+﻿// js/data.js
 const bancoDeDados = {
     // ================= MÓDULO 01 =================
     "fase1": [
