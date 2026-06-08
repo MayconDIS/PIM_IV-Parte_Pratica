@@ -94,6 +94,12 @@
 - [x] Document SOLID principles, modern C# syntax and EF Core guidelines
 - [x] Register local dotnet-best-practices skill in skills-lock.json
 
+## Phase 14: Clean Code Modular Structure
+**Status: Completed**
+- [x] Restructure clean-code local skill directory to modular folders
+- [x] Create separate guides for naming/formatting, functions/classes and errors/testing
+- [x] Add language-specific guidelines for JavaScript and C#
+
 ---
 ## Versão em Português
 
@@ -187,4 +193,10 @@
 - [x] Criar pasta local dotnet-best-practices para a skill do agente
 - [x] Documentar princípios SOLID, construtores primários e boas práticas do EF Core
 - [x] Registrar a skill local dotnet-best-practices no arquivo skills-lock.json
+
+## Fase 14: Reestruturação Modular da Skill Clean Code
+**Status: Concluído**
+- [x] Reestruturar pasta clean-code local em subpastas de referências e linguagens
+- [x] Criar manuais específicos para nomenclatura/formatação, funções/classes e testes/erros
+- [x] Desenvolver guias específicos de código limpo para JavaScript e C#
 
