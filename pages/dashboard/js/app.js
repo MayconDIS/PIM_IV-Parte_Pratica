@@ -16,6 +16,39 @@ if (headerUserName) headerUserName.innerText = nomeSalvo;
 const menuUserName = document.getElementById('menu-user-name');
 if (menuUserName) menuUserName.innerText = nomeSalvo;
 
+// ==========================================
+// FRASES MOTIVACIONAIS DE ESTUDO ATIVO
+// ==========================================
+const frasesMotivacionais = [
+    "Bora programar, {name}! O próximo commit será de sucesso!",
+    "Foco total nos estudos, {name}! Você evolui a cada fase.",
+    "A persistência é o segredo do código perfeito, {name}!",
+    "{name}, cada flashcard resolvido é um passo rumo ao topo!",
+    "Compilando conhecimento... continue assim, {name}!",
+    "Não pare até orgulhar o seu console, {name}!",
+    "Café na caneca e foco nos estudos, {name}!",
+    "{name}, os bugs de hoje são os aprendizados de amanhã!",
+    "O algoritmo SM-2 está calibrando suas conexões neurais, {name}!",
+    "Sua árvore de habilidades está crescendo, {name}!",
+    "Executando processo de aprendizagem... Vai com tudo, {name}!",
+    "Estudo ativo gera resultados exponenciais. Força, {name}!"
+];
+
+function inicializarFraseMotivacional(username) {
+    const elMotivation = document.getElementById('header-motivation');
+    if (!elMotivation) return;
+    
+    let nomeExibido = username;
+    if (username === 'Desenvolvedor') nomeExibido = 'Dev';
+    
+    const idxRand = Math.floor(Math.random() * frasesMotivacionais.length);
+    const fraseSelecionada = frasesMotivacionais[idxRand].replace('{name}', `<span class="username-highlight">${nomeExibido}</span>`);
+    
+    elMotivation.innerHTML = fraseSelecionada;
+}
+
+inicializarFraseMotivacional(nomeSalvo);
+
 const userKey = `quest_${nomeSalvo}_`;
 
 let rankSalvo = localStorage.getItem(userKey + 'rank') || 'Rank: Pendente';
@@ -58,7 +91,16 @@ document.getElementById('xp-display').innerHTML = `<span class="material-symbols
 document.getElementById('coin-display').innerHTML = `<span class="material-symbols-outlined" style="font-size: 1.2rem;">toll</span> ${coinsTotal}`;
 
 let meusDecks = JSON.parse(localStorage.getItem(userKey + 'decks'));
-if (!meusDecks || !meusDecks.fase22 || meusDecks.fase22.length < 50) {
+
+// Verifica integridade dos dados (versão + encoding limpo)
+let dadosCorretos = meusDecks && meusDecks.fase22 && meusDecks.fase22.length >= 50;
+if (dadosCorretos) {
+    let amostra = JSON.stringify(meusDecks.fase1 || []) + JSON.stringify(meusDecks.fase2 || []);
+    if (amostra.includes('\u00C3') || amostra.includes('Ã§') || amostra.includes('Ã£') || amostra.includes('Ã©')) {
+        dadosCorretos = false;
+    }
+}
+if (!dadosCorretos) {
     meusDecks = JSON.parse(JSON.stringify(bancoDeDados));
     localStorage.setItem(userKey + 'decks', JSON.stringify(meusDecks));
 }
@@ -443,15 +485,34 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
     }
     let agora = new Date().getTime();
 
-    // Filtro de Repetição Espaçada
+    // Priorização SM-2: Novas/Devidas primeiro, Revisadas depois (deck completo)
     if (faseId.startsWith('teste-mod')) {
         deckAtual = [...cartasDaFase];
     } else {
-        deckAtual = cartasDaFase.filter(carta => {
+        let cartasNovasOuDevidas = [];
+        let cartasRevisadas = [];
+
+        cartasDaFase.forEach(carta => {
             let infoProgresso = srsData[carta.frente];
-            if (!infoProgresso) return true; // Nova
-            return infoProgresso.next <= agora; // Devida
+            if (!infoProgresso || infoProgresso.next <= agora) {
+                cartasNovasOuDevidas.push(carta);
+            } else {
+                cartasRevisadas.push(carta);
+            }
         });
+
+        // Embaralha cada grupo separadamente
+        for (let i = cartasNovasOuDevidas.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cartasNovasOuDevidas[i], cartasNovasOuDevidas[j]] = [cartasNovasOuDevidas[j], cartasNovasOuDevidas[i]];
+        }
+        for (let i = cartasRevisadas.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cartasRevisadas[i], cartasRevisadas[j]] = [cartasRevisadas[j], cartasRevisadas[i]];
+        }
+
+        // Novas/Devidas primeiro, revisadas ao final — deck completo
+        deckAtual = [...cartasNovasOuDevidas, ...cartasRevisadas];
     }
 
     if (deckAtual.length === 0) {
@@ -460,17 +521,17 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
         leftPanel.classList.remove('fade-out-others');
         document.querySelectorAll('.dia-header').forEach(el => el.classList.remove('active-header'));
         
-        alert("✅ [ SISTEMA Nex_TI: REVISÃO EM DIA ]\n\nVocê já estudou todo o conteúdo desta disciplina por hoje!\nSeu cérebro precisa de descanso para fixar a memória. Volte amanhã para novas revisões espaçadas.");
-        
         rightPanel.classList.remove('active'); 
         setTimeout(() => { rightPanel.style.display = 'none'; }, 1000); 
         return;
     }
 
-    // Shuffle (Embaralhar)
-    for (let i = deckAtual.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [deckAtual[i], deckAtual[j]] = [deckAtual[j], deckAtual[i]];
+    // Shuffle para testes de módulo
+    if (faseId.startsWith('teste-mod')) {
+        for (let i = deckAtual.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deckAtual[i], deckAtual[j]] = [deckAtual[j], deckAtual[i]];
+        }
     }
 
     document.getElementById('titulo-aula').innerHTML = `Processando: <span style="color: var(--alura-cyan)">${nomeAula}</span>`;
