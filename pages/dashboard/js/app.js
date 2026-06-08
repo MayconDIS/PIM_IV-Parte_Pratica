@@ -1102,6 +1102,7 @@ function resetarProgresso() {
         localStorage.removeItem(userKey + 'rank');
         localStorage.removeItem(userKey + 'srs'); 
         localStorage.removeItem(userKey + 'map_state');
+        localStorage.removeItem(userKey + 'avatar_custom');
         
         window.location.href = '../login/login.html'; 
     }
@@ -1114,9 +1115,64 @@ function deslogar() {
     }
 }
 
+function aplicarAvatarCustom(base64Image) {
+    const avatarEl = document.querySelector('.dropdown-header .avatar');
+    if (!avatarEl) return;
+
+    const icon = avatarEl.querySelector('.material-symbols-outlined');
+    if (icon) icon.style.display = 'none';
+
+    // Aplica a imagem sobreposta ao degradê padrão (mantendo efeito translúcido em PNGs)
+    avatarEl.style.backgroundImage = `url('${base64Image}'), linear-gradient(135deg, var(--nexti-purple), var(--nexti-cyan))`;
+    avatarEl.style.backgroundSize = 'cover';
+    avatarEl.style.backgroundPosition = 'center';
+    avatarEl.style.backgroundRepeat = 'no-repeat';
+}
+
+function inicializarAvatar() {
+    const avatarEl = document.querySelector('.dropdown-header .avatar');
+    if (!avatarEl) return;
+
+    let input = document.getElementById('avatar-input');
+    if (!input) {
+        input = document.createElement('input');
+        input.type = 'file';
+        input.id = 'avatar-input';
+        input.accept = 'image/*';
+        input.style.display = 'none';
+        document.body.appendChild(input);
+
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const base64Image = evt.target.result;
+                    localStorage.setItem(userKey + 'avatar_custom', base64Image);
+                    aplicarAvatarCustom(base64Image);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    avatarEl.style.cursor = 'pointer';
+    avatarEl.title = 'Clique para alterar a foto do seu avatar';
+
+    avatarEl.addEventListener('click', function() {
+        input.click();
+    });
+
+    const avatarSalvo = localStorage.getItem(userKey + 'avatar_custom');
+    if (avatarSalvo) {
+        aplicarAvatarCustom(avatarSalvo);
+    }
+}
+
 window.onload = async () => {
     await inicializarApi();
     verificarNivelamento();
+    inicializarAvatar();
     
     // Restaurar estado ativo (modal ou aula)
     const activeState = JSON.parse(localStorage.getItem(userKey + 'active_state'));
