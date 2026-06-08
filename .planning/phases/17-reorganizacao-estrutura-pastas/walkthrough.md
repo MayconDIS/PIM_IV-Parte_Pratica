@@ -5,12 +5,14 @@ Este documento resume as alterações de estruturação de pastas do repositóri
 ## O que Mudou
 
 ### 1. Documentação e Manuais da Banca
+
 * Movidos da raiz do projeto para a pasta [docs/](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/docs/):
   * `MANUAL_DE_EXECUCAO.md` -> [docs/MANUAL_DE_EXECUCAO.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/docs/MANUAL_DE_EXECUCAO.md)
   * `MANUAL_PRATICO.md` -> [docs/MANUAL_PRATICO.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/docs/MANUAL_PRATICO.md)
   * `MANUAL_TECNICO.md` -> [docs/MANUAL_TECNICO.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/docs/MANUAL_TECNICO.md)
 
 ### 2. Módulos e Scripts de PDF
+
 * Criada a pasta dedicada [backend/Certificados/](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/backend/Certificados/) para isolar a lógica executável de PDF do backend.
 * Movidos os seguintes arquivos da pasta `docs/` para a nova pasta `backend/Certificados/`:
   * `gerar_certificado.py`
@@ -19,13 +21,16 @@ Este documento resume as alterações de estruturação de pastas do repositóri
   * `modelo.pdf`
   * Diretório de fontes `fonts/`
 * O script `gerar_certificado.py` foi atualizado para localizar suas fontes de forma dinâmica e relativa, tornando a execução portátil:
+
   ```python
   script_dir = os.path.dirname(os.path.abspath(__file__))
   font_dir = os.path.join(script_dir, "fonts")
   ```
 
-### 3. Integração com o Backend C#
+### 3. Integração com o Backend C# (API)
+
 * O arquivo de projeto [NexTI_API.csproj](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/backend/NexTI_API.csproj) foi atualizado para copiar dinamicamente a pasta `Certificados` e todos os seus recursos para o diretório de build do executável:
+
   ```xml
   <ItemGroup>
     <None Update="Certificados\**">
@@ -33,12 +38,15 @@ Este documento resume as alterações de estruturação de pastas do repositóri
     </None>
   </ItemGroup>
   ```
+
 * O endpoint de PDF em [EndpointExtensions.cs](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/backend/Endpoints/EndpointExtensions.cs) foi simplificado para carregar o script de certificados a partir do diretório de build:
+
   ```csharp
   string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Certificados", "gerar_certificado.py");
   ```
 
 ### 4. Árvore de Diretórios
+
 * A árvore de diretórios do repositório foi atualizada nos três idiomas (Português, Inglês e Espanhol) no [README.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/README.md).
 
 ---
