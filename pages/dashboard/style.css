@@ -917,8 +917,10 @@ body.high-contrast-mode .xp-badge {
     width: 4000px;
     height: 4000px;
     background-color: #0b0c10;
-    background-image: radial-gradient(rgba(0, 230, 230, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(rgba(0, 230, 230, 0.03) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(0, 230, 230, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
     transform-origin: 0 0;
     will-change: transform;
 }

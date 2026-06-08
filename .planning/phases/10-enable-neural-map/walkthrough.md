@@ -6,6 +6,7 @@ Nesta fase, a funcionalidade do Mapa Neural (Obsidian View) foi totalmente habil
 
 ### Frontend
 - **[neural-map.js](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/pages/dashboard/js/neural-map.js)**: Remoção do bloqueio temporário (alerta/retorno) na função `abrirMapaMental()`.
+- **[style.css](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/pages/dashboard/style.css)**: Substituição do fundo pontilhado (radial-gradient) do canvas pelo fundo quadriculado (linear-gradient) de alta fidelidade e alinhamento do projeto.
 - **[index.html](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/pages/dashboard/index.html)**: Atualização na importação do script de mapa neural com cache-busting (?v=2).
 
 ### Planejamento
