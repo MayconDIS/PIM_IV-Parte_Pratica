@@ -104,11 +104,12 @@ header {
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: 0.5px;
-    background: rgba(22, 27, 34, 0.5);
-    border: 1px solid rgba(0, 230, 230, 0.2);
-    border-radius: 30px;
-    padding: 6px 16px;
-    box-shadow: 0 0 10px rgba(0, 230, 230, 0.05), inset 0 0 5px rgba(255, 255, 255, 0.01);
+    background: linear-gradient(145deg, rgba(18, 24, 32, 0.85), rgba(11, 12, 16, 0.85));
+    border: 1px solid #30363d;
+    border-left: 4px solid var(--alura-cyan);
+    border-radius: 8px;
+    padding: 6px 16px 6px 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -119,8 +120,9 @@ header {
 }
 
 .header-center:hover {
-    border-color: rgba(0, 230, 230, 0.5);
-    background: rgba(0, 230, 230, 0.03);
+    border-color: rgba(0, 230, 230, 0.3);
+    border-left-color: var(--alura-cyan);
+    background: linear-gradient(145deg, rgba(22, 30, 39, 0.9), rgba(14, 16, 21, 0.9));
     box-shadow: 0 0 15px rgba(0, 230, 230, 0.15);
     color: #fff;
 }
