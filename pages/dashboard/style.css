@@ -607,11 +607,11 @@ header {
 
 .a11y-widget {
     position: fixed !important;
-    bottom: 100px !important;
-    right: 30px !important;
+    bottom: 30px !important;
+    left: 30px !important;
     z-index: 998 !important;
     display: flex !important;
-    flex-direction: row-reverse !important;
+    flex-direction: row !important;
     align-items: center !important;
     gap: 10px !important;
 }
