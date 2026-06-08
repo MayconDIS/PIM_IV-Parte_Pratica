@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,20 @@ namespace NexTI_API.Endpoints
                .WithName("GetStatus");
 
             // --- AUTENTICAÇÃO ---
-            app.MapPost("/api/auth/register", async (Usuario user, AppDbContext db) =>
+            app.MapPost("/api/auth/register", async (RegisterRequest request, AppDbContext db) =>
             {
-                if (await db.Usuarios.AnyAsync(u => u.Username == user.Username)) 
+                if (await db.Usuarios.AnyAsync(u => u.Username == request.Username)) 
                     return Results.BadRequest(new { message = "Usuário já existe" });
-                if (await db.Usuarios.AnyAsync(u => u.Email == user.Email)) 
+                if (await db.Usuarios.AnyAsync(u => u.Email == request.Email)) 
                     return Results.BadRequest(new { message = "Email já cadastrado" });
 
-                user.SenhaHash = BCrypt.Net.BCrypt.HashPassword(user.SenhaHash);
+                var user = new Usuario
+                {
+                    Username = request.Username,
+                    Email = request.Email,
+                    SenhaHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
+                };
+
                 db.Usuarios.Add(user);
                 await db.SaveChangesAsync();
                 
@@ -52,7 +59,9 @@ namespace NexTI_API.Endpoints
                         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                         new Claim(ClaimTypes.Name, user.Username)
                     }),
-                    Expires = DateTime.UtcNow.AddDays(7),
+                    Issuer = "NexTI_API",
+                    Audience = "NexTI_Frontend",
+                    Expires = DateTime.UtcNow.AddHours(24),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -188,6 +197,21 @@ namespace NexTI_API.Endpoints
                     return Results.BadRequest(new { message = "Parâmetros 'nome', 'data' e 'codigo' são obrigatórios." });
                 }
 
+                // Sanitização contra OS Command Injection (CRIT-01)
+                static string SanitizarParametro(string input)
+                {
+                    if (string.IsNullOrEmpty(input)) return string.Empty;
+                    return Regex.Replace(input, @"[""&|;`$(){}\\<>!\n\r]", "");
+                }
+
+                string nomeSafe = SanitizarParametro(nome);
+                string dataSafe = SanitizarParametro(data);
+                string codigoSafe = SanitizarParametro(codigo);
+
+                // Validação de comprimento máximo
+                if (nomeSafe.Length > 100 || dataSafe.Length > 80 || codigoSafe.Length > 50)
+                    return Results.BadRequest(new { message = "Parâmetros excedem o comprimento permitido." });
+
                 // Diretório temporário
                 string tempDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp_certs");
                 Directory.CreateDirectory(tempDir);
@@ -218,7 +242,7 @@ namespace NexTI_API.Endpoints
                     var processInfo = new System.Diagnostics.ProcessStartInfo
                     {
                         FileName = pythonExecutable,
-                        Arguments = $"\"{scriptPath}\" \"{nome}\" \"{data}\" \"{codigo}\" \"{pdfPath}\"",
+                        Arguments = $"\"{scriptPath}\" \"{nomeSafe}\" \"{dataSafe}\" \"{codigoSafe}\" \"{pdfPath}\"",
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,
                         UseShellExecute = false,
@@ -239,7 +263,7 @@ namespace NexTI_API.Endpoints
                         if (process.ExitCode != 0)
                         {
                             Console.WriteLine($"Erro do Python: {error}");
-                            return Results.Problem($"Erro ao executar script Python: {error}. Saída: {output}");
+                            return Results.Problem("Ocorreu um erro ao gerar o certificado PDF.");
                         }
                     }
 
@@ -253,17 +277,19 @@ namespace NexTI_API.Endpoints
                     // Limpa o arquivo temporário após carregar em memória
                     try { File.Delete(pdfPath); } catch { }
 
-                    return Results.File(pdfBytes, "application/pdf", $"certificado_{nome.Replace(" ", "_")}.pdf");
+                    return Results.File(pdfBytes, "application/pdf", $"certificado_{nomeSafe.Replace(" ", "_")}.pdf");
                 }
                 catch (Exception ex)
                 {
-                    return Results.Problem($"Erro interno do servidor: {ex.Message}");
+                    Console.WriteLine($"Erro interno no certificado: {ex.Message}");
+                    return Results.Problem("Erro interno do servidor ao gerar o certificado.");
                 }
             });
         }
     }
 
     // DTOs para requests
+    public record RegisterRequest(string Username, string Email, string Password);
     public record LoginRequest(string Username, string Password);
     public record ProgressoUpdate(int UsuarioId, int FlashcardId, int Qualidade);
     public record UserStatsUpdate(int XP, int Moedas, int Nivel);
