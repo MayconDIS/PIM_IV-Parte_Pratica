@@ -51,6 +51,7 @@ body {
     width: 100%;
     max-width: 450px;
     text-align: center;
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
@@ -107,6 +108,10 @@ body {
 .form-group { 
     margin-bottom: 25px; 
     text-align: left; 
+}
+
+#group-nome {
+    display: none;
 }
 
 .form-group label {

@@ -114,6 +114,7 @@ header {
     align-items: center;
     gap: 8px;
     justify-content: flex-start;
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     animation: fadeSlideUp 0.6s ease forwards;
@@ -192,6 +193,7 @@ header {
     border-radius: 8px;
     padding: 6px 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
