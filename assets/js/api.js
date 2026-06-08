@@ -38,7 +38,7 @@ const ApiService = {
             const response = await fetch(`${API_BASE_URL}/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, senhaHash: password })
+                body: JSON.stringify({ username, email, password })
             });
             if (!response.ok) {
                 const data = await response.json();

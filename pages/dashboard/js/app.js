@@ -10,6 +10,13 @@ window.scrollTo(0, 0);
 let apiOnline = false;
 const nomeSalvo = localStorage.getItem('quest_user_name') || 'Desenvolvedor';
 
+// Sanitização contra XSS (MED-01): escapa HTML antes de usar em innerHTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 const headerUserName = document.getElementById('header-user-name') || document.getElementById('header-user-name-title');
 if (headerUserName) headerUserName.innerText = nomeSalvo;
 
@@ -42,7 +49,8 @@ function inicializarFraseMotivacional(username) {
     if (username === 'Desenvolvedor') nomeExibido = 'Dev';
     
     const idxRand = Math.floor(Math.random() * frasesMotivacionais.length);
-    const fraseSelecionada = frasesMotivacionais[idxRand].replace('{name}', `<span class="username-highlight">${nomeExibido}</span>`);
+    const nomeSeguro = escapeHtml(nomeExibido);
+    const fraseSelecionada = frasesMotivacionais[idxRand].replace('{name}', `<span class="username-highlight">${nomeSeguro}</span>`);
     
     elMotivation.innerHTML = `<img src="../../assets/img/terminal-icon.png" class="motivation-icon" alt="Terminal"> <span>${fraseSelecionada}</span>`;
 }
