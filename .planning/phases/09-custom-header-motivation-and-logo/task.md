@@ -1,0 +1,7 @@
+- [x] Criar e centralizar o container de frases motivacionais no HTML
+- [x] Desenvolver a lógica JavaScript de seleção de frases com o nome do usuário logado
+- [x] Copiar a imagem do terminal e alinhar verticalmente no CSS
+- [x] Processar imagem do logotipo com Pillow removendo margens pretas e aplicando canal alfa
+- [x] Implementar classe CSS para desenhar o grid quadriculado dinâmico no logotipo do cabeçalho
+- [x] Substituir a marca textual pela logo com imagem oficial nas páginas de Dashboard, Sobre e Login
+- [x] Resolver erros de linter de compatibilidade do backdrop-filter e remover estilos inline do login
