@@ -1023,8 +1023,8 @@ body.high-contrast-mode .xp-badge {
     overflow: hidden; 
     background-color: #0b0c10; 
     background-image: 
-        linear-gradient(rgba(0, 230, 230, 0.08) 1px, transparent 1px), 
-        linear-gradient(90deg, rgba(0, 230, 230, 0.08) 1px, transparent 1px);
+        linear-gradient(rgba(0, 230, 230, 0.03) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(0, 230, 230, 0.03) 1px, transparent 1px);
     background-size: 30px 30px;
     padding: 0; 
     border-radius: 0 0 12px 12px; 
