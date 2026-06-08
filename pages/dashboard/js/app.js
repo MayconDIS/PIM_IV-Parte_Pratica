@@ -989,6 +989,25 @@ document.addEventListener('click', function(event) {
 });
 
 function abrirModal(idModal) {
+    if (idModal === 'modalCriacao') {
+        const faseValida = faseAtualId && 
+                           (faseAtualId.startsWith('fase') || faseAtualId.startsWith('bonus')) && 
+                           !faseAtualId.startsWith('teste-mod');
+        
+        if (!faseValida) {
+            alert("[ SISTEMA ]\nPor favor, selecione uma disciplina de estudo no painel lateral antes de criar um flashcard.");
+            return;
+        }
+
+        const selectFase = document.getElementById('nova-fase');
+        if (selectFase) {
+            selectFase.value = faseAtualId;
+            selectFase.disabled = true;
+            selectFase.style.cursor = 'not-allowed';
+            selectFase.style.opacity = '0.8';
+        }
+    }
+
     document.getElementById(idModal).classList.add('show');
     const menu = document.getElementById('dropdownMenu');
     if (menu) menu.classList.remove('show'); 
