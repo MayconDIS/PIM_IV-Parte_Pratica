@@ -58,10 +58,12 @@
 
 ## 🇧🇷 Versão em Português
 
-
 ### 📖 Sobre o Projeto
+
 A **Nex_TI** é a implementação prática de uma plataforma web focada em avaliação e apoio à aprendizagem. O projeto foi desenvolvido para resolver a "curva de esquecimento" em treinamentos acadêmicos e corporativos.
+
 Para isso, a plataforma integra:
+
 - **Estudo Ativo & Repetição Espaçada:** Implementação algorítmica do SM-2 para calcular os intervalos ideais de revisão (Motor Anki).
 - **Gamificação:** Distribuição de Pontos de Experiência (XP) e Moedas Virtuais com níveis de progressão.
 - **Acessibilidade Universal:** Foco total em semântica W3C, modo de alto contraste nativo e controles de zoom.
@@ -74,21 +76,20 @@ Este repositório abriga o sistema Fullstack completo (PIM IV), focado em uma ar
 Toda a infraestrutura planejada para o ecossistema Nex_TI foi completamente integrada no PIM IV (4º Semestre), eliminando quaisquer emulações de dados locais (bypasses) e ativando a persistência em tempo real no banco de dados Microsoft SQL Server.
 
 | Funcionalidade / Módulo | Estado Atual (PIM IV) | Mecanismo de Persistência / Integração |
-|---|---|---|
+| --- | --- | --- |
 | **Cadastro, Login & Acessibilidade** | 100% Funcional e Sincronizado | JWT Token / API C# e SQL Server |
 | **Motor SM-2 e Flashcards** | 100% Funcional e Sincronizado | Agendamento via API (C#) e SQL Server |
 | **Mapa Neural (Mapa Neural)** | 100% Funcional e Sincronizado | Armazenamento de estados via API e SQL Server |
 | **Simulado ENADE (Questões)** | 100% Funcional e Sincronizado | Banco de dados via `GET /api/simulados/questoes` e `tb_questoes` |
 | **Loja de Moedas & Customização** | 100% Funcional e Sincronizado | Transações debitadas e persistidas via `PUT /api/usuarios/stats` |
 
-
 ### 🚀 Tecnologias e Arquitetura
 
 O projeto foi construído seguindo as melhores práticas do mercado:
 
-* **Frontend:** Desenvolvido em HTML5 semântico, responsivo via CSS Puro (Design System Global) e lógicas isoladas in Vanilla JS, consumindo a API via `fetch`.
-* **Backend:** API RESTful desenvolvida em `C# (.NET 10)` utilizando **Minimal APIs** e **Entity Framework Core**, com políticas de CORS e mitigação de vulnerabilidades (OWASP).
-* **Banco de Dados:** SGBD `SQL Server` estruturado (`NexTI_DB.sql`) garantindo restrições de gamificação no nível do banco.
+- **Frontend:** Desenvolvido em HTML5 semântico, responsivo via CSS Puro (Design System Global) e lógicas isoladas in Vanilla JS, consumindo a API via `fetch`.
+- **Backend:** API RESTful desenvolvida em `C# (.NET 10)` utilizando **Minimal APIs** e **Entity Framework Core**, com políticas de CORS e mitigação de vulnerabilidades (OWASP).
+- **Banco de Dados:** SGBD `SQL Server` estruturado (`NexTI_DB.sql`) garantindo restrições de gamificação no nível do banco.
 
 ### 📂 Estrutura do Repositório
 
@@ -115,7 +116,9 @@ O projeto foi construído seguindo as melhores práticas do mercado:
 ```
 
 ### 👥 Equipe de Desenvolvimento
+
 Projeto acadêmico desenvolvido pelos alunos da UNIP - São José dos Campos (Turma 2026 / Diurno):
+
 - **Gabriel Alves Moreira** (H67HJI4)
 - **Maciel Costa da Silva** (R280985)
 - **Maycon Douglas Inácio Silva** (H719CD3)
@@ -127,8 +130,11 @@ Projeto acadêmico desenvolvido pelos alunos da UNIP - São José dos Campos (Tu
 ## 🇺🇸 English Version
 
 ### 📖 About the Project
-**Nex_TI** is the practical implementation of a web-based assessment and learning support platform. The project was designed to solve the "forgetting curve" in academic and corporate training. 
+
+**Nex_TI** is the practical implementation of a web-based assessment and learning support platform. The project was designed to solve the "forgetting curve" in academic and corporate training.
+
 To achieve this, the platform integrates:
+
 - **Active Study & Spaced Repetition:** Algorithmic implementation of SM-2 to calculate optimal review intervals (Anki Engine).
 - **Gamification:** Distribution of Experience Points (XP) and Virtual Coins with progression levels.
 - **Universal Accessibility:** Strict adherence to W3C semantics, native high-contrast mode, and zoom controls.
@@ -140,9 +146,9 @@ This repository hosts the complete Fullstack system (PIM IV), focused on a clean
 
 The project was built adhering to industry best practices:
 
-* **Frontend:** Developed in semantic HTML5, responsive via Vanilla CSS (Global Design System), and business logic isolated in Vanilla JS, consuming the API via `fetch`.
-* **Backend:** RESTful API developed in `C# (.NET 10)` using **Minimal APIs** and **Entity Framework Core**, including CORS policies and vulnerability mitigations (OWASP).
-* **Database:** `SQL Server` RDBMS structured (`NexTI_DB.sql`) ensuring gamification constraints at the database level.
+- **Frontend:** Developed in semantic HTML5, responsive via Vanilla CSS (Global Design System), and business logic isolated in Vanilla JS, consuming the API via `fetch`.
+- **Backend:** RESTful API developed in `C# (.NET 10)` using **Minimal APIs** and **Entity Framework Core**, including CORS policies and vulnerability mitigations (OWASP).
+- **Database:** `SQL Server` RDBMS structured (`NexTI_DB.sql`) ensuring gamification constraints at the database level.
 
 ### 📂 Repository Structure
 
@@ -169,7 +175,9 @@ The project was built adhering to industry best practices:
 ```
 
 ### 👥 Development Team
+
 Academic project developed by students from UNIP - São José dos Campos (Class of 2026 / Daytime):
+
 - **Gabriel Alves Moreira** (H67HJI4)
 - **Maciel Costa da Silva** (R280985)
 - **Maycon Douglas Inácio Silva** (H719CD3)
@@ -181,9 +189,11 @@ Academic project developed by students from UNIP - São José dos Campos (Class 
 ## 🇪🇸 Versión en Español
 
 ### 📖 Sobre el Proyecto
+
 **Nex_TI** es la implementación práctica de una plataforma web centrada en la evaluación y el apoyo al aprendizaje. El proyecto fue desarrollado para resolver la "curva del olvido" en capacitaciones académicas y corporativas.
 
 Para lograr esto, la plataforma integra:
+
 - **Estudio Activo y Repetición Espaciada:** Implementación algorítmica de SM-2 para calcular los intervalos óptimos de revisión (Motor Anki).
 - **Gamificación:** Distribución de Puntos de Experiencia (XP) y Monedas Virtuales con niveles de progresión.
 - **Accesibilidad Universal:** Enfoque total en semántica W3C, modo de alto contraste nativo y controles de zoom.
@@ -195,9 +205,9 @@ Este repositorio alberga el sistema Fullstack completo (PIM IV), centrado en una
 
 El proyecto fue construido siguiendo las mejores prácticas del mercado:
 
-* **Frontend:** Desarrollado en HTML5 semántico, adaptable mediante CSS Puro (Design System Global) y lógicas aisladas en Vanilla JS, consumiendo la API mediante `fetch`.
-* **Backend:** API RESTful desarrollada en `C# (.NET 10)` utilizando **Minimal APIs** y **Entity Framework Core**, con políticas de CORS y mitigación de vulnerabilidades (OWASP).
-* **Base de Datos:** SGBD `SQL Server` estructurado (`NexTI_DB.sql`) garantizando restricciones de gamificación en el nivel de base de datos.
+- **Frontend:** Desarrollado en HTML5 semántico, adaptable mediante CSS Puro (Design System Global) y lógicas aisladas en Vanilla JS, consumiendo la API mediante `fetch`.
+- **Backend:** API RESTful desarrollada en `C# (.NET 10)` utilizando **Minimal APIs** y **Entity Framework Core**, con políticas de CORS y mitigación de vulnerabilidades (OWASP).
+- **Base de Datos:** SGBD `SQL Server` estructurado (`NexTI_DB.sql`) garantizando restricciones de gamificación en el nivel de base de datos.
 
 ### 📂 Estructura del Repositorio
 
@@ -224,7 +234,9 @@ El proyecto fue construido siguiendo las mejores prácticas del mercado:
 ```
 
 ### 👥 Equipo de Desarrollo
+
 Proyecto académico desarrollado por los estudiantes de la UNIP - São José dos Campos (Clase de 2026 / Diurno):
+
 - **Gabriel Alves Moreira** (H67HJI4)
 - **Maciel Costa da Silva** (R280985)
 - **Maycon Douglas Inácio Silva** (H719CD3)
