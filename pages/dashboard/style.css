@@ -96,27 +96,56 @@ header {
 }
 
 .header-center {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--alura-cyan);
-    text-align: center;
-    max-width: 40%;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace !important;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 50%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: 0.5px;
-    opacity: 0.95;
-    transition: all 0.3s ease;
+    background: rgba(22, 27, 34, 0.5);
+    border: 1px solid rgba(0, 230, 230, 0.2);
+    border-radius: 30px;
+    padding: 6px 16px;
+    box-shadow: 0 0 10px rgba(0, 230, 230, 0.05), inset 0 0 5px rgba(255, 255, 255, 0.01);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     animation: fadeSlideUp 0.6s ease forwards;
 }
 
-.header-center .username-highlight {
+.header-center:hover {
+    border-color: rgba(0, 230, 230, 0.5);
+    background: rgba(0, 230, 230, 0.03);
+    box-shadow: 0 0 15px rgba(0, 230, 230, 0.15);
     color: #fff;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(0, 230, 230, 0.4);
 }
 
-@media (max-width: 768px) {
+.header-center .username-highlight {
+    background: linear-gradient(90deg, var(--alura-green), var(--alura-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.header-center .motivation-icon {
+    color: var(--alura-cyan);
+    font-size: 0.95rem !important;
+    animation: pulseMotivation 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseMotivation {
+    0% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 1px var(--alura-cyan)); }
+    50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 5px var(--alura-cyan)); }
+    100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 1px var(--alura-cyan)); }
+}
+
+@media (max-width: 900px) {
     .header-center {
         display: none !important;
     }

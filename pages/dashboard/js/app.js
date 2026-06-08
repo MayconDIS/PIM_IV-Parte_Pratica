@@ -44,7 +44,7 @@ function inicializarFraseMotivacional(username) {
     const idxRand = Math.floor(Math.random() * frasesMotivacionais.length);
     const fraseSelecionada = frasesMotivacionais[idxRand].replace('{name}', `<span class="username-highlight">${nomeExibido}</span>`);
     
-    elMotivation.innerHTML = fraseSelecionada;
+    elMotivation.innerHTML = `<span class="material-symbols-outlined motivation-icon">tips_and_updates</span> <span>${fraseSelecionada}</span>`;
 }
 
 inicializarFraseMotivacional(nomeSalvo);
