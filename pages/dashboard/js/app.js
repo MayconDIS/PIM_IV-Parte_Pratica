@@ -379,6 +379,8 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
         document.querySelectorAll('.dia-header').forEach(el => el.classList.remove('active-header'));
         rightPanel.classList.remove('active'); 
         setTimeout(() => { rightPanel.style.display = 'none'; }, 1000); 
+        
+        localStorage.removeItem(userKey + 'active_state');
         return; 
     }
 
@@ -397,6 +399,7 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
     document.getElementById('botoes-jogo').style.display = 'flex';
     document.getElementById('botao-proxima').style.display = 'none';
 
+    localStorage.setItem(userKey + 'active_state', JSON.stringify({ type: 'aula', id: faseId, title: nomeAula }));
     faseAtualId = faseId;
     let cartasDaFase = [];
     if (faseId.startsWith('teste-mod')) {
@@ -523,6 +526,7 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
         
         rightPanel.classList.remove('active'); 
         setTimeout(() => { rightPanel.style.display = 'none'; }, 1000); 
+        localStorage.removeItem(userKey + 'active_state');
         return;
     }
 
@@ -980,9 +984,16 @@ function abrirModal(idModal) {
     document.getElementById(idModal).classList.add('show');
     const menu = document.getElementById('dropdownMenu');
     if (menu) menu.classList.remove('show'); 
+    localStorage.setItem(userKey + 'active_state', JSON.stringify({ type: 'modal', id: idModal }));
 }
 
-function fecharModal(idModal) { document.getElementById(idModal).classList.remove('show'); }
+function fecharModal(idModal) { 
+    document.getElementById(idModal).classList.remove('show'); 
+    const state = JSON.parse(localStorage.getItem(userKey + 'active_state'));
+    if (state && state.type === 'modal' && state.id === idModal) {
+        localStorage.removeItem(userKey + 'active_state');
+    }
+}
 
 function salvarFlashcard() {
     const fase = document.getElementById('nova-fase').value.trim().toLowerCase();
@@ -1043,6 +1054,23 @@ function deslogar() {
 window.onload = async () => {
     await inicializarApi();
     verificarNivelamento();
+    
+    // Restaurar estado ativo (modal ou aula)
+    const activeState = JSON.parse(localStorage.getItem(userKey + 'active_state'));
+    if (activeState) {
+        if (activeState.type === 'modal') {
+            if (activeState.id === 'modalMapaMental') {
+                abrirMapaMental();
+            } else {
+                abrirModal(activeState.id);
+            }
+        } else if (activeState.type === 'aula') {
+            const el = document.getElementById('menu-' + activeState.id);
+            if (el) {
+                carregarAula(activeState.id, activeState.title, el);
+            }
+        }
+    }
 };
 
 // ==========================================
