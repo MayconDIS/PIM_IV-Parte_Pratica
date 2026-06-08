@@ -113,6 +113,11 @@
 - [x] Render dynamic CSS grid lines on logo header box container
 - [x] Resolve backdrop-filter Safari compatibility and remove login inline styles
 
+## Phase 10: Neural Map Integration (Obsidian View)
+**Status: Completed**
+- [x] Enable neural map by removing blocking alert placeholder
+- [x] Apply cache-busting version query on neural-map.js script tag
+
 ---
 ## Versão em Português
 
@@ -181,3 +186,8 @@
 - [x] Recortar margens do logotipo oficial e aplicar fundo transparente de alta qualidade
 - [x] Renderizar linhas de grid quadriculado via CSS no contêiner do logotipo do cabeçalho
 - [x] Corrigir compatibilidade do backdrop-filter no Safari e remover estilos inline na tela de login
+
+## Fase 10: Integração do Mapa Neural (Obsidian View)
+**Status: Concluído**
+- [x] Habilitar o mapa neural removendo o placeholder do alerta de bloqueio
+- [x] Aplicar versão de cache-busting no carregamento do script neural-map.js

@@ -19,9 +19,6 @@ let _mapDraggedNode = null;
  * Lê os dados de progresso do localStorage e gera nós/edges dinamicamente.
  */
 function abrirMapaMental() {
-    alert("Esta funcionalidade está em desenvolvimento e será disponibilizada no 4º semestre.");
-    return;
-
     abrirModal('modalMapaMental');
 
     const modalContainer = document.getElementById('mapa-mental-body');
