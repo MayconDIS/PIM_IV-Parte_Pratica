@@ -58,7 +58,7 @@ Para isso, a plataforma integra:
 - **Estudo Ativo & Repetição Espaçada:** Implementação algorítmica do SM-2 para calcular os intervalos ideais de revisão (Motor Anki).
 - **Gamificação:** Distribuição de Pontos de Experiência (XP) e Moedas Virtuais com níveis de progressão.
 - **Acessibilidade Universal:** Foco total em semântica W3C, modo de alto contraste nativo e controles de zoom.
-- **Mapa Neural (Obsidian View):** Visualização interativa do progresso acadêmico com física de molas, drag-and-drop e persistência de estado.
+- **Mapa Neural (Mapa Neural):** Visualização interativa do progresso acadêmico com física de molas, drag-and-drop e persistência de estado.
 
 Este repositório abriga o sistema Fullstack completo (PIM IV), focado em uma arquitetura limpa (Separation of Concerns), integrando Frontend, API RESTful e Banco de Dados Relacional.
 
@@ -70,7 +70,7 @@ Toda a infraestrutura planejada para o ecossistema Nex_TI foi completamente inte
 |---|---|---|
 | **Cadastro, Login & Acessibilidade** | 100% Funcional e Sincronizado | JWT Token / API C# e SQL Server |
 | **Motor SM-2 e Flashcards** | 100% Funcional e Sincronizado | Agendamento via API (C#) e SQL Server |
-| **Mapa Neural (Obsidian View)** | 100% Funcional e Sincronizado | Armazenamento de estados via API e SQL Server |
+| **Mapa Neural (Mapa Neural)** | 100% Funcional e Sincronizado | Armazenamento de estados via API e SQL Server |
 | **Simulado ENADE (Questões)** | 100% Funcional e Sincronizado | Banco de dados via `GET /api/simulados/questoes` e `tb_questoes` |
 | **Loja de Moedas & Customização** | 100% Funcional e Sincronizado | Transações debitadas e persistidas via `PUT /api/usuarios/stats` |
 
@@ -121,7 +121,7 @@ To achieve this, the platform integrates:
 - **Active Study & Spaced Repetition:** Algorithmic implementation of SM-2 to calculate optimal review intervals (Anki Engine).
 - **Gamification:** Distribution of Experience Points (XP) and Virtual Coins with progression levels.
 - **Universal Accessibility:** Strict adherence to W3C semantics, native high-contrast mode, and zoom controls.
-- **Neural Map (Obsidian View):** Interactive academic progress visualization with spring physics, drag-and-drop, and state persistence.
+- **Neural Map (Mapa Neural):** Interactive academic progress visualization with spring physics, drag-and-drop, and state persistence.
 
 This repository hosts the complete Fullstack system (PIM IV), focused on a clean architecture (Separation of Concerns), integrating Frontend, RESTful API, and Relational Database.
 
@@ -172,7 +172,7 @@ Para lograr esto, la plataforma integra:
 - **Estudio Activo y Repetición Espaciada:** Implementación algorítmica de SM-2 para calcular los intervalos óptimos de revisión (Motor Anki).
 - **Gamificación:** Distribución de Puntos de Experiencia (XP) y Monedas Virtuales con niveles de progresión.
 - **Accesibilidad Universal:** Enfoque total en semántica W3C, modo de alto contraste nativo y controles de zoom.
-- **Mapa Neural (Obsidian View):** Visualización interactiva del progreso académico con física de resortes (physics springs), drag-and-drop y persistencia de estado.
+- **Mapa Neural (Mapa Neural):** Visualización interactiva del progreso académico con física de resortes (physics springs), drag-and-drop y persistencia de estado.
 
 Este repositorio alberga el sistema Fullstack completo (PIM IV), centrado en una arquitectura limpia (Separation of Concerns), integrando Frontend, API RESTful y base de datos relacional.
 

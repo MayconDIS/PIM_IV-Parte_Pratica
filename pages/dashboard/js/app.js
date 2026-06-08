@@ -162,9 +162,9 @@ function atualizarFasesVisuais() {
             if (icon) icon.innerText = 'check_circle';
             if (price) {
                 price.innerHTML = '<span class="material-symbols-outlined" style="font-size: 1rem;">toll</span> Liberado';
-                price.style.borderColor = 'var(--alura-green)';
+                price.style.borderColor = 'var(--nexti-green)';
                 price.style.background = 'rgba(0, 255, 136, 0.05)';
-                price.style.color = 'var(--alura-green)';
+                price.style.color = 'var(--nexti-green)';
             }
         }
     });
@@ -246,7 +246,7 @@ function renderizarPerguntaNivelamento() {
     ).join('');
     
     body.innerHTML = `
-        <h3 style="color: var(--alura-cyan); margin-bottom: 15px;">Avaliação Acadêmica ${questaoAtualNivelamento + 1}/10</h3>
+        <h3 style="color: var(--nexti-cyan); margin-bottom: 15px;">Avaliação Acadêmica ${questaoAtualNivelamento + 1}/10</h3>
         <p style="color: #fff; font-size: 1.1rem; margin-bottom: 25px;">${perguntaObj.p}</p>
         ${htmlRespostas}
     `;
@@ -297,7 +297,7 @@ function finalizarNivelamento() {
     }
 
     document.getElementById('nivelamento-body').innerHTML = `
-        <h3 style="color: var(--alura-green); margin-bottom: 15px;">Avaliação Concluída!</h3>
+        <h3 style="color: var(--nexti-green); margin-bottom: 15px;">Avaliação Concluída!</h3>
         <p style="color: #c5c6c7; margin-bottom: 25px;">${nivelMsg}</p>
         <button class="btn-action btn-right tech-font flex-align-center" style="width: 100%; justify-content: center;" onclick="fecharModal('modalNivelamento'); atualizarFasesVisuais();">Entrar no Terminal</button>
     `;
@@ -538,7 +538,7 @@ async function carregarAula(faseId, nomeAula, elementoClicado) {
         }
     }
 
-    document.getElementById('titulo-aula').innerHTML = `Processando: <span style="color: var(--alura-cyan)">${nomeAula}</span>`;
+    document.getElementById('titulo-aula').innerHTML = `Processando: <span style="color: var(--nexti-cyan)">${nomeAula}</span>`;
     elementoClicado.after(rightPanel);
     rightPanel.style.display = 'block';
     
@@ -602,7 +602,7 @@ function mostrarCartaAtual() {
         
         versoEl.innerHTML = `
             <div style="font-size: 0.95rem; color: #8b92a5; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #30363d; width: 100%; text-align: left; line-height: 1.5;">
-                <strong style="color: var(--alura-cyan);">Relembrando a Questão:</strong><br><br>${carta.frente}
+                <strong style="color: var(--nexti-cyan);">Relembrando a Questão:</strong><br><br>${carta.frente}
             </div>
             <div style="font-size: 1.1rem; text-align: left; line-height: 1.6; color: #fff;">
                 ${carta.verso.replace(/\n/g, '<br>')}
@@ -619,7 +619,7 @@ function mostrarCartaAtual() {
         frenteEl.innerHTML = carta.frente;
         versoEl.innerHTML = `
             <div style="font-size: 0.95rem; color: #8b92a5; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #30363d; width: 100%; text-align: center;">
-                <strong style="color: var(--alura-cyan);">Pergunta Original:</strong><br><br>${carta.frente}
+                <strong style="color: var(--nexti-cyan);">Pergunta Original:</strong><br><br>${carta.frente}
             </div>
             <div style="font-size: 1.3rem; text-align: center; color: #fff; font-weight: 500;">
                 ${carta.verso.replace(/\n/g, '<br>')}

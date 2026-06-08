@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--alura-dark);
+    background-color: var(--nexti-dark);
     color: var(--text-color);
     background-image: 
         linear-gradient(rgba(0, 230, 230, 0.03) 1px, transparent 1px),
@@ -46,7 +46,7 @@ body {
     padding: 50px;
     border-radius: 12px;
     border: 1px solid #30363d;
-    border-left: 4px solid var(--alura-cyan); 
+    border-left: 4px solid var(--nexti-cyan); 
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     width: 100%;
     max-width: 450px;
@@ -90,7 +90,7 @@ body {
 }
 
 .tech-text {
-    background: linear-gradient(90deg, var(--alura-cyan), var(--alura-purple));
+    background: linear-gradient(90deg, var(--nexti-cyan), var(--nexti-purple));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -137,7 +137,7 @@ body {
 
 .input-with-icon input:focus {
     outline: none; 
-    border-color: var(--alura-cyan);
+    border-color: var(--nexti-cyan);
     box-shadow: 0 0 15px rgba(0, 230, 230, 0.2);
     background-color: rgba(0, 230, 230, 0.02);
 }
@@ -146,8 +146,8 @@ body {
     width: 100%; 
     padding: 15px; 
     background-color: transparent;
-    color: var(--alura-cyan); 
-    border: 2px solid var(--alura-cyan);
+    color: var(--nexti-cyan); 
+    border: 2px solid var(--nexti-cyan);
     border-radius: 8px; 
     font-size: 1.1rem; 
     font-weight: bold;
@@ -172,7 +172,7 @@ body {
 }
 
 .extra-links a { 
-    color: var(--alura-cyan); 
+    color: var(--nexti-cyan); 
     text-decoration: none; 
     font-weight: 600; 
     transition: color 0.2s; 
@@ -180,5 +180,5 @@ body {
 
 .extra-links a:hover { 
     color: #fff; 
-    text-shadow: 0 0 5px var(--alura-cyan); 
+    text-shadow: 0 0 5px var(--nexti-cyan); 
 }

@@ -207,7 +207,7 @@ def gerar_apresentacao(output_path):
     pdf.multi_cell(0, 5, 'Desenho das telas focado em facilidade de uso, clareza de botoes e visual limpo.')
     pdf.ln(1.5)
     pdf.add_bullet_point('Visual Padronizado', 'Uso de cores e estilos sempre iguais em todas as telas (como tons de azul e cinza) para o site nao parecer baguncado ou confuso.')
-    pdf.add_bullet_point('Usuario Modelo', 'Telas desenhadas para jovens de 18 a 20 anos que estao comecando em TI. Criamos uma tela com visual de mapa mental (Obsidian Neural View) para mostrar a conexao entre as matérias.')
+    pdf.add_bullet_point('Usuario Modelo', 'Telas desenhadas para jovens de 18 a 20 anos que estao comecando em TI. Criamos uma tela com visual de mapa mental (Mapa Neural) para mostrar a conexao entre as matérias.')
     pdf.add_bullet_point('Desenhos de Tela', 'Desenho visual completo no Figma para as telas de entrar no site, cadastrar usuario, painel principal e cartoes de perguntas.')
     pdf.ln(4)
     

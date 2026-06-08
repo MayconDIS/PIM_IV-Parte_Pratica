@@ -22,7 +22,7 @@ function abrirMapaMental() {
     abrirModal('modalMapaMental');
 
     const modalContainer = document.getElementById('mapa-mental-body');
-    const graphCanvas = document.getElementById('obsidian-canvas');
+    const graphCanvas = document.getElementById('neural-canvas');
     graphCanvas.innerHTML = '';
 
     // ---------------------------------------------------------
@@ -59,7 +59,7 @@ function abrirMapaMental() {
 
     const centralNodeData = {
         id: 'central', x: cx, y: cy,
-        label: `Cérebro: ${nomeSalvo}`, color: 'var(--alura-purple)',
+        label: `Cérebro: ${nomeSalvo}`, color: 'var(--nexti-purple)',
         size: 45, isCard: false
     };
     const centralElement = _criarNoVisual(centralNodeData, graphCanvas, modalContainer);
@@ -97,7 +97,7 @@ function abrirMapaMental() {
             });
         }
 
-        const faseColor = isFaseDesbloqueada ? 'var(--alura-cyan)' : '#30363d';
+        const faseColor = isFaseDesbloqueada ? 'var(--nexti-cyan)' : '#30363d';
         const faseSize = isFaseDesbloqueada ? 25 + (cartasFinalizadas.length * 0.5) : 15;
 
         const faseNodeData = {
@@ -134,7 +134,7 @@ function abrirMapaMental() {
                     cardOffY = cardY - nodeY;
                 }
 
-                const cardColor = Math.random() > 0.5 ? 'var(--alura-green)' : 'var(--alura-blue)';
+                const cardColor = Math.random() > 0.5 ? 'var(--nexti-green)' : 'var(--nexti-blue)';
 
                 const cardNodeData = {
                     id: cardId, x: cardX, y: cardY,
@@ -155,7 +155,7 @@ function abrirMapaMental() {
     // 3. RENDERIZAR AS LINHAS (EDGES) DOM
     listEdges.forEach(edge => {
         const lineElement = document.createElement('div');
-        lineElement.className = 'obsidian-edge';
+        lineElement.className = 'neural-edge';
         lineElement.style.backgroundColor = `rgba(139, 146, 165, ${edge.opacity})`;
         graphCanvas.appendChild(lineElement);
         edge.domElement = lineElement;
@@ -248,7 +248,7 @@ function abrirMapaMental() {
     modalContainer.addEventListener('contextmenu', (event) => { event.preventDefault(); });
 
     modalContainer.addEventListener('mousedown', (event) => {
-        if (event.target.classList.contains('obsidian-node')) return;
+        if (event.target.classList.contains('neural-node')) return;
         isPanningCamera = true;
         modalContainer.style.cursor = 'grabbing';
         document.querySelectorAll('.mini-flashcard').forEach(card => card.remove());
@@ -346,7 +346,7 @@ function abrirMapaMental() {
 
 /**
  * Atualiza a posição e escala do canvas do mapa neural.
- * @param {HTMLElement} canvas - O elemento #obsidian-canvas.
+ * @param {HTMLElement} canvas - O elemento #neural-canvas.
  */
 function _atualizarCameraMapa(canvas) {
     if (canvas) {
@@ -364,7 +364,7 @@ function _atualizarCameraMapa(canvas) {
  */
 function _criarNoVisual(nodeData, canvas, containerEl) {
     const nodeElement = document.createElement('div');
-    nodeElement.className = 'obsidian-node';
+    nodeElement.className = 'neural-node';
     nodeElement.style.width = `${nodeData.size}px`;
     nodeElement.style.height = `${nodeData.size}px`;
     nodeElement.style.backgroundColor = nodeData.color;
@@ -408,7 +408,7 @@ function _criarNoVisual(nodeData, canvas, containerEl) {
                 <div>
                     <p><strong>P:</strong> ${nodeData.cardData.frente}</p>
                     <hr style="border: 1px dashed #30363d; margin: 8px 0;">
-                    <p style="color: var(--alura-green);"><strong>R:</strong> ${nodeData.cardData.verso}</p>
+                    <p style="color: var(--nexti-green);"><strong>R:</strong> ${nodeData.cardData.verso}</p>
                 </div>
             `;
             canvas.appendChild(flashcardArticle);

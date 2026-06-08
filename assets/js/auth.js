@@ -82,8 +82,8 @@ function mostrarErro(mensagem) {
     
     setTimeout(() => { 
         btn.innerText = textoReset; 
-        btn.style.color = "var(--alura-cyan)"; 
-        btn.style.borderColor = "var(--alura-cyan)"; 
+        btn.style.color = "var(--nexti-cyan)"; 
+        btn.style.borderColor = "var(--nexti-cyan)"; 
     }, 3000);
 }
 

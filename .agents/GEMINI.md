@@ -6,7 +6,7 @@ Este arquivo contém as diretrizes e instruções de contexto específicas para 
 
 ## 🚀 Contexto do Projeto
 * **Nome**: Nex_TI – EdTech Learning Platform (PIM IV - UNIP).
-* **Objetivo**: Plataforma educacional gamificada de estudo ativo usando repetição espaçada (Algoritmo SM-2) e visualização gráfica via Mapa Neural (Obsidian View).
+* **Objetivo**: Plataforma educacional gamificada de estudo ativo usando repetição espaçada (Algoritmo SM-2) e visualização gráfica via Mapa Neural (Mapa Neural).
 
 ---
 

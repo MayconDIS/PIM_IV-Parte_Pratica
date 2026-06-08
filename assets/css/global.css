@@ -2,12 +2,12 @@
    VARIÁVEIS E FONTES
    ========================================= */
 :root {
-    --alura-dark: #0b0c10;
-    --alura-card: #161b22;
-    --alura-blue: #2f81f7;
-    --alura-green: #00ff88;
-    --alura-cyan: #00e6e6;
-    --alura-purple: #8a2be2;
+    --nexti-dark: #0b0c10;
+    --nexti-card: #161b22;
+    --nexti-blue: #2f81f7;
+    --nexti-green: #00ff88;
+    --nexti-cyan: #00e6e6;
+    --nexti-purple: #8a2be2;
     --text-color: #c5c6c7;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .tech-text { 
-    background: linear-gradient(90deg, var(--alura-cyan), var(--alura-purple)); 
+    background: linear-gradient(90deg, var(--nexti-cyan), var(--nexti-purple)); 
     -webkit-background-clip: text; 
     background-clip: text; 
     -webkit-text-fill-color: transparent; 
@@ -67,9 +67,9 @@
    ELEMENTOS DE INTERFACE REUTILIZÁVEIS
    ========================================= */
 .btn-action {
-    background-color: var(--alura-card); 
-    color: var(--alura-cyan); 
-    border: 1px solid var(--alura-cyan);
+    background-color: var(--nexti-card); 
+    color: var(--nexti-cyan); 
+    border: 1px solid var(--nexti-cyan);
     padding: 8px 16px; 
     border-radius: 6px; 
     cursor: pointer; 

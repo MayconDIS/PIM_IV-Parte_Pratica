@@ -19,11 +19,11 @@ O sistema utiliza um tema essencialmente escuro (*Dark Mode*) com atmosfera imer
 ### Cores Principais
 *   **Fundo Principal (`--bg-color`)**: `#0c0c0e` ou `#0b0c10` (cinza-grafite escuro).
 *   **Fundo dos Cards (`--card-bg`)**: `#1e1e24` ou `#161b22` (cinza-chumbo com bordas de opacidade sutil).
-*   **Acento Ciano (`--link-cyan` / `var(--alura-cyan)`)**: `#00e6e6` — Usado para elements interativos principais, botões de ação e realces de tecnologia.
-*   **Acento Roxo (`--glow-purple` / `var(--alura-purple)`)**: `#a855f7` — Usado para o Mapa Neural (Obsidian View), elementos de destaque secundário e fluxos específicos.
+*   **Acento Ciano (`--link-cyan` / `var(--nexti-cyan)`)**: `#00e6e6` — Usado para elements interativos principais, botões de ação e realces de tecnologia.
+*   **Acento Roxo (`--glow-purple` / `var(--nexti-purple)`)**: `#a855f7` — Usado para o Mapa Neural (Mapa Neural), elementos de destaque secundário e fluxos específicos.
 
 ### Cores de Status e Gamificação
-*   **Verde Sucesso (`var(--alura-green)`)**: `#00ff88` / `#a3e635` — Usado para badges de XP, acertos no SM-2, status ativo e conclusões.
+*   **Verde Sucesso (`var(--nexti-green)`)**: `#00ff88` / `#a3e635` — Usado para badges de XP, acertos no SM-2, status ativo e conclusões.
 *   **Amarelo/Ouro (`#ffd700`)**: Usado para moedas virtuais (Coins), bônus e ranks altos.
 *   **Vermelho Erro (`#f43f5e`)**: Usado para erros no SM-2, botões de cancelamento ou alertas críticos.
 
@@ -60,7 +60,7 @@ Qualquer novo componente de interface criado deve respeitar as seguintes diretri
 *   **XP e Coins**: Exibidos em badges compactas com bordas coloridas correspondentes e ícones da biblioteca de símbolos.
 *   **Barra de Progresso**: Fina, preenchida de forma responsiva com gradiente ciano-roxo sem quebras órfãs.
 
-### 3. Mapa Neural (Obsidian View)
+### 3. Mapa Neural (Mapa Neural)
 *   **Nós (Nodes)**: Círculos com ícones que mudam de cor conforme o progresso da fase (concluído em verde, ativo em ciano, bloqueado em cinza/cadeado).
 *   **Conexões (Edges)**: Linhas fluidas e finas com efeitos de opacidade sutil.
 *   **Controles**: Widget flutuante no canto inferior para controle de zoom (Zoom In, Zoom Out) e acessibilidade.

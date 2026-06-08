@@ -39,7 +39,7 @@ O **Entity Framework Core** foi empregado como ORM, eliminando a necessidade de 
 Visando aprovação como projeto de extensão inclusivo, o Front-end cumpre especificações rigorosas:
 - **WAI-ARIA:** Tags (`aria-label`, `aria-labelledby`, `role="main"`) mapeadas para leitores de tela em 100% da interface do Dashboard.
 - **HTML5 Semântico:** Substituição de `<div>` randômicas por `<nav>`, `<section>`, `<article>` e `<main>`.
-- **CSS Compartilhado:** Um único `global.css` garante que botões e fundos usem o mesmo Token de cor (ex: `--alura-cyan`).
+- **CSS Compartilhado:** Um único `global.css` garante que botões e fundos usem o mesmo Token de cor (ex: `--nexti-cyan`).
 
 ---
 
