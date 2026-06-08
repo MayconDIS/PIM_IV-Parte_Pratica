@@ -998,6 +998,27 @@ function atualizarOpcoesSelectCriacao() {
             value: opt.value,
             text: opt.text
         }));
+
+        // Comportamento dinâmico para simular dropdown flutuante limitado a 10 opções
+        selectFase.addEventListener('focus', function() {
+            if (this.options.length > 10) {
+                this.size = 10;
+                this.classList.add('select-aberto');
+            }
+        });
+        selectFase.addEventListener('blur', function() {
+            this.size = 1;
+            this.classList.remove('select-aberto');
+        });
+        selectFase.addEventListener('change', function() {
+            this.blur();
+        });
+        selectFase.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.blur();
+            }
+        });
     }
 
     selectFase.innerHTML = '';

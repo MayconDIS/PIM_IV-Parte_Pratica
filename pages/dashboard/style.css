@@ -539,10 +539,21 @@ header {
 .btn-close { background: none; border: none; color: #8b92a5; font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
 .btn-close:hover { color: #ff5555; }
 .modal-body { padding: 30px; }
-.input-group { margin-bottom: 15px; }
+.input-group { margin-bottom: 15px; position: relative; }
 .input-group label { display: block; color: #8b92a5; margin-bottom: 5px; font-size: 0.9rem; }
 .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; font-size: 1rem; outline: none; }
 .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--nexti-cyan); box-shadow: 0 0 10px rgba(0, 230, 230, 0.1); }
+.select-aberto {
+    position: absolute !important;
+    z-index: 1000 !important;
+    background-color: #0d1117 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    border-color: var(--nexti-cyan) !important;
+    width: 100%;
+    left: 0;
+    top: 24px;
+    overflow-y: auto;
+}
 .btn-right { display: block; margin-left: auto; }
 .stat-box { background: #0d1117; padding: 15px; border-radius: 8px; border: 1px solid #30363d; margin-bottom: 10px; display: flex; justify-content: space-between; color: #c5c6c7; font-weight: bold; }
 .stat-box span { color: var(--nexti-cyan); }
