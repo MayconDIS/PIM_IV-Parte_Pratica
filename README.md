@@ -1,15 +1,16 @@
+<!-- markdownlint-disable MD033 MD041 MD051 -->
 <div align="center">
   <img src="assets/img/Logo%20UNIP.png" alt="Logo UNIP" width="150" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/UNIP_Logo.svg/1200px-UNIP_Logo.svg.png'"/>
   <h1>Nex_TI – EdTech Learning Platform</h1>
   <p><strong>Projeto Integrado Multidisciplinar (PIM IV) - Análise e Desenvolvimento de Sistemas</strong></p>
 
   <!-- Badges -->
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" />
-  <img src="https://img.shields.io/badge/.NET_10-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
-  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Badge"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript Badge"/>
+  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C# Badge"/>
+  <img src="https://img.shields.io/badge/.NET_10-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 10 Badge"/>
+  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server Badge"/>
 </div>
 
 <br>
@@ -24,27 +25,33 @@
   <summary>🇧🇷 <b>Português</b></summary>
 
   O ecossistema do projeto **Nex_TI** desenvolvido para o PIM IV (UNIP) é estruturado em três repositórios complementares:
+
   1. 📄 **[PIM_IV-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Teorica)**: Contém a monografia acadêmica e o Relatório ABNT interativo (HTML/CSS), protótipos de interface, cronogramas e atas teóricas.
   2. 📐 **[PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)**: Abriga a modelagem UML completa e fonte no Astah (`.asta`), os diagramas globais exportados (Classes, Sequência, Casos de Uso) e a documentação detalhada em Markdown do Backlog do Produto e Sprints.
   3. 💻 **[PIM_IV-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica)**: A implementação funcional em código, englobando o Frontend (HTML/CSS/JS com modo de acessibilidade e o mapa neural interativo), a API do Backend em C# (.NET 10 Minimal APIs) e os scripts do banco de dados (Microsoft SQL Server).
+
 </details>
 
 <details>
   <summary>🇺🇸 <b>English</b></summary>
 
   The **Nex_TI** project ecosystem for PIM IV (UNIP) is structured into three complementary repositories:
+
   1. 📄 **[PIM_IV-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Teorica)**: Contains the academic monograph and the interactive ABNT Report (HTML/CSS), interface prototypes, schedules, and theoretical minutes.
   2. 📐 **[PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)**: Hosts the complete UML modeling and Astah source (`.asta`), global exported diagrams (Class, Sequence, Use Case), and detailed Markdown documentation of Product and Sprint Backlogs.
   3. 💻 **[PIM_IV-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica)**: The functional code implementation, encompassing the Frontend (HTML/CSS/JS with accessibility mode and interactive neural map), the Backend C# API (.NET 10 Minimal APIs), and database scripts (Microsoft SQL Server).
+
 </details>
 
 <details>
   <summary>🇪🇸 <b>Español</b></summary>
 
   El ecosistema del proyecto **Nex_TI** para PIM IV (UNIP) está estructurado en tres repositórios complementarios:
+
   1. 📄 **[PIM_IV-Parte_Teorica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Teorica)**: Contiene la monografía académica y el Informe ABNT interactivo (HTML/CSS), prototipos de interfaz, cronogramas y actas teóricas.
   2. 📐 **[PIM_IV-Documentacao_UML](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Documentacao_UML)**: Alberga el modelado UML completo y la fuente en Astah (`.asta`), los diagramas globales exportados (Clases, Secuencia, Casos de Uso) y la documentación detallada en Markdown del Backlog del Producto y Sprints.
   3. 💻 **[PIM_IV-Parte_Pratica](file:///C:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica)**: La implementación funcional en código, que abarca el Frontend (HTML/CSS/JS con modo de accesibilidad y mapa neuronal interactivo), la API del Backend en C# (.NET 10 Minimal APIs) y los scripts de la base de datos (Microsoft SQL Server).
+
 </details>
 
 ---
