@@ -32,6 +32,12 @@
             align-items: center;
         }
 
+        .logo-image-header {
+            height: 38px;
+            display: block;
+            object-fit: contain;
+        }
+
         .tech-text { 
             background: linear-gradient(90deg, var(--alura-cyan, #00e6e6), var(--alura-purple, #8a2be2)); 
             -webkit-background-clip: text; 
@@ -194,8 +200,8 @@
 <body>
 
     <header role="banner">
-        <div class="logo tech-font">
-            <span class="logo-white">Nex_</span><span class="tech-text">TI</span>
+        <div class="logo cursor-pointer" onclick="window.location.href='../dashboard/index.html'">
+            <img src="../../assets/img/logo.png" alt="Nex_TI" class="logo-image-header">
         </div>
         <div class="header-right">
             <a href="../dashboard/index.html" class="btn-back tech-font"><span class="material-symbols-outlined">arrow_back</span> Voltar ao App</a>

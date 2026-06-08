@@ -175,6 +175,18 @@ header {
     align-items: center;
 }
 
+.logo-image-header {
+    height: 38px;
+    display: block;
+    object-fit: contain;
+}
+
+.logo-image-footer {
+    height: 32px;
+    display: block;
+    object-fit: contain;
+}
+
 .tech-text { 
     background: linear-gradient(90deg, var(--alura-cyan), var(--alura-purple)); 
     -webkit-background-clip: text; 
