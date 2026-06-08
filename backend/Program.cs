@@ -19,7 +19,8 @@ builder.Services.AddCors(options =>
 });
 
 // Configuração de Autenticação JWT
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "NexTI_Secret_Key_2026_Super_Secure_Key_Default_Keep_It_Long_123!";
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException("A chave JWT deve ser configurada em appsettings.Development.json (seção Jwt:Key).");
 var key = Encoding.ASCII.GetBytes(jwtKey);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -29,8 +30,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false
+            ValidateIssuer = true,
+            ValidIssuer = "NexTI_API",
+            ValidateAudience = true,
+            ValidAudience = "NexTI_Frontend"
         };
     });
 
@@ -106,7 +109,10 @@ using (var scope = app.Services.CreateScope())
                     db.Database.ExecuteSqlRaw("DELETE FROM Flashcards;");
                     db.Database.ExecuteSqlRaw("DELETE FROM Fases;");
                     
-                    // Dividir o script por blocos delimitados por "GO"
+                    // Dividir o script por blocos delimitados por "GO" e executar via ADO.NET para evitar erros com chaves literais {}
+                    var connection = db.Database.GetDbConnection();
+                    db.Database.OpenConnection();
+
                     var lines = seedSql.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                     var currentBatch = new StringBuilder();
                     
@@ -118,7 +124,11 @@ using (var scope = app.Services.CreateScope())
                             string batchSql = currentBatch.ToString().Trim();
                             if (!string.IsNullOrEmpty(batchSql))
                             {
-                                db.Database.ExecuteSqlRaw(batchSql);
+                                using (var command = connection.CreateCommand())
+                                {
+                                    command.CommandText = batchSql;
+                                    command.ExecuteNonQuery();
+                                }
                             }
                             currentBatch.Clear();
                         }
@@ -132,7 +142,11 @@ using (var scope = app.Services.CreateScope())
                     string finalBatch = currentBatch.ToString().Trim();
                     if (!string.IsNullOrEmpty(finalBatch))
                     {
-                        db.Database.ExecuteSqlRaw(finalBatch);
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = finalBatch;
+                            command.ExecuteNonQuery();
+                        }
                     }
                     
                     Console.WriteLine("--> Banco de dados populado com sucesso!");
