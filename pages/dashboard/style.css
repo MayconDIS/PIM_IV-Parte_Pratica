@@ -176,9 +176,25 @@ header {
 }
 
 .logo-image-header {
-    height: 38px;
+    height: 44px;
     display: block;
     object-fit: contain;
+}
+
+.logo-header-box {
+    background: linear-gradient(145deg, rgba(18, 24, 32, 0.85), rgba(11, 12, 16, 0.85));
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 6px 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-header-box:hover {
+    border-color: rgba(0, 230, 230, 0.3);
+    background: linear-gradient(145deg, rgba(22, 30, 39, 0.9), rgba(14, 16, 21, 0.9));
+    box-shadow: 0 0 15px rgba(0, 230, 230, 0.15);
 }
 
 .logo-image-footer {
