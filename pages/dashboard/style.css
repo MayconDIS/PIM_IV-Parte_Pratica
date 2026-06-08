@@ -138,6 +138,8 @@ header {
     height: 18px;
     object-fit: contain;
     border-radius: 4px;
+    position: relative;
+    top: 2px;
     animation: pulseMotivation 2.5s infinite ease-in-out;
 }
 
