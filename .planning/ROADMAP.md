@@ -88,6 +88,12 @@
 - [x] Document secure coding practices for EF Core and Minimal APIs
 - [x] Update agent security-best-practices catalog documentation
 
+## Phase 13: .NET Best Practices Habilitaion (C# Habilitaion)
+**Status: Completed**
+- [x] Add dotnet-best-practices local agent skill directory
+- [x] Document SOLID principles, modern C# syntax and EF Core guidelines
+- [x] Register local dotnet-best-practices skill in skills-lock.json
+
 ---
 ## Versão em Português
 
@@ -175,4 +181,10 @@
 - [x] Criar guia csharp.md na pasta de linguagens do agente de segurança
 - [x] Documentar padrões de prevenção a SQL Injection e IDOR em Minimal APIs
 - [x] Atualizar índice de referências da skill security-best-practices do projeto
+
+## Fase 13: Habilitação da Skill de Melhores Práticas .NET (C#)
+**Status: Concluído**
+- [x] Criar pasta local dotnet-best-practices para a skill do agente
+- [x] Documentar princípios SOLID, construtores primários e boas práticas do EF Core
+- [x] Registrar a skill local dotnet-best-practices no arquivo skills-lock.json
 

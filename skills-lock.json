@@ -18,6 +18,12 @@
       "sourceType": "github",
       "skillPath": "skills/security-review/SKILL.md",
       "computedHash": "1eee1e41aa0a0e75dbbe0cac387e3d61bedf51af1888f184301a173731e6973e"
+    },
+    "dotnet-best-practices": {
+      "source": "local",
+      "sourceType": "local",
+      "skillPath": ".agents/dotnet-best-practices/SKILL.md",
+      "computedHash": "local"
     }
   }
 }
