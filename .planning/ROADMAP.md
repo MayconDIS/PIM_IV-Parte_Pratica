@@ -100,6 +100,12 @@
 - [x] Create separate guides for naming/formatting, functions/classes and errors/testing
 - [x] Add language-specific guidelines for JavaScript and C#
 
+## Phase 15: Design DNA Modular Structure
+**Status: Completed**
+- [x] Restructure design-dna local skill directory to modular folders
+- [x] Create separate guides for color/typography and accessibility
+- [x] Document detailed UI elements specifications for flashcards, HUD and neural map
+
 ---
 ## Versão em Português
 
@@ -199,4 +205,10 @@
 - [x] Reestruturar pasta clean-code local em subpastas de referências e linguagens
 - [x] Criar manuais específicos para nomenclatura/formatação, funções/classes e testes/erros
 - [x] Desenvolver guias específicos de código limpo para JavaScript e C#
+
+## Fase 15: Reestruturação Modular da Skill Design DNA
+**Status: Concluído**
+- [x] Reestruturar pasta design-dna local em subpastas de referências e componentes
+- [x] Criar manuais de referência para cores/tipografia e acessibilidade universal
+- [x] Desenvolver especificações de elementos de UI para flashcards, HUD e Teia Neural
 
