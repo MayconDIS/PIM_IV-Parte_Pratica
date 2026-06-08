@@ -222,19 +222,8 @@ namespace NexTI_API.Endpoints
 
                 try
                 {
-                    // Encontra o caminho do script gerar_certificado.py na raiz do projeto
-                    string projectRoot = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), ".."));
-                    string scriptPath = Path.Combine(projectRoot, "docs", "gerar_certificado.py");
-                    
-                    if (!File.Exists(scriptPath))
-                    {
-                        scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "docs", "gerar_certificado.py");
-                    }
-                    
-                    if (!File.Exists(scriptPath))
-                    {
-                        scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "docs", "gerar_certificado.py");
-                    }
+                    // Encontra o caminho do script gerar_certificado.py copiado na pasta de saída da compilação
+                    string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Certificados", "gerar_certificado.py");
 
                     // Tenta usar o interpretador Python
                     string pythonExecutable = "python";

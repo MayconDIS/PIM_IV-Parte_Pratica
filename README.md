@@ -92,15 +92,19 @@ O projeto foi construído seguindo as melhores práticas do mercado:
  ┃ ┣ 📂 css/          # global.css, splash.css
  ┃ ┗ 📂 js/           # api.js, auth.js, splash.js
  ┣ 📂 backend/        # API C# .NET 10 (Controllers, Models, DbContext)
+ ┃ ┗ 📂 Certificados/ # Scripts Python, fontes e modelos de geração de PDF
  ┣ 📂 database/       # Script SQL do banco de dados (NexTI_DB.sql)
+ ┣ 📂 docs/           # Documentação, manuais da banca e apresentação
+ ┃ ┣ 📂 apresentation/# Apresentação estática em HTML do projeto
+ ┃ ┣ 📜 MANUAL_DE_EXECUCAO.md  # Guia para a banca rodar o projeto
+ ┃ ┣ 📜 MANUAL_PRATICO.md      # Guia do Usuário final (Extensão Universitária)
+ ┃ ┗ 📜 MANUAL_TECNICO.md      # Guia de Arquitetura e Engenharia de Software
  ┣ 📂 pages/          # Telas e módulos do Frontend
  ┃ ┣ 📂 dashboard/    # Interface principal, Motor SM-2 e Mapa Neural
  ┃ ┣ 📂 login/        # Autenticação do usuário
  ┃ ┗ 📂 sobre/        # Página informativa da plataforma
  ┣ 📜 index.html      # Ponto de entrada / Splash Screen
- ┣ 📜 MANUAL_DE_EXECUCAO.md  # Guia para a banca rodar o projeto
- ┣ 📜 MANUAL_PRATICO.md      # Guia do Usuário final (Extensão Universitária)
- ┗ 📜 MANUAL_TECNICO.md      # Guia de Arquitetura e Engenharia de Software
+ ┗ 📜 start.py        # Script de inicialização do ecossistema
 ```
 
 ### 👥 Equipe de Desenvolvimento
@@ -142,15 +146,19 @@ The project was built adhering to industry best practices:
  ┃ ┣ 📂 css/          # global.css, splash.css
  ┃ ┗ 📂 js/           # api.js, auth.js, splash.js
  ┣ 📂 backend/        # C# .NET 10 API (Controllers, Models, DbContext)
+ ┃ ┗ 📂 Certificados/ # Python scripts, fonts, and PDF generation templates
  ┣ 📂 database/       # Database SQL script (NexTI_DB.sql)
+ ┣ 📂 docs/           # Documentation, board manuals, and presentation
+ ┃ ┣ 📂 apresentation/# Static HTML presentation of the project
+ ┃ ┣ 📜 MANUAL_DE_EXECUCAO.md  # Guide for the board to run the project
+ ┃ ┣ 📜 MANUAL_PRATICO.md      # End-User Guide (University Extension)
+ ┃ ┗ 📜 MANUAL_TECNICO.md      # Architecture and Software Engineering Guide
  ┣ 📂 pages/          # Frontend screens and modules
  ┃ ┣ 📂 dashboard/    # Main interface, SM-2 Engine, and Neural Map
  ┃ ┣ 📂 login/        # User authentication
  ┃ ┗ 📂 sobre/        # Platform informational page
  ┣ 📜 index.html      # Entry point / Splash Screen
- ┣ 📜 MANUAL_DE_EXECUCAO.md  # Guide for evaluators to run the project
- ┣ 📜 MANUAL_PRATICO.md      # End-User Guide (University Extension)
- ┗ 📜 MANUAL_TECNICO.md      # Architecture and Software Engineering Guide
+ ┗ 📜 start.py        # Ecosystem initialization script
 ```
 
 ### 👥 Development Team
@@ -193,15 +201,19 @@ El proyecto fue construido siguiendo las mejores prácticas del mercado:
  ┃ ┣ 📂 css/          # global.css, splash.css
  ┃ ┗ 📂 js/           # api.js, auth.js, splash.js
  ┣ 📂 backend/        # API C# .NET 10 (Controllers, Models, DbContext)
+ ┃ ┗ 📂 Certificados/ # Scripts de Python, fuentes y plantillas de generación de PDF
  ┣ 📂 database/       # Script SQL de la base de datos (NexTI_DB.sql)
+ ┣ 📂 docs/           # Documentación, manuales de la junta y presentación
+ ┃ ┣ 📂 apresentation/# Presentación estática en HTML del proyecto
+ ┃ ┣ 📜 MANUAL_DE_EXECUCAO.md  # Guía para que los evaluadores ejecuten el proyecto
+ ┃ ┣ 📜 MANUAL_PRATICO.md      # Guía del Usuario Final (Extensión Universitaria)
+ ┃ ┗ 📜 MANUAL_TECNICO.md      # Guía de Arquitectura e Ingeniería de Software
  ┣ 📂 pages/          # Páginas y módulos del Frontend
  ┃ ┣ 📂 dashboard/    # Interfaz principal, Motor SM-2 y Mapa Neural
  ┃ ┣ 📂 login/        # Autenticación del usuario
- ┃ ┗ 📂 sobre/        # Página informativa de la plataforma
+ ┃ ┗ 📜 sobre/        # Página informativa de la plataforma
  ┣ 📜 index.html      # Punto de entrada / Splash Screen
- ┣ 📜 MANUAL_DE_EXECUCAO.md  # Guia para que los evaluadores ejecuten el proyecto
- ┣ 📜 MANUAL_PRATICO.md      # Guía del Usuario Final (Extensión Universitaria)
- ┗ 📜 MANUAL_TECNICO.md      # Guía de Arquitectura e Ingeniería de Software
+ ┗ 📜 start.py        # Script de inicialización del ecosistema
 ```
 
 ### 👥 Equipo de Desarrollo

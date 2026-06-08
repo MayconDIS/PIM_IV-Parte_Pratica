@@ -112,7 +112,8 @@ def gerar_certificado(nome_aluno, data_conclusao, codigo_autenticidade, output_p
     pdf.rect(0, 0, 297, 210, 'F')
     
     # Setup das fontes personalizadas do Google Fonts
-    font_dir = "docs/fonts"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    font_dir = os.path.join(script_dir, "fonts")
     os.makedirs(font_dir, exist_ok=True)
     
     local_fonts = {
@@ -295,6 +296,7 @@ if __name__ == "__main__":
     codigo_default = f"NEX-A18C-{letra_hash:05d}-{agora.strftime('%d%m%Y')}"
     codigo = sys.argv[3] if len(sys.argv) > 3 else codigo_default
     
-    output = sys.argv[4] if len(sys.argv) > 4 else "docs/certificado_modelo.pdf"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output = sys.argv[4] if len(sys.argv) > 4 else os.path.join(script_dir, "certificado_modelo.pdf")
     
     gerar_certificado(nome, data, codigo, output)
