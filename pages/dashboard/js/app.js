@@ -129,6 +129,7 @@ const ordemFases = [
 
 let fasesDesbloqueadas = JSON.parse(localStorage.getItem(userKey + 'desbloqueadas')) || ['fase1'];
 let bonusDesbloqueados = JSON.parse(localStorage.getItem(userKey + 'bonus_unlocked')) || [];
+let opcoesOriginaisNovaFase = [];
 
 function atualizarFasesVisuais() {
     ordemFases.forEach(fase => {
@@ -988,24 +989,38 @@ document.addEventListener('click', function(event) {
     }
 });
 
+function atualizarOpcoesSelectCriacao() {
+    const selectFase = document.getElementById('nova-fase');
+    if (!selectFase) return;
+
+    if (opcoesOriginaisNovaFase.length === 0) {
+        opcoesOriginaisNovaFase = Array.from(selectFase.options).map(opt => ({
+            value: opt.value,
+            text: opt.text
+        }));
+    }
+
+    selectFase.innerHTML = '';
+
+    opcoesOriginaisNovaFase.forEach(opt => {
+        if (fasesDesbloqueadas.includes(opt.value)) {
+            const novaOpt = document.createElement('option');
+            novaOpt.value = opt.value;
+            novaOpt.text = opt.text;
+            selectFase.appendChild(novaOpt);
+        }
+    });
+
+    if (faseAtualId && fasesDesbloqueadas.includes(faseAtualId)) {
+        selectFase.value = faseAtualId;
+    } else if (selectFase.options.length > 0) {
+        selectFase.selectedIndex = selectFase.options.length - 1;
+    }
+}
+
 function abrirModal(idModal) {
     if (idModal === 'modalCriacao') {
-        const faseValida = faseAtualId && 
-                           (faseAtualId.startsWith('fase') || faseAtualId.startsWith('bonus')) && 
-                           !faseAtualId.startsWith('teste-mod');
-        
-        if (!faseValida) {
-            alert("[ SISTEMA ]\nPor favor, selecione uma disciplina de estudo no painel lateral antes de criar um flashcard.");
-            return;
-        }
-
-        const selectFase = document.getElementById('nova-fase');
-        if (selectFase) {
-            selectFase.value = faseAtualId;
-            selectFase.disabled = true;
-            selectFase.style.cursor = 'not-allowed';
-            selectFase.style.opacity = '0.8';
-        }
+        atualizarOpcoesSelectCriacao();
     }
 
     document.getElementById(idModal).classList.add('show');
