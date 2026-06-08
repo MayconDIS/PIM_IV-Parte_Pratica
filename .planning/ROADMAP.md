@@ -82,6 +82,12 @@
 - [x] Add VLibras widget to about screen (`pages/sobre/index.html`)
 - [x] Maintain clean spacing and position alignment on all viewports
 
+## Phase 12: Security Reference Extension (C# and .NET Framework)
+**Status: Completed**
+- [x] Add csharp.md security reference to agent languages directory
+- [x] Document secure coding practices for EF Core and Minimal APIs
+- [x] Update agent security-best-practices catalog documentation
+
 ---
 ## Versão em Português
 
@@ -163,3 +169,10 @@
 - [x] Adicionar widget VLibras no dashboard principal (`pages/dashboard/index.html`)
 - [x] Adicionar widget VLibras na tela sobre (`pages/sobre/index.html`)
 - [x] Garantir espaçamento e alinhamento visual limpo em todas as telas
+
+## Fase 12: Extensão de Referências de Segurança (C# e .NET Framework)
+**Status: Concluído**
+- [x] Criar guia csharp.md na pasta de linguagens do agente de segurança
+- [x] Documentar padrões de prevenção a SQL Injection e IDOR em Minimal APIs
+- [x] Atualizar índice de referências da skill security-best-practices do projeto
+

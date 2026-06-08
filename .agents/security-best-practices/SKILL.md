@@ -66,6 +66,7 @@ Ao realizar uma auditoria de segurança ou aplicar melhores práticas:
 * [javascript.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/.agents/security-best-practices/languages/javascript.md) - Regras de Node.js, Express, React e Next.js.
 * [python-fastapi-web-server-security.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/.agents/security-best-practices/references/python-fastapi-web-server-security.md) - Boas práticas para servidores Python.
 * [python.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/.agents/security-best-practices/languages/python.md) - Regras de segurança gerais do Python.
+* [csharp.md](file:///c:/Users/mayco/Documents/GitHub/PIM_IV-Parte_Pratica/.agents/security-best-practices/languages/csharp.md) - Melhores práticas para C# e .NET (Minimal APIs e EF Core).
 
 ---
 
