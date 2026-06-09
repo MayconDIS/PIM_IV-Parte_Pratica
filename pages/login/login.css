@@ -68,13 +68,12 @@ body {
     margin-bottom: 35px; 
 }
 
-.logo-image-login {
-    height: 52px;
-    object-fit: contain;
+.logo-title {
+    font-size: 2.8rem;
+    font-weight: 800;
     margin-bottom: 12px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    letter-spacing: 1px;
+    color: #fff;
 }
 
 .sr-only {
@@ -140,6 +139,16 @@ body {
     border-color: var(--nexti-cyan);
     box-shadow: 0 0 15px rgba(0, 230, 230, 0.2);
     background-color: rgba(0, 230, 230, 0.02);
+}
+
+/* Correção do fundo de autofill do navegador */
+.input-with-icon input:-webkit-autofill,
+.input-with-icon input:-webkit-autofill:hover, 
+.input-with-icon input:-webkit-autofill:focus, 
+.input-with-icon input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #0d1117 inset !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .btn-login {
